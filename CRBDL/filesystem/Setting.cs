@@ -98,6 +98,7 @@ namespace CDL.filesystem
                         }
                     }
                 }
+                sw.WriteLine("");
                 //Close the file
                 sw.Close();
                 form1.getTextBox10().Text = path;
