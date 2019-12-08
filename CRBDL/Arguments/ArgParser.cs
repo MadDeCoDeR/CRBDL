@@ -111,6 +111,7 @@ namespace CDL.Arguments
                             }
                             break;
                         case ArgKeys.MAP:
+                        case ArgKeys.SKILL:
                             if (!DefaultCheck.checkControl(controlDefs.getControls()[key][subKey], key, subKey, form1))
                             {
                                 args += commandDefs.getCommands()[key][subKey]

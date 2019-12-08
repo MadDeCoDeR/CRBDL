@@ -49,6 +49,7 @@ namespace CDL.Arguments
                     break;
                 case ArgKeys.EPISODE:
                 case ArgKeys.MAP:
+                case ArgKeys.SKILL:
                     if (((ComboBox)control).SelectedIndex > 0) { isDefault = false; }
                     break;
                 case ArgKeys.MOD:
