@@ -23,6 +23,7 @@ SOFTWARE.
 using CDL.Arguments;
 using CDL.Expansions;
 using CDL.filesystem;
+using CDL.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,7 +39,7 @@ namespace CRBDL
         public List<string>[] ml { set; get; }
         public string[] adcoms;
         private UFS UFS;
-        private Setting setting = new Setting();
+        private CDLSetting setting = new CDLSetting();
         private ModLoader modLoader = new ModLoader();
 
         private static string[] filenames = { "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
@@ -148,6 +149,12 @@ namespace CRBDL
                     comboBox15.Items.Add(tdir);
                 }
             }
+            if (Settings.Default.defaultSettings != "")
+            {
+                Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                button12.Enabled = true;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -241,6 +248,7 @@ namespace CRBDL
             if (sfd.FileName != "")
             {
                 setting.saveSettings(sfd.FileName, this);
+                button11.Enabled = true;
             }
         }
 
@@ -256,6 +264,7 @@ namespace CRBDL
                 if ((myStream = ofd.OpenFile()) != null)
                 {
                     setting.loadSettings(myStream, this, ofd.FileName);
+                    button11.Enabled = true;
                 }
             }
         }
@@ -409,7 +418,24 @@ namespace CRBDL
         public CheckBox getCheckBox11() { return checkBox11; }
         public CheckBox getCheckBox12() { return checkBox12; }
 
-        
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Settings.Default.defaultSettings = textBox10.Text;
+            Settings.Default.Save();
+            button11.Enabled = false;
+            button12.Enabled = true;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Settings.Default.defaultSettings = "";
+            Settings.Default.Save();
+            button12.Enabled = false;
+            if (textBox10.Text != "")
+            {
+                button11.Enabled = true;
+            }
+        }
     }
 
 

@@ -123,6 +123,8 @@ namespace CRBDL
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button8 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.ALLIN.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -136,7 +138,7 @@ namespace CRBDL
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(264, 389);
+            this.button1.Location = new System.Drawing.Point(272, 418);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -155,7 +157,7 @@ namespace CRBDL
             this.ALLIN.Location = new System.Drawing.Point(-2, -1);
             this.ALLIN.Name = "ALLIN";
             this.ALLIN.SelectedIndex = 0;
-            this.ALLIN.Size = new System.Drawing.Size(351, 364);
+            this.ALLIN.Size = new System.Drawing.Size(353, 364);
             this.ALLIN.TabIndex = 2;
             // 
             // tabPage1
@@ -186,7 +188,7 @@ namespace CRBDL
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(343, 338);
+            this.tabPage1.Size = new System.Drawing.Size(345, 338);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "DOOM 3 BFG";
             // 
@@ -298,7 +300,7 @@ namespace CRBDL
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox15.Location = new System.Drawing.Point(6, 312);
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(331, 20);
+            this.textBox15.Size = new System.Drawing.Size(333, 20);
             this.textBox15.TabIndex = 21;
             // 
             // textBox13
@@ -461,7 +463,7 @@ namespace CRBDL
             this.textBox1.Location = new System.Drawing.Point(6, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(121, 13);
+            this.textBox1.Size = new System.Drawing.Size(123, 13);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "Select game to launch";
             // 
@@ -495,7 +497,7 @@ namespace CRBDL
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(343, 338);
+            this.tabPage3.Size = new System.Drawing.Size(420, 338);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "DOOM I & II";
             // 
@@ -665,7 +667,7 @@ namespace CRBDL
             this.DOOM.Location = new System.Drawing.Point(4, 22);
             this.DOOM.Name = "DOOM";
             this.DOOM.Padding = new System.Windows.Forms.Padding(3);
-            this.DOOM.Size = new System.Drawing.Size(343, 338);
+            this.DOOM.Size = new System.Drawing.Size(420, 338);
             this.DOOM.TabIndex = 0;
             this.DOOM.Text = "DOOM";
             // 
@@ -855,7 +857,7 @@ namespace CRBDL
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(343, 338);
+            this.tabPage2.Size = new System.Drawing.Size(420, 338);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DOOM II";
             // 
@@ -1094,7 +1096,7 @@ namespace CRBDL
             this.textBox10.Location = new System.Drawing.Point(2, 399);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(165, 13);
+            this.textBox10.Size = new System.Drawing.Size(339, 13);
             this.textBox10.TabIndex = 4;
             // 
             // folderBrowserDialog1
@@ -1105,7 +1107,7 @@ namespace CRBDL
             // button8
             // 
             this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.Location = new System.Drawing.Point(183, 389);
+            this.button8.Location = new System.Drawing.Point(191, 418);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 5;
@@ -1113,11 +1115,36 @@ namespace CRBDL
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // button11
+            // 
+            this.button11.Enabled = false;
+            this.button11.Location = new System.Drawing.Point(171, 370);
+            this.button11.Name = "button11";
+            this.button11.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button11.Size = new System.Drawing.Size(83, 23);
+            this.button11.TabIndex = 6;
+            this.button11.Text = "Make Default";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Enabled = false;
+            this.button12.Location = new System.Drawing.Point(261, 370);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(80, 23);
+            this.button12.TabIndex = 7;
+            this.button12.Text = "Reset Default";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 424);
+            this.ClientSize = new System.Drawing.Size(353, 443);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.button7);
@@ -1222,6 +1249,8 @@ namespace CRBDL
         private System.Windows.Forms.CheckBox checkBox12;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
     }
 }
 

@@ -29,7 +29,7 @@ using System.Windows.Forms;
 
 namespace CDL.filesystem
 {
-    class Setting
+    class CDLSetting
     {
         private static ExpParser parser = new ExpParser();
         private static ModParser modParser = new ModParser();

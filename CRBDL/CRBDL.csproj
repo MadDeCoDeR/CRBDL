@@ -100,9 +100,10 @@
     <Compile Include="Expansions\Names.cs" />
     <Compile Include="filesystem\Filters.cs" />
     <Compile Include="filesystem\ModLoader.cs" />
-    <Compile Include="filesystem\Setting.cs" />
+    <Compile Include="filesystem\CDLSetting.cs" />
     <Compile Include="network\Server.cs" />
     <Compile Include="parser\DecimalParser.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="setting\SettingDef.cs" />
     <Compile Include="filesystem\UFS.cs" />
     <Compile Include="Form1.cs">
@@ -147,7 +148,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
