@@ -497,7 +497,7 @@ namespace CRBDL
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(420, 338);
+            this.tabPage3.Size = new System.Drawing.Size(345, 338);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "DOOM I & II";
             // 
@@ -667,7 +667,7 @@ namespace CRBDL
             this.DOOM.Location = new System.Drawing.Point(4, 22);
             this.DOOM.Name = "DOOM";
             this.DOOM.Padding = new System.Windows.Forms.Padding(3);
-            this.DOOM.Size = new System.Drawing.Size(420, 338);
+            this.DOOM.Size = new System.Drawing.Size(345, 338);
             this.DOOM.TabIndex = 0;
             this.DOOM.Text = "DOOM";
             // 
@@ -857,7 +857,7 @@ namespace CRBDL
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(420, 338);
+            this.tabPage2.Size = new System.Drawing.Size(345, 338);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DOOM II";
             // 
