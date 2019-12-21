@@ -1,0 +1,6 @@
+
+Version 1.0.1.3
+------------------------------------------
+- Make the main window resizable
+
+- Add the Option to set and unset default configuration file
