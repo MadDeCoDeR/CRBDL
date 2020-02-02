@@ -42,7 +42,7 @@ namespace CRBDL
         private CDLSetting setting = new CDLSetting();
         private ModLoader modLoader = new ModLoader();
 
-        private static string[] filenames = { "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
+        private static string[] filenames = { "DoomBFA.exe", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
 
         public Form1()
         {
@@ -89,7 +89,7 @@ namespace CRBDL
             {
                 if (MessageBox.Show("Main executable not found", "Error", MessageBoxButtons.OK) == DialogResult.OK) {
                     Process.GetCurrentProcess().Kill();
-            }
+                }
             }
 
             if (!UFS.Exists("base/wads/MASTERLEVELS.wad"))
@@ -124,8 +124,19 @@ namespace CRBDL
             foreach (string filename in filenames) {
                 if (UFS.Exists(filename))
                 {
+                    if ((UFS.isUnixFS() && filename.EndsWith(".exe")) || (!UFS.isUnixFS() && !filename.EndsWith(".exe")))
+                    {
+                        continue;
+                    }
                     crbd.StartInfo.FileName = UFS.getFullPath(filename);
                     break;
+                }
+            }
+            if (crbd.StartInfo.FileName == null || crbd.StartInfo.FileName == "")
+            {
+                if (MessageBox.Show("Unable to find the main executable for this System", "Error", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    Process.GetCurrentProcess().Kill();
                 }
             }
             crbd.StartInfo.WorkingDirectory = UFS.getCurrentDirectory(filenames);

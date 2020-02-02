@@ -1156,7 +1156,7 @@ namespace CRBDL
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text = "Classic RBDOOM 3 BFG Edition Launcher";
+            this.Text = "DOOM BFA Edition Launcher";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ALLIN.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CDL")]
-[assembly: AssemblyDescription("Launcher for Classic RBDOOM 3 BFG Edition")]
+[assembly: AssemblyDescription("Launcher for DOOM BFA Edition")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Classic RBDOOM 3 BFG Edition Launcher")]
+[assembly: AssemblyProduct("DOOM BFA Edition Launcher")]
 [assembly: AssemblyCopyright("Copyright(C) 2019 George Kalmpokis under MIT License")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
