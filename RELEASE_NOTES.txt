@@ -1,4 +1,11 @@
 
+Version 1.0.1.4
+------------------------------------------
+- Add Support for DoomBFA 
+
+- Add a more intelligent executable detection based on the OS
+
+
 Version 1.0.1.3
 ------------------------------------------
 - Make the main window resizable
