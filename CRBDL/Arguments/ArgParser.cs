@@ -23,6 +23,7 @@ SOFTWARE.
 using CDL.parser;
 using CRBDL;
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace CDL.Arguments
@@ -59,8 +60,8 @@ namespace CDL.Arguments
                         case ArgKeys.FA:
                             if (form1.getCheckBox12().Checked)
                             {
-                                string value = DecimalParser.parseDecimal(
-                                    ((NumericUpDown)controlDefs.getControls()[key][subKey]).Value);
+                                string value = 
+                                    ((NumericUpDown)controlDefs.getControls()[key][subKey]).Value.ToString(CultureInfo.InvariantCulture);
                                 args += commandDefs.getCommands()[key][subKey] + value + " ";
                             }
                             break;

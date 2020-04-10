@@ -112,7 +112,6 @@
     <Compile Include="filesystem\ModLoader.cs" />
     <Compile Include="filesystem\CDLSetting.cs" />
     <Compile Include="network\Server.cs" />
-    <Compile Include="parser\DecimalParser.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="setting\SettingDef.cs" />
     <Compile Include="filesystem\UFS.cs" />

@@ -71,7 +71,7 @@ namespace CDL.filesystem
         {
             for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 5; j++)
                 {
                     string path = paths[i] + "/" + filenames[j];
                     if (File.Exists(path))
