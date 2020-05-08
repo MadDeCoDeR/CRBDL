@@ -308,21 +308,23 @@ namespace CRBDL
             this.textBox13.BackColor = System.Drawing.SystemColors.Control;
             this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox13.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox13.Enabled = false;
-            this.textBox13.Location = new System.Drawing.Point(209, 201);
+            this.textBox13.Location = new System.Drawing.Point(223, 200);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(100, 13);
             this.textBox13.TabIndex = 20;
-            this.textBox13.Text = "Controller Layout";
+            this.textBox13.Text = "Language";
             // 
             // comboBox12
             // 
-            this.comboBox12.Enabled = false;
             this.comboBox12.FormattingEnabled = true;
             this.comboBox12.Items.AddRange(new object[] {
-            "XBOX360",
-            "PS3"});
-            this.comboBox12.Location = new System.Drawing.Point(209, 220);
+            "English",
+            "German",
+            "French",
+            "Italian",
+            "Japanese",
+            "Spanish"});
+            this.comboBox12.Location = new System.Drawing.Point(216, 220);
             this.comboBox12.Name = "comboBox12";
             this.comboBox12.Size = new System.Drawing.Size(121, 21);
             this.comboBox12.TabIndex = 19;

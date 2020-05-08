@@ -40,7 +40,7 @@ namespace CDL.Arguments
             commands.Add(ArgKeys.TF, "+set r_useTrilinearFiltering ");
             commands.Add(ArgKeys.EXPOSURE, "+set r_exposure ");
             commands.Add(ArgKeys.SSGI, "+set r_useSSGI ");
-            commands.Add(ArgKeys.JLAY, "+set in_joylayout ");
+            commands.Add(ArgKeys.LANG, "+set sys_lang ");
             commands.Add(ArgKeys.FA, "+set r_forceAmbient ");
         }
 

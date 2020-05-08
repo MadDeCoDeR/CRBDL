@@ -374,7 +374,7 @@ namespace CRBDL
                 numericUpDown1.Enabled = ((CheckBox)sender).Checked;
                 checkBox9.Enabled = ((CheckBox)sender).Checked;
                 textBox13.Enabled = ((CheckBox)sender).Checked;
-                comboBox12.Enabled = ((CheckBox)sender).Checked;
+                //comboBox12.Enabled = ((CheckBox)sender).Checked;
                 textBox25.Enabled = ((CheckBox)sender).Checked;
                 numericUpDown3.Enabled = ((CheckBox)sender).Checked;
         }

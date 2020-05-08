@@ -34,7 +34,7 @@ namespace CDL.Arguments
         public const string TF = "triliner_filter";
         public const string EXPOSURE = "exposure";
         public const string SSGI = "ssgi";
-        public const string JLAY = "joylayout";
+        public const string LANG = "language";
         public const string FA = "force_ambient";
         public const string CHEAT = "cheat";
         public const string SKILL = "skill";

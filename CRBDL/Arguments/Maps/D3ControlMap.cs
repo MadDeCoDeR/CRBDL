@@ -42,7 +42,7 @@ namespace CDL.Arguments
             controls.Add(ArgKeys.TF, form1.getCheckBox5());
             controls.Add(ArgKeys.EXPOSURE, form1.getNumericUpDown1());
             controls.Add(ArgKeys.SSGI, form1.getCheckBox9());
-            controls.Add(ArgKeys.JLAY, form1.getComboBox12());
+            controls.Add(ArgKeys.LANG, form1.getComboBox12());
             controls.Add(ArgKeys.FA, form1.getNumericUpDown3());
             controls.Add(ArgKeys.EXTRA, form1.getTextBox15());
         }

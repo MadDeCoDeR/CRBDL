@@ -104,12 +104,12 @@ namespace CDL.Arguments
                                     + $"{Convert.ToInt32(((CheckBox)controlDefs.getControls()[key][subKey]).Checked)} ";
                             }
                             break;
-                        case ArgKeys.JLAY:
-                            if (form1.getCheckBox12().Checked)
-                            {
+                        case ArgKeys.LANG:
+                            //if (form1.getCheckBox12().Checked)
+                            //{
                                 args += commandDefs.getCommands()[key][subKey]
-                                    + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex} ";
-                            }
+                                    + $"{((string)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).ToLower()} ";
+                            //}
                             break;
                         case ArgKeys.MAP:
                         case ArgKeys.SKILL:
