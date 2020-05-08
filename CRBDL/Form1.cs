@@ -91,20 +91,26 @@ namespace CRBDL
                     Process.GetCurrentProcess().Kill();
                 }
             }
-
+            int offset = 0;
+            if (!UFS.Exists("base/wads/NERVE.wad"))
+            {
+                comboBox2.Items.Remove(comboBox2.Items[2]);
+                comboBox10.Items.Remove(comboBox10.Items[4]);
+                offset++;
+            }
             if (!UFS.Exists("base/wads/MASTERLEVELS.wad"))
             {
-                comboBox2.Items.Remove(comboBox2.Items[5]);
+                comboBox2.Items.Remove(comboBox2.Items[5 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[3]);
             }
             if (!UFS.Exists("base/wads/PLUTONIA.WAD"))
             {
-                comboBox2.Items.Remove(comboBox2.Items[4]);
+                comboBox2.Items.Remove(comboBox2.Items[4 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[2]);
             }
             if (!UFS.Exists("base/wads/TNT.WAD"))
             {
-                comboBox2.Items.Remove(comboBox2.Items[3]);
+                comboBox2.Items.Remove(comboBox2.Items[3 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[1]);
             }
            
