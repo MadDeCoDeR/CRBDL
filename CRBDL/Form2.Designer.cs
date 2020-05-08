@@ -72,6 +72,8 @@ namespace CDL
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox1.Items.AddRange(new object[] {
             "(Both)",
             "DOOM",
@@ -158,6 +160,8 @@ namespace CDL
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox2.Items.AddRange(new object[] {
             "2",
             "3",
