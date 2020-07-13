@@ -34,7 +34,7 @@ namespace CDL.Expansions
             {
                 comboBox.Items.Add(i+1);
             }
-            comboBox.SelectedIndex = 1;
+            comboBox.SelectedIndex = 0;
         }
     }
 }

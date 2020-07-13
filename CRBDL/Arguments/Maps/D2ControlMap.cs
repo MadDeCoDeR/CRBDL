@@ -38,6 +38,7 @@ namespace CDL.Arguments
             controls.Add(ArgKeys.EPISODE, form1.getComboBox2());
             controls.Add(ArgKeys.MAP, form1.getComboBox3());
             controls.Add(ArgKeys.EXTRA, form1.getTextBox24());
+            controls.Add(ArgKeys.MENU, form1.getComboBox2());
         }
 
         public Dictionary<string, Control> getControls() { return controls; }

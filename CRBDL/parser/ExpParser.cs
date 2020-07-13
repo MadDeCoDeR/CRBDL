@@ -95,5 +95,43 @@ namespace CDL.parser
                     return "(none)";
             }
         }
+
+        public static int getD2MenuExp(string name)
+        {
+            switch (name)
+            {
+                case "Hell on Earth":
+                    return 1;
+                case "TNT: Evilution":
+                    return 2;
+                case "The Plutonia Experiment":
+                    return 3;
+                case "Master Levels":
+                    return 4;
+                case "No Rest For the Living":
+                    return 5;
+                default:
+                    return 0;
+            }
+        }
+
+        public string setD2MenuExp(int value)
+        {
+            switch (value)
+            {
+                case 1:
+                    return "Hell on Earth";
+                case 2:
+                    return "TNT: Evilution";
+                case 3:
+                    return "The Plutonia Experiment";
+                case 4:
+                    return "Master Levels";
+                case 5:
+                    return "No Rest For the Living";
+                default:
+                    return "(none)";
+            }
+        }
     }
 }

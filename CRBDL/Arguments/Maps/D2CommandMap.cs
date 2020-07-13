@@ -35,6 +35,7 @@ namespace CDL.Arguments
             commands.Add(ArgKeys.SKILL, "-skill ");
             commands.Add(ArgKeys.EPISODE, "-exp ");
             commands.Add(ArgKeys.MAP, "-warp ");
+            commands.Add(ArgKeys.MENU, "+set cl_expMenu ");
         }
 
         public Dictionary<string, string> getCommands() { return commands; }

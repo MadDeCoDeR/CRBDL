@@ -86,8 +86,12 @@ namespace CDL.Arguments
                                 }
                                 else
                                 {
-                                    args += commandDefs.getCommands()[key][subKey]
-                                        + $"{ExpParser.getD2Exp(((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString())} ";
+                                    int level = ((ComboBox)controlDefs.getControls()[key][ArgKeys.MAP]).SelectedIndex;
+                                    if (level > 0)
+                                    {
+                                        args += commandDefs.getCommands()[key][subKey]
+                                            + $"{ExpParser.getD2Exp(((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString())} ";
+                                    }
                                 }
                             }
                             break;
@@ -168,6 +172,10 @@ namespace CDL.Arguments
                                     }
                                 }
                             }
+                            break;
+                        case ArgKeys.MENU:
+                            args += commandDefs.getCommands()[key][subKey]
+                                        + $"{ExpParser.getD2MenuExp(((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString())} ";
                             break;
                     }
                 }

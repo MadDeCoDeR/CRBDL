@@ -226,10 +226,10 @@ namespace CRBDL
             {
                 comboBox2.SelectedIndex = 1;
             }
-            else if (comboBox3.SelectedIndex == 0 && comboBox2.SelectedIndex > 0)
+            /*else if (comboBox3.SelectedIndex == 0 && comboBox2.SelectedIndex > 0)
             {
                 comboBox2.SelectedIndex = 0;
-            }
+            }*/
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)

@@ -41,5 +41,6 @@ namespace CDL.Arguments
         public const string EPISODE = "episode";
         public const string MAP = "map";
         public const string EXTRA = "extra";
+        public const string MENU = "menu";
     }
 }
