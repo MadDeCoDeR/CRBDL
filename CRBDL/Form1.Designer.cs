@@ -58,69 +58,69 @@ namespace CRBDL
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.comboBox12 = new System.Windows.Forms.ComboBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.comboBox11 = new System.Windows.Forms.ComboBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.DOOM = new System.Windows.Forms.TabPage();
-            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button8 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -167,23 +167,23 @@ namespace CRBDL
             this.tabPage1.Controls.Add(this.numericUpDown2);
             this.tabPage1.Controls.Add(this.checkBox12);
             this.tabPage1.Controls.Add(this.comboBox15);
-            this.tabPage1.Controls.Add(this.textBox27);
-            this.tabPage1.Controls.Add(this.textBox25);
-            this.tabPage1.Controls.Add(this.textBox18);
+            this.tabPage1.Controls.Add(this.label27);
+            this.tabPage1.Controls.Add(this.label25);
+            this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.textBox15);
-            this.tabPage1.Controls.Add(this.textBox13);
+            this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.comboBox12);
             this.tabPage1.Controls.Add(this.checkBox10);
             this.tabPage1.Controls.Add(this.comboBox11);
             this.tabPage1.Controls.Add(this.checkBox9);
-            this.tabPage1.Controls.Add(this.textBox14);
-            this.tabPage1.Controls.Add(this.textBox12);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.numericUpDown1);
             this.tabPage1.Controls.Add(this.checkBox5);
             this.tabPage1.Controls.Add(this.checkBox4);
-            this.tabPage1.Controls.Add(this.textBox11);
+            this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.checkBox3);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -262,39 +262,30 @@ namespace CRBDL
             this.comboBox15.Size = new System.Drawing.Size(121, 21);
             this.comboBox15.TabIndex = 26;
             // 
-            // textBox27
+            // label27
             // 
-            this.textBox27.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox27.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox27.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox27.Location = new System.Drawing.Point(223, 119);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(100, 13);
-            this.textBox27.TabIndex = 25;
-            this.textBox27.Text = "Mod Base";
+            this.label27.Location = new System.Drawing.Point(213, 122);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(100, 13);
+            this.label27.TabIndex = 25;
+            this.label27.Text = "Mod Base";
             // 
-            // textBox25
+            // label25
             // 
-            this.textBox25.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox25.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox25.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox25.Enabled = false;
-            this.textBox25.Location = new System.Drawing.Point(6, 242);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(114, 13);
-            this.textBox25.TabIndex = 24;
-            this.textBox25.Text = "Shadow Transparency";
+            this.label25.Enabled = false;
+            this.label25.Location = new System.Drawing.Point(6, 242);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(114, 13);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "Shadow Transparency";
             // 
-            // textBox18
+            // label18
             // 
-            this.textBox18.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox18.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox18.Location = new System.Drawing.Point(10, 293);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(117, 13);
-            this.textBox18.TabIndex = 22;
-            this.textBox18.Text = "Additional Parameters";
+            this.label18.Location = new System.Drawing.Point(4, 296);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(117, 13);
+            this.label18.TabIndex = 22;
+            this.label18.Text = "Additional Parameters";
             // 
             // textBox15
             // 
@@ -305,16 +296,13 @@ namespace CRBDL
             this.textBox15.Size = new System.Drawing.Size(333, 20);
             this.textBox15.TabIndex = 21;
             // 
-            // textBox13
+            // label13
             // 
-            this.textBox13.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox13.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox13.Location = new System.Drawing.Point(223, 200);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(100, 13);
-            this.textBox13.TabIndex = 20;
-            this.textBox13.Text = "Language";
+            this.label13.Location = new System.Drawing.Point(213, 200);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(100, 13);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "Language";
             // 
             // comboBox12
             // 
@@ -366,28 +354,22 @@ namespace CRBDL
             this.checkBox9.Text = "SSGI";
             this.checkBox9.UseVisualStyleBackColor = true;
             // 
-            // textBox14
+            // label14
             // 
-            this.textBox14.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox14.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox14.Location = new System.Drawing.Point(223, 73);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(100, 13);
-            this.textBox14.TabIndex = 13;
-            this.textBox14.Text = "Mod";
+            this.label14.Location = new System.Drawing.Point(213, 73);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(100, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "Mod";
             // 
-            // textBox12
+            // label12
             // 
-            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox12.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(7, 174);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(121, 13);
-            this.textBox12.TabIndex = 9;
-            this.textBox12.Text = "Exposure";
+            this.label12.Enabled = false;
+            this.label12.Location = new System.Drawing.Point(7, 174);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(121, 13);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Exposure";
             // 
             // numericUpDown1
             // 
@@ -439,17 +421,14 @@ namespace CRBDL
             this.checkBox4.Text = "Half Lambert Lighting";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
-            // textBox11
+            // label11
             // 
-            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox11.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(6, 73);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(121, 13);
-            this.textBox11.TabIndex = 4;
-            this.textBox11.Text = "Anisotropic Filtering";
+            this.label11.Enabled = false;
+            this.label11.Location = new System.Drawing.Point(6, 73);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(121, 13);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Anisotropic Filtering";
             // 
             // checkBox3
             // 
@@ -461,19 +440,16 @@ namespace CRBDL
             this.checkBox3.Text = "Enable Console";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // label1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox1.Location = new System.Drawing.Point(6, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(123, 13);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Select game to launch";
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Select game to launch";
             // 
             // comboBox1
             // 
@@ -493,15 +469,15 @@ namespace CRBDL
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage3.Controls.Add(this.checkBox11);
-            this.tabPage3.Controls.Add(this.textBox26);
+            this.tabPage3.Controls.Add(this.label26);
             this.tabPage3.Controls.Add(this.comboBox14);
-            this.tabPage3.Controls.Add(this.textBox19);
+            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.textBox20);
-            this.tabPage3.Controls.Add(this.textBox17);
+            this.tabPage3.Controls.Add(this.label17);
             this.tabPage3.Controls.Add(this.comboBox9);
             this.tabPage3.Controls.Add(this.button9);
             this.tabPage3.Controls.Add(this.button10);
-            this.tabPage3.Controls.Add(this.textBox16);
+            this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.listBox3);
             this.tabPage3.Controls.Add(this.checkBox8);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -524,20 +500,16 @@ namespace CRBDL
             this.checkBox11.UseVisualStyleBackColor = true;
             this.checkBox11.Visible = false;
             // 
-            // textBox26
+            // label26
             // 
-            this.textBox26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox26.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox26.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox26.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox26.Enabled = false;
-            this.textBox26.Location = new System.Drawing.Point(199, 121);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.ReadOnly = true;
-            this.textBox26.Size = new System.Drawing.Size(100, 13);
-            this.textBox26.TabIndex = 26;
-            this.textBox26.Text = "Message Lines";
-            this.textBox26.Visible = false;
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label26.Enabled = false;
+            this.label26.Location = new System.Drawing.Point(199, 121);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(100, 13);
+            this.label26.TabIndex = 26;
+            this.label26.Text = "Message Lines";
+            this.label26.Visible = false;
             // 
             // comboBox14
             // 
@@ -557,16 +529,13 @@ namespace CRBDL
             this.comboBox14.TabIndex = 25;
             this.comboBox14.Visible = false;
             // 
-            // textBox19
+            // label19
             // 
-            this.textBox19.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox19.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox19.Location = new System.Drawing.Point(7, 293);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(117, 13);
-            this.textBox19.TabIndex = 24;
-            this.textBox19.Text = "Additional Parameters";
+            this.label19.Location = new System.Drawing.Point(3, 296);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(117, 13);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "Additional Parameters";
             // 
             // textBox20
             // 
@@ -574,21 +543,17 @@ namespace CRBDL
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox20.Location = new System.Drawing.Point(3, 312);
             this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(331, 20);
+            this.textBox20.Size = new System.Drawing.Size(333, 20);
             this.textBox20.TabIndex = 23;
             // 
-            // textBox17
+            // label17
             // 
-            this.textBox17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox17.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox17.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox17.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox17.Location = new System.Drawing.Point(199, 48);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(100, 13);
-            this.textBox17.TabIndex = 22;
-            this.textBox17.Text = "Difficulty";
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.Location = new System.Drawing.Point(199, 58);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(100, 13);
+            this.label17.TabIndex = 22;
+            this.label17.Text = "Difficulty";
             // 
             // comboBox9
             // 
@@ -629,17 +594,13 @@ namespace CRBDL
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
-            // textBox16
+            // label16
             // 
-            this.textBox16.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox16.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox16.Location = new System.Drawing.Point(9, 29);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(100, 13);
-            this.textBox16.TabIndex = 11;
-            this.textBox16.Text = "Mods";
+            this.label16.Location = new System.Drawing.Point(9, 29);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(100, 13);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "Mods";
             // 
             // listBox3
             // 
@@ -665,17 +626,17 @@ namespace CRBDL
             // DOOM
             // 
             this.DOOM.BackColor = System.Drawing.SystemColors.Control;
-            this.DOOM.Controls.Add(this.textBox21);
+            this.DOOM.Controls.Add(this.label21);
             this.DOOM.Controls.Add(this.textBox22);
-            this.DOOM.Controls.Add(this.textBox8);
+            this.DOOM.Controls.Add(this.label8);
             this.DOOM.Controls.Add(this.comboBox6);
-            this.DOOM.Controls.Add(this.textBox6);
-            this.DOOM.Controls.Add(this.textBox7);
+            this.DOOM.Controls.Add(this.label6);
+            this.DOOM.Controls.Add(this.label7);
             this.DOOM.Controls.Add(this.comboBox4);
             this.DOOM.Controls.Add(this.comboBox5);
             this.DOOM.Controls.Add(this.button3);
             this.DOOM.Controls.Add(this.button2);
-            this.DOOM.Controls.Add(this.textBox2);
+            this.DOOM.Controls.Add(this.label2);
             this.DOOM.Controls.Add(this.listBox1);
             this.DOOM.Controls.Add(this.checkBox2);
             this.DOOM.Location = new System.Drawing.Point(4, 22);
@@ -685,16 +646,13 @@ namespace CRBDL
             this.DOOM.TabIndex = 0;
             this.DOOM.Text = "DOOM";
             // 
-            // textBox21
+            // label21
             // 
-            this.textBox21.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox21.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox21.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox21.Location = new System.Drawing.Point(10, 293);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(156, 13);
-            this.textBox21.TabIndex = 24;
-            this.textBox21.Text = "Additional Parameters for DOOM";
+            this.label21.Location = new System.Drawing.Point(3, 296);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(169, 13);
+            this.label21.TabIndex = 24;
+            this.label21.Text = "Additional Parameters for DOOM";
             // 
             // textBox22
             // 
@@ -705,18 +663,14 @@ namespace CRBDL
             this.textBox22.Size = new System.Drawing.Size(331, 20);
             this.textBox22.TabIndex = 23;
             // 
-            // textBox8
+            // label8
             // 
-            this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox8.Location = new System.Drawing.Point(199, 167);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(100, 13);
-            this.textBox8.TabIndex = 18;
-            this.textBox8.Text = "Difficulty";
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Location = new System.Drawing.Point(200, 177);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(100, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Difficulty";
             // 
             // comboBox6
             // 
@@ -736,31 +690,23 @@ namespace CRBDL
             this.comboBox6.Size = new System.Drawing.Size(138, 21);
             this.comboBox6.TabIndex = 17;
             // 
-            // textBox6
+            // label6
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox6.Location = new System.Drawing.Point(199, 121);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(100, 13);
-            this.textBox6.TabIndex = 16;
-            this.textBox6.Text = "Map";
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Location = new System.Drawing.Point(199, 121);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Map";
             // 
-            // textBox7
+            // label7
             // 
-            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox7.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox7.Location = new System.Drawing.Point(200, 59);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(100, 13);
-            this.textBox7.TabIndex = 15;
-            this.textBox7.Text = "Episode";
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Location = new System.Drawing.Point(200, 69);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(100, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Episode";
             // 
             // comboBox4
             // 
@@ -824,17 +770,13 @@ namespace CRBDL
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox2
+            // label2
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox2.Location = new System.Drawing.Point(10, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 13);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "Mods";
+            this.label2.Location = new System.Drawing.Point(10, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Mods";
             // 
             // listBox1
             // 
@@ -860,18 +802,18 @@ namespace CRBDL
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Controls.Add(this.textBox23);
+            this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.textBox24);
             this.tabPage2.Controls.Add(this.comboBox10);
-            this.tabPage2.Controls.Add(this.textBox9);
+            this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.comboBox7);
-            this.tabPage2.Controls.Add(this.textBox5);
-            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.comboBox3);
             this.tabPage2.Controls.Add(this.comboBox2);
             this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.button5);
-            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.listBox2);
             this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -881,16 +823,13 @@ namespace CRBDL
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DOOM II";
             // 
-            // textBox23
+            // label23
             // 
-            this.textBox23.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox23.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox23.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox23.Location = new System.Drawing.Point(170, 289);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(167, 13);
-            this.textBox23.TabIndex = 24;
-            this.textBox23.Text = "Additional Parameters for DOOM II";
+            this.label23.Location = new System.Drawing.Point(170, 289);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(172, 13);
+            this.label23.TabIndex = 24;
+            this.label23.Text = "Additional Parameters for DOOM II";
             // 
             // textBox24
             // 
@@ -918,18 +857,14 @@ namespace CRBDL
             this.comboBox10.TabIndex = 21;
             this.comboBox10.SelectedIndexChanged += new System.EventHandler(this.comboBox10_SelectedIndexChanged);
             // 
-            // textBox9
+            // label9
             // 
-            this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox9.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox9.Location = new System.Drawing.Point(200, 169);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(100, 13);
-            this.textBox9.TabIndex = 20;
-            this.textBox9.Text = "Difficulty";
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Location = new System.Drawing.Point(199, 176);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(100, 13);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Difficulty";
             // 
             // comboBox7
             // 
@@ -949,31 +884,23 @@ namespace CRBDL
             this.comboBox7.Size = new System.Drawing.Size(138, 21);
             this.comboBox7.TabIndex = 19;
             // 
-            // textBox5
+            // label5
             // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox5.Location = new System.Drawing.Point(200, 123);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(100, 13);
-            this.textBox5.TabIndex = 12;
-            this.textBox5.Text = "Map";
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Location = new System.Drawing.Point(200, 123);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Map";
             // 
-            // textBox4
+            // label4
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox4.Location = new System.Drawing.Point(201, 61);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(100, 13);
-            this.textBox4.TabIndex = 11;
-            this.textBox4.Text = "Expansion";
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Location = new System.Drawing.Point(200, 71);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Expansion";
             // 
             // comboBox3
             // 
@@ -1061,17 +988,13 @@ namespace CRBDL
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // textBox3
+            // label3
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox3.Location = new System.Drawing.Point(10, 30);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(100, 13);
-            this.textBox3.TabIndex = 6;
-            this.textBox3.Text = "Mods for expansion:";
+            this.label3.Location = new System.Drawing.Point(10, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Mods for expansion:";
             // 
             // listBox2
             // 
@@ -1114,18 +1037,14 @@ namespace CRBDL
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // textBox10
+            // label10
             // 
-            this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox10.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox10.Location = new System.Drawing.Point(2, 399);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(339, 13);
-            this.textBox10.TabIndex = 4;
+            this.label10.Location = new System.Drawing.Point(2, 399);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(339, 13);
+            this.label10.TabIndex = 4;
             // 
             // folderBrowserDialog1
             // 
@@ -1174,7 +1093,7 @@ namespace CRBDL
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.ALLIN);
@@ -1199,7 +1118,6 @@ namespace CRBDL
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1212,68 +1130,68 @@ namespace CRBDL
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox7;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox comboBox9;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.CheckBox checkBox8;
         private System.Windows.Forms.CheckBox checkBox9;
         private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.ComboBox comboBox11;
         private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBox12;
-        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox textBox24;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.TextBox textBox26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox comboBox14;
         private System.Windows.Forms.CheckBox checkBox11;
         private System.Windows.Forms.ComboBox comboBox15;
-        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.CheckBox checkBox12;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown3;

@@ -372,16 +372,16 @@ namespace CRBDL
 
         private void checkBox12_CheckedChanged(object sender, EventArgs e)
         {
-                textBox11.Enabled = ((CheckBox)sender).Checked;
+                label11.Enabled = ((CheckBox)sender).Checked;
                 numericUpDown2.Enabled = ((CheckBox)sender).Checked;
                 checkBox4.Enabled = ((CheckBox)sender).Checked;
                 checkBox5.Enabled = ((CheckBox)sender).Checked;
-                textBox12.Enabled = ((CheckBox)sender).Checked;
+                label12.Enabled = ((CheckBox)sender).Checked;
                 numericUpDown1.Enabled = ((CheckBox)sender).Checked;
                 checkBox9.Enabled = ((CheckBox)sender).Checked;
-                textBox13.Enabled = ((CheckBox)sender).Checked;
+                //label13.Enabled = ((CheckBox)sender).Checked;
                 //comboBox12.Enabled = ((CheckBox)sender).Checked;
-                textBox25.Enabled = ((CheckBox)sender).Checked;
+                label25.Enabled = ((CheckBox)sender).Checked;
                 numericUpDown3.Enabled = ((CheckBox)sender).Checked;
         }
 
@@ -416,7 +416,7 @@ namespace CRBDL
         public ComboBox getComboBox12() { return comboBox12; }
         public ComboBox getComboBox14() { return comboBox14; }
         public ComboBox getComboBox15() { return comboBox15; }
-        public TextBox getTextBox10() { return textBox10; }
+        public Label getLabel10() { return label10; }
         public TextBox getTextBox15() { return textBox15; }
         public TextBox getTextBox20() { return textBox20; }
         public TextBox getTextBox22() { return textBox22; }
@@ -437,7 +437,7 @@ namespace CRBDL
 
         private void button11_Click(object sender, EventArgs e)
         {
-            Settings.Default.defaultSettings = textBox10.Text;
+            Settings.Default.defaultSettings = label10.Text;
             Settings.Default.Save();
             button11.Enabled = false;
             button12.Enabled = true;
@@ -448,7 +448,7 @@ namespace CRBDL
             Settings.Default.defaultSettings = "";
             Settings.Default.Save();
             button12.Enabled = false;
-            if (textBox10.Text != "")
+            if (label10.Text != "")
             {
                 button11.Enabled = true;
             }

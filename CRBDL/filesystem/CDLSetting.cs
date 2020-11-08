@@ -101,7 +101,7 @@ namespace CDL.filesystem
                 sw.WriteLine("");
                 //Close the file
                 sw.Close();
-                form1.getTextBox10().Text = path;
+                form1.getLabel10().Text = path;
             }
             catch (Exception ex)
             {
@@ -190,7 +190,7 @@ namespace CDL.filesystem
                         line = sr.ReadLine();
                         }
                     sr.Close();
-                    form1.getTextBox10().Text = filename;
+                    form1.getLabel10().Text = filename;
 
                 }
                 catch (Exception ex)
