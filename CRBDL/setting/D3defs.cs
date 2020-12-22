@@ -43,6 +43,8 @@ namespace CDL.setting
             d3defs.Add("SSAO", form1.getCheckBox9());
             d3defs.Add("Skip Intro", form1.getCheckBox10());
             d3defs.Add("CL", form1.getComboBox12());
+            d3defs.Add("CUL", form1.GetTextBox1());
+            d3defs.Add("USE_CUL", form1.GetCheckBox6());
             d3defs.Add("fo", form1.getNumericUpDown3());
             d3defs.Add("as", form1.getCheckBox12());
             d3defs.Add("modbase", form1.getComboBox15());

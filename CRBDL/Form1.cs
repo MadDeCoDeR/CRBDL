@@ -400,6 +400,31 @@ namespace CRBDL
             button9.Enabled = listBox3.SelectedItems.Count > 0;
         }
 
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Settings.Default.defaultSettings = label10.Text;
+            Settings.Default.Save();
+            button11.Enabled = false;
+            button12.Enabled = true;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Settings.Default.defaultSettings = "";
+            Settings.Default.Save();
+            button12.Enabled = false;
+            if (label10.Text != "")
+            {
+                button11.Enabled = true;
+            }
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox12.Enabled = !((CheckBox)sender).Checked;
+            textBox1.Enabled = ((CheckBox)sender).Checked;
+        }
+
         public ListBox getListBox1() { return listBox1; }
         public ComboBox getComboBox1() { return comboBox1; }
         public ListBox getListBox2() { return listBox2; }
@@ -434,25 +459,9 @@ namespace CRBDL
         public CheckBox getCheckBox10() { return checkBox10; }
         public CheckBox getCheckBox11() { return checkBox11; }
         public CheckBox getCheckBox12() { return checkBox12; }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            Settings.Default.defaultSettings = label10.Text;
-            Settings.Default.Save();
-            button11.Enabled = false;
-            button12.Enabled = true;
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-            Settings.Default.defaultSettings = "";
-            Settings.Default.Save();
-            button12.Enabled = false;
-            if (label10.Text != "")
-            {
-                button11.Enabled = true;
-            }
-        }
+        public TextBox GetTextBox1() { return textBox1; }
+        public CheckBox GetCheckBox6() { return checkBox6; }
+        
     }
 
 

@@ -109,11 +109,15 @@ namespace CDL.Arguments
                             }
                             break;
                         case ArgKeys.LANG:
-                            //if (form1.getCheckBox12().Checked)
-                            //{
+                            if (!form1.GetCheckBox6().Checked)
+                            {
                                 args += commandDefs.getCommands()[key][subKey]
                                     + $"{((string)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).ToLower()} ";
-                            //}
+                            } else
+                            {
+                                args += commandDefs.getCommands()[key][subKey]
+                                    + $"{form1.GetTextBox1().Text.ToLower()} ";
+                            }
                             break;
                         case ArgKeys.MAP:
                         case ArgKeys.SKILL:

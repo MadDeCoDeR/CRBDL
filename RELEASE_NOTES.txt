@@ -1,4 +1,8 @@
 
+Version 1.0.1.5
+------------------------------------------
+- Add Support for Custom Languages
+
 Version 1.0.1.4
 ------------------------------------------
 - Add Support for DoomBFA 

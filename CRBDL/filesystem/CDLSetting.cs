@@ -58,6 +58,7 @@ namespace CDL.filesystem
                             case "SSAO":
                             case "Skip Intro":
                             case "as":
+                            case "USE_CUL":
                                 sw.WriteLine(subkey + " = " + ((CheckBox)settingDef.getDefs()[key][subkey]).Checked);
                                 break;
                             case "Episode":
@@ -76,6 +77,7 @@ namespace CDL.filesystem
                                 sw.WriteLine(subkey + " = " + ((ComboBox)settingDef.getDefs()[key][subkey]).SelectedIndex);
                                 break;
                             case "marg":
+                            case "CUL":
                                 sw.WriteLine(subkey + " = " + ((TextBox)settingDef.getDefs()[key][subkey]).Text);
                                 break;
                             case "mods":
@@ -144,6 +146,7 @@ namespace CDL.filesystem
                                 case "SSAO":
                                 case "Skip Intro":
                                 case "as":
+                                case "USE_CUL":
                                     ((CheckBox)settingDef.getDefs()[key][inline[0]]).Checked = Convert.ToBoolean(inline[1]);
                                     break;
                                 case "Episode":
@@ -162,6 +165,7 @@ namespace CDL.filesystem
                                     ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedIndex = Convert.ToInt32(inline[1]);
                                     break;
                                 case "marg":
+                                case "CUL":
                                     ((TextBox)settingDef.getDefs()[key][inline[0]]).Text = inline[1];
                                     break;
                                 case "mods":
