@@ -54,6 +54,8 @@ namespace CRBDL
             this.button1 = new System.Windows.Forms.Button();
             this.ALLIN = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
@@ -125,8 +127,6 @@ namespace CRBDL
             this.button8 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.ALLIN.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -195,6 +195,25 @@ namespace CRBDL
             this.tabPage1.Size = new System.Drawing.Size(345, 338);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "DOOM 3 BFG";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(216, 271);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(108, 20);
+            this.textBox1.TabIndex = 31;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(216, 247);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(108, 17);
+            this.checkBox6.TabIndex = 30;
+            this.checkBox6.Text = "Custom language";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // numericUpDown3
             // 
@@ -1088,25 +1107,6 @@ namespace CRBDL
             this.button12.Text = "Reset Default";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(216, 247);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(108, 17);
-            this.checkBox6.TabIndex = 30;
-            this.checkBox6.Text = "Custom language";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(216, 271);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(108, 20);
-            this.textBox1.TabIndex = 31;
             // 
             // Form1
             // 

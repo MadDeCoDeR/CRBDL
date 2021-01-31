@@ -75,44 +75,6 @@ namespace CRBDL
             comboBox12.SelectedIndex = 0;
             comboBox14.SelectedIndex = 0;
             comboBox15.SelectedIndex = 0;
-
-            int found = 0;
-            foreach (string filename in filenames)
-            {
-                if (UFS.Exists(filename))
-                {
-                    found++;
-                }
-            }
-
-            if (found == 0)
-            {
-                if (MessageBox.Show("Main executable not found", "Error", MessageBoxButtons.OK) == DialogResult.OK) {
-                    Process.GetCurrentProcess().Kill();
-                }
-            }
-            int offset = 0;
-            if (!UFS.Exists("base/wads/NERVE.wad"))
-            {
-                comboBox2.Items.Remove(comboBox2.Items[2]);
-                comboBox10.Items.Remove(comboBox10.Items[4]);
-                offset++;
-            }
-            if (!UFS.Exists("base/wads/MASTERLEVELS.wad"))
-            {
-                comboBox2.Items.Remove(comboBox2.Items[5 - offset]);
-                comboBox10.Items.Remove(comboBox10.Items[3]);
-            }
-            if (!UFS.Exists("base/wads/PLUTONIA.WAD"))
-            {
-                comboBox2.Items.Remove(comboBox2.Items[4 - offset]);
-                comboBox10.Items.Remove(comboBox10.Items[2]);
-            }
-            if (!UFS.Exists("base/wads/TNT.WAD"))
-            {
-                comboBox2.Items.Remove(comboBox2.Items[3 - offset]);
-                comboBox10.Items.Remove(comboBox10.Items[1]);
-            }
            
             folderBrowserDialog1 = new FolderBrowserDialog();
         }
@@ -142,7 +104,7 @@ namespace CRBDL
             {
                 if (MessageBox.Show("Unable to find the main executable for this System", "Error", MessageBoxButtons.OK) == DialogResult.OK)
                 {
-                    Process.GetCurrentProcess().Kill();
+                    Close();
                 }
             }
             crbd.StartInfo.WorkingDirectory = UFS.getCurrentDirectory(filenames);
@@ -155,22 +117,25 @@ namespace CRBDL
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<string> dirs = new List<string>(Directory.GetDirectories(UFS.getCurrentDirectory(filenames)));
-            foreach (var dir in dirs)
+            if (CheckFiles())
             {
-                string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
-                tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
-                if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc"))
+                List<string> dirs = new List<string>(Directory.GetDirectories(UFS.getCurrentDirectory(filenames)));
+                foreach (var dir in dirs)
                 {
-                    comboBox11.Items.Add(tdir);
-                    comboBox15.Items.Add(tdir);
+                    string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
+                    tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
+                    if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc"))
+                    {
+                        comboBox11.Items.Add(tdir);
+                        comboBox15.Items.Add(tdir);
+                    }
                 }
-            }
-            if (Settings.Default.defaultSettings != "")
-            {
-                Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
-                setting.loadSettings(stream, this, Settings.Default.defaultSettings);
-                button12.Enabled = true;
+                if (Settings.Default.defaultSettings != "")
+                {
+                    Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                    setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                    button12.Enabled = true;
+                }
             }
         }
 
@@ -461,7 +426,50 @@ namespace CRBDL
         public CheckBox getCheckBox12() { return checkBox12; }
         public TextBox GetTextBox1() { return textBox1; }
         public CheckBox GetCheckBox6() { return checkBox6; }
-        
+
+        private bool CheckFiles()
+        {
+            int found = 0;
+            foreach (string filename in filenames)
+            {
+                if (UFS.Exists(filename))
+                {
+                    found++;
+                }
+            }
+
+            if (found == 0)
+            {
+                if (MessageBox.Show("Main executable not found", "Error", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    Close();
+                    return false;
+                }
+            }
+            int offset = 0;
+            if (!UFS.Exists("base/wads/NERVE.wad"))
+            {
+                comboBox2.Items.Remove(comboBox2.Items[2]);
+                comboBox10.Items.Remove(comboBox10.Items[4]);
+                offset++;
+            }
+            if (!UFS.Exists("base/wads/MASTERLEVELS.wad"))
+            {
+                comboBox2.Items.Remove(comboBox2.Items[5 - offset]);
+                comboBox10.Items.Remove(comboBox10.Items[3]);
+            }
+            if (!UFS.Exists("base/wads/PLUTONIA.WAD"))
+            {
+                comboBox2.Items.Remove(comboBox2.Items[4 - offset]);
+                comboBox10.Items.Remove(comboBox10.Items[2]);
+            }
+            if (!UFS.Exists("base/wads/TNT.WAD"))
+            {
+                comboBox2.Items.Remove(comboBox2.Items[3 - offset]);
+                comboBox10.Items.Remove(comboBox10.Items[1]);
+            }
+            return true;
+        }
     }
 
 
