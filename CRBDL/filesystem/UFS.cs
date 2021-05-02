@@ -29,16 +29,33 @@ namespace CDL.filesystem
     class UFS
     {
         private string[] paths;
+        DesktopBridge.Helpers helpers;
         public UFS()
         {
-            paths = new string[2];
+            paths = new string[3];
             paths[0] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             paths[1] = Directory.GetCurrentDirectory();
+            paths[2] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA";
+            helpers = new DesktopBridge.Helpers();
+        }
+
+        public string createFullPath(string filename) {
+            string fullPath;
+
+            if (isUnixFS() || helpers.IsRunningAsUwp())
+            {
+                fullPath = paths[0]+ "/" + filename;
+            } else
+            {
+                fullPath = filename;
+            }
+
+            return fullPath;
         }
 
         public bool Exists(string filename)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < paths.Length; i++)
             {
                 string path = paths[i] + "/" + filename;
                 if (File.Exists(path))
@@ -51,7 +68,7 @@ namespace CDL.filesystem
 
         public string getFullPath(string filename)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < paths.Length; i++)
             {
                 string path = paths[i] + "/" + filename;
                 if (File.Exists(path))
@@ -67,11 +84,16 @@ namespace CDL.filesystem
             return paths[0].StartsWith("/");
         }
 
+        public bool isRunningAsUWP()
+        {
+            return helpers.IsRunningAsUwp();
+        }
+
         public string getCurrentDirectory(string [] filenames)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < paths.Length; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < filenames.Length; j++)
                 {
                     string path = paths[i] + "/" + filenames[j];
                     if (File.Exists(path))
@@ -92,7 +114,7 @@ namespace CDL.filesystem
             string ogpath = path;
             if (path[0] == '/')
             {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < paths.Length; i++)
                 {
                     string rempath = paths[i] + "/" + subfolder +"/";
                     path = path.Replace(rempath, "");

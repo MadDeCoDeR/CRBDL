@@ -41,6 +41,8 @@ namespace CRBDL
         private UFS UFS;
         private CDLSetting setting = new CDLSetting();
         private ModLoader modLoader = new ModLoader();
+        private bool[] foundExps;
+
 
         private static string[] filenames = { "DoomBFA.exe", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
 
@@ -60,6 +62,12 @@ namespace CRBDL
             for (int i=0; i < 5; i++)
             {
                 ml[i]= new List<string>();
+            }
+
+            foundExps = new bool[4];
+            for (int i = 0; i < foundExps.Length; i++)
+            {
+                foundExps[i] = false;
             }
 
             comboBox1.SelectedIndex = 0;
@@ -108,9 +116,12 @@ namespace CRBDL
                 }
             }
             crbd.StartInfo.WorkingDirectory = UFS.getCurrentDirectory(filenames);
-            StreamWriter sw = new StreamWriter("args.txt");
-            sw.Write(args);
-            sw.Close();
+            if (!UFS.isRunningAsUWP())
+            {
+                StreamWriter sw = new StreamWriter(UFS.createFullPath("args.txt"));
+                sw.Write(args);
+                sw.Close();
+            }
             crbd.StartInfo.Arguments = args; // if you need some
             crbd.Start();
         }
@@ -446,29 +457,87 @@ namespace CRBDL
                     return false;
                 }
             }
+            checkClassicExpansions("base");
+            return true;
+        }
+
+        private void checkClassicExpansions(string folderName)
+        {
             int offset = 0;
-            if (!UFS.Exists("base/wads/NERVE.wad"))
+            comboBox2.Items.Clear();
+            this.comboBox2.Items.AddRange(new object[] {
+            "(none)",
+            "Hell on Earth",
+            "No Rest For the Living",
+            "TNT: Evilution",
+            "The Plutonia Experiment",
+            "Master Levels"});
+            comboBox2.SelectedIndex = 0;
+            comboBox10.Items.Clear();
+            this.comboBox10.Items.AddRange(new object[] {
+            "Hell on Earth",
+            "TNT: Evilution",
+            "The Plutonia Experiment",
+            "Master Levels",
+            "No Rest For the Living"});
+            comboBox10.SelectedIndex = 0;
+            if (!UFS.Exists(folderName + "/wads/NERVE.wad") && !foundExps[0])
             {
                 comboBox2.Items.Remove(comboBox2.Items[2]);
                 comboBox10.Items.Remove(comboBox10.Items[4]);
                 offset++;
+            } else
+            {
+                foundExps[0] = true;
             }
-            if (!UFS.Exists("base/wads/MASTERLEVELS.wad"))
+            if (!UFS.Exists(folderName + "/wads/MASTERLEVELS.wad") && !foundExps[1])
             {
                 comboBox2.Items.Remove(comboBox2.Items[5 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[3]);
+            } else
+            {
+                foundExps[1] = true;
             }
-            if (!UFS.Exists("base/wads/PLUTONIA.WAD"))
+            if (!UFS.Exists(folderName + "/wads/PLUTONIA.WAD") && !foundExps[2])
             {
                 comboBox2.Items.Remove(comboBox2.Items[4 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[2]);
             }
-            if (!UFS.Exists("base/wads/TNT.WAD"))
+            else
+            {
+                foundExps[2] = true;
+            }
+            if (!UFS.Exists(folderName + "/wads/TNT.WAD") && !foundExps[3])
             {
                 comboBox2.Items.Remove(comboBox2.Items[3 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[1]);
+            } else
+            {
+                foundExps[3] = true;
             }
-            return true;
+        }
+
+        private void updateClassicExpansions()
+        {
+            for (int i = 0; i < foundExps.Length; i++)
+            {
+                foundExps[i] = false;
+            }
+            checkClassicExpansions("base");
+            string path1 = (string)(comboBox11.SelectedIndex <= 0 ? "base" : comboBox11.Items[comboBox11.SelectedIndex]);
+            checkClassicExpansions(path1);
+            string path2 = (string)(comboBox15.SelectedIndex <= 0 ? "base" : comboBox15.Items[comboBox15.SelectedIndex]);
+            checkClassicExpansions(path2);
+        }
+
+        private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateClassicExpansions();
+        }
+
+        private void comboBox15_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateClassicExpansions();
         }
     }
 
