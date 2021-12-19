@@ -39,13 +39,14 @@ namespace CDL.filesystem
             paths[2] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA";
             if (paths[0].StartsWith("/usr"))
             {
+                paths[3] = "/usr/bin";
                 List<string> files = new List<string>(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources", SearchOption.AllDirectories));
                 if (files.Count >= 1)
                 {
-                    paths[3] = files[0].Substring(0, files[0].LastIndexOf("/"));
-                    paths[3] = paths[3].Substring(0, paths[3].LastIndexOf("/"));
+                    paths[4] = files[0].Substring(0, files[0].LastIndexOf("/"));
+                    paths[4] = paths[4].Substring(0, paths[4].LastIndexOf("/"));
                 }
-                paths[4] = "/usr/bin";
+                
             } else
             {
                 paths[3] = "";
