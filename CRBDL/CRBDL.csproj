@@ -73,7 +73,9 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DesktopBridge.Helpers, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DesktopBridge.Helpers, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DesktopBridge.Helpers.1.2.2\lib\net45\DesktopBridge.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
