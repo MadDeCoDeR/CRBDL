@@ -37,7 +37,7 @@ namespace CDL.filesystem
             paths[0] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             paths[1] = Directory.GetCurrentDirectory();
             paths[2] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA";
-            List<string> files = new List<string>(Directory.GetFiles(System.Environment.GetEnvironmentVariable("USERPROFILE"), "_common.resources", SearchOption.AllDirectories));
+            List<string> files = new List<string>(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources", SearchOption.AllDirectories));
             paths[3] = files[0].Substring(0, files[0].LastIndexOf("/"));
             paths[3] = paths[3].Substring(0, paths[3].LastIndexOf("/"));
             helpers = new DesktopBridge.Helpers();
