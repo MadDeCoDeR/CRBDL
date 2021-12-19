@@ -105,6 +105,18 @@ namespace CDL.filesystem
             return helpers.IsRunningAsUwp() || paths[0].StartsWith("/usr");
         }
 
+        public string getParentPath(string relativeFolder)
+        {
+            for (int i = 0; i < paths.Length; i++)
+            {
+                if (Directory.Exists(paths[i] + "/" + relativeFolder))
+                {
+                    return paths[i];
+                }
+            }
+            return "";
+        }
+
         public string getCurrentDirectory(string [] filenames)
         {
             for (int i = 0; i < paths.Length; i++)

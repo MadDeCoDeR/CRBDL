@@ -130,7 +130,7 @@ namespace CRBDL
         {
             if (CheckFiles())
             {
-                List<string> dirs = new List<string>(Directory.GetDirectories(UFS.getCurrentDirectory(filenames)));
+                List<string> dirs = new List<string>(Directory.GetDirectories(UFS.getParentPath("base")));
                 foreach (var dir in dirs)
                 {
                     string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
