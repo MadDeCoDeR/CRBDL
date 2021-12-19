@@ -96,7 +96,7 @@ namespace CDL.filesystem
 
         public bool isRunningAsUWP()
         {
-            return helpers.IsRunningAsUwp() || paths[0].StartsWith("/usr/bin");
+            return helpers.IsRunningAsUwp() || paths[0].StartsWith("/usr");
         }
 
         public string getCurrentDirectory(string [] filenames)
