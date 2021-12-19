@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -32,10 +33,13 @@ namespace CDL.filesystem
         DesktopBridge.Helpers helpers;
         public UFS()
         {
-            paths = new string[3];
+            paths = new string[4];
             paths[0] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             paths[1] = Directory.GetCurrentDirectory();
             paths[2] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA";
+            List<string> files = new List<string>(Directory.GetFiles(System.Environment.GetEnvironmentVariable("USERPROFILE"), "_common.resources", SearchOption.AllDirectories));
+            paths[3] = files[0].Substring(0, files[0].LastIndexOf("/"));
+            paths[3] = paths[3].Substring(0, paths[3].LastIndexOf("/"));
             helpers = new DesktopBridge.Helpers();
         }
 
