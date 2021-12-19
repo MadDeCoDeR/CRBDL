@@ -33,7 +33,7 @@ namespace CDL.filesystem
         DesktopBridge.Helpers helpers;
         public UFS()
         {
-            paths = new string[4];
+            paths = new string[5];
             paths[0] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             paths[1] = Directory.GetCurrentDirectory();
             paths[2] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA";
@@ -45,6 +45,11 @@ namespace CDL.filesystem
                     paths[3] = files[0].Substring(0, files[0].LastIndexOf("/"));
                     paths[3] = paths[3].Substring(0, paths[3].LastIndexOf("/"));
                 }
+                paths[4] = "/usr/bin";
+            } else
+            {
+                paths[3] = "";
+                paths[4] = "";
             }
             helpers = new DesktopBridge.Helpers();
         }
