@@ -188,13 +188,5 @@ namespace CDL.filesystem
             }
             return filePaths;
         }
-
-        private bool isPathAccessible(string path)
-        {
-            PermissionSet permissionSet = new PermissionSet(PermissionState.None);
-            FileIOPermission readPermission = new FileIOPermission(FileIOPermissionAccess.Read, path);
-            permissionSet.AddPermission(readPermission);
-            return permissionSet.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet);
-        }
     }
 }
