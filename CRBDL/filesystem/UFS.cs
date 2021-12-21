@@ -163,28 +163,36 @@ namespace CDL.filesystem
         private List<string> searchFile(string parentPath, string filename)
         {
             List<string> filePaths = new List<string>();
-            //GK: This is the worst way to handle this but I couldn't find a better way to do that
-            try
+            if (!parentPath.Contains("z:"))
             {
-                string[] files = Directory.GetFiles(parentPath, filename);
-                if (files.Length > 0)
+                //GK: This is the worst way to handle this but I couldn't find a better way to do that
+                try
                 {
-                    filePaths.AddRange(files);
-                }
-                else
-                {
-                    string[] folders = Directory.GetDirectories(parentPath);
-                    if (folders.Length > 0)
+                    string[] files = Directory.GetFiles(parentPath, filename);
+                    if (files.Length > 0)
                     {
-                        foreach (string path in folders)
+                        filePaths.AddRange(files);
+                    }
+                    else
+                    {
+                        string[] folders = Directory.GetDirectories(parentPath);
+                        if (folders.Length > 0)
                         {
-                            filePaths.AddRange(searchFile(path, filename));
+                            foreach (string path in folders)
+                            {
+                                filePaths.AddRange(searchFile(path, filename));
+                                if (filePaths.Count > 0)
+                                {
+                                    break; //GK: Abrudly stop for performance
+                                }
+                            }
                         }
                     }
                 }
-            } catch(UnauthorizedAccessException e)
-            {
-                //Do nothing
+                catch (UnauthorizedAccessException e)
+                {
+                    //Do nothing
+                }
             }
             return filePaths;
         }
