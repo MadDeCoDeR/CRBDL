@@ -163,7 +163,7 @@ namespace CDL.filesystem
         private List<string> searchFile(string parentPath, string filename)
         {
             List<string> filePaths = new List<string>();
-            if (!parentPath.Contains("z:"))
+            if (!parentPath.Contains("Proton")) //GK: Proton search prevention hack
             {
                 //GK: This is the worst way to handle this but I couldn't find a better way to do that
                 try
