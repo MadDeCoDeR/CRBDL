@@ -24,6 +24,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Security;
+using System.Security.Permissions;
 
 namespace CDL.filesystem
 {
@@ -40,11 +42,14 @@ namespace CDL.filesystem
             if (paths[0].StartsWith("/usr"))
             {
                 paths[3] = "/usr/bin";
-                List<string> files = new List<string>(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources", SearchOption.AllDirectories));
+                List<string> files = searchFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources");
                 if (files.Count >= 1)
                 {
                     paths[4] = files[0].Substring(0, files[0].LastIndexOf("/"));
                     paths[4] = paths[4].Substring(0, paths[4].LastIndexOf("/"));
+                } else
+                {
+                    paths[4] = "";
                 }
                 
             } else
@@ -153,6 +158,43 @@ namespace CDL.filesystem
                 }
             }
             return path;
+        }
+
+        private List<string> searchFile(string parentPath, string filename)
+        {
+            List<string> filePaths = new List<string>();
+            //GK: This is the worst way to handle this but I couldn't find a better way to do that
+            try
+            {
+                string[] files = Directory.GetFiles(parentPath, filename);
+                if (files.Length > 0)
+                {
+                    filePaths.AddRange(files);
+                }
+                else
+                {
+                    string[] folders = Directory.GetDirectories(parentPath);
+                    if (folders.Length > 0)
+                    {
+                        foreach (string path in folders)
+                        {
+                            filePaths.AddRange(searchFile(path, filename));
+                        }
+                    }
+                }
+            } catch(UnauthorizedAccessException e)
+            {
+                //Do nothing
+            }
+            return filePaths;
+        }
+
+        private bool isPathAccessible(string path)
+        {
+            PermissionSet permissionSet = new PermissionSet(PermissionState.None);
+            FileIOPermission readPermission = new FileIOPermission(FileIOPermissionAccess.Read, path);
+            permissionSet.AddPermission(readPermission);
+            return permissionSet.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet);
         }
     }
 }
