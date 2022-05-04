@@ -203,6 +203,7 @@ namespace CRBDL
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(108, 20);
             this.textBox1.TabIndex = 31;
+            this.textBox1.Visible = false;
             // 
             // checkBox6
             // 
@@ -213,6 +214,7 @@ namespace CRBDL
             this.checkBox6.TabIndex = 30;
             this.checkBox6.Text = "Custom language";
             this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.Visible = false;
             this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // numericUpDown3
@@ -327,6 +329,7 @@ namespace CRBDL
             this.label13.Size = new System.Drawing.Size(100, 13);
             this.label13.TabIndex = 20;
             this.label13.Text = "Language";
+            this.label13.Visible = false;
             // 
             // comboBox12
             // 
@@ -344,6 +347,7 @@ namespace CRBDL
             this.comboBox12.Name = "comboBox12";
             this.comboBox12.Size = new System.Drawing.Size(121, 21);
             this.comboBox12.TabIndex = 19;
+            this.comboBox12.Visible = false;
             // 
             // checkBox10
             // 

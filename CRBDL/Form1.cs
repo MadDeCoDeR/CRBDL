@@ -80,7 +80,7 @@ namespace CRBDL
             comboBox9.SelectedIndex = 0;
             comboBox10.SelectedIndex = 0;
             comboBox11.SelectedIndex = 0;
-            comboBox12.SelectedIndex = 0;
+            comboBox12.SelectedIndex = -1;
             comboBox14.SelectedIndex = 0;
             comboBox15.SelectedIndex = 0;
            

@@ -111,12 +111,18 @@ namespace CDL.Arguments
                         case ArgKeys.LANG:
                             if (!form1.GetCheckBox6().Checked)
                             {
-                                args += commandDefs.getCommands()[key][subKey]
-                                    + $"{((string)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).ToLower()} ";
+                                if (((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem != null)
+                                {
+                                    args += commandDefs.getCommands()[key][subKey]
+                                        + $"{((string)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).ToLower()} ";
+                                }
                             } else
                             {
-                                args += commandDefs.getCommands()[key][subKey]
-                                    + $"{form1.GetTextBox1().Text.ToLower()} ";
+                                if (form1.GetTextBox1().Text != null && form1.GetTextBox1().Text != "")
+                                {
+                                    args += commandDefs.getCommands()[key][subKey]
+                                        + $"{form1.GetTextBox1().Text.ToLower()} ";
+                                }
                             }
                             break;
                         case ArgKeys.MAP:
