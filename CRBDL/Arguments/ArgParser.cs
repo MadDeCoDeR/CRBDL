@@ -20,17 +20,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+using CDL.Arguments.Maps.Settings;
+using CDL.filesystem;
 using CDL.parser;
 using CRBDL;
 using System;
+using System.CodeDom.Compiler;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CDL.Arguments
 {
     class ArgParser
     {
-        public static string ParseArgs(Form1 form1)
+        public static string ParseArgsFromForm(Form1 form1)
         {
             string args = " ";
             bool extrArg = false;
@@ -196,6 +200,188 @@ namespace CDL.Arguments
             }
 
             return args;
+        }
+
+        public static string ParseArgsFromSettings(Stream stream)
+        {
+            string args = "";
+            string hargs = " ";
+            ExpParser parser = new ExpParser();
+            ModParser modParser = new ModParser();
+            using (stream)
+            {
+                try
+                {
+                    StreamReader sr = new StreamReader(stream);
+                    string key = "";
+                    string line = sr.ReadLine();
+                    string[] inline;
+                    int ex = 0;
+                    int firstEx = 1;
+                    bool useHargs = false;
+                    while (!sr.EndOfStream)
+                    {
+                        if (SettingsArgsDef.settingsArgDefs.ContainsKey(line))
+                        {
+                            key = line;
+                            useHargs = false;
+                            switch(key)
+                            {
+                                case "[DOOM]":
+                                    args += "-doom ";
+                                    break;
+                                case "[DOOMII]":
+                                    args += "-doom2 ";
+                                    break;
+                                case "[DOOM I & II]":
+                                    useHargs = true;
+                                    
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            inline = line.Split(new string[] { " = " }, StringSplitOptions.None);
+
+
+                            switch (inline[0])
+                            {
+                                /*case "AA":
+                                case "EX":
+                                case "fo":
+                                    args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {Convert.ToDecimal(inline[1]).ToString(CultureInfo.InvariantCulture)} ";
+                                    break;*/
+                                case "classich":
+                                case "console":
+                                /*case "SM":
+                                case "HDR":
+                                case "SSAO":*/
+                                case "Skip Intro":
+                                /*case "as":
+                                case "USE_CUL":*/
+                                    bool value = Convert.ToBoolean(inline[1]);
+                                    if (value) {
+                                        if (useHargs)
+                                        {
+                                            hargs += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} ";
+                                        }
+                                        else
+                                        {
+                                            args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} ";
+                                        }
+                                    }
+                                    break;
+                                case "Episode":
+                                    int val = Convert.ToInt32(inline[1]);
+                                    if (val > 0)
+                                    {
+                                        val -= 1;
+                                        if (key == "[DOOMII]")
+                                        {
+                                            args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {val} ";
+                                        }
+                                        else
+                                        {
+                                            args += $"-episode {val} ";
+                                        }
+                                    }
+                                    break;
+                                case "Map":
+                                case "Skill":
+                                case "Game":
+                                    /*case "CL":*/
+                                    if (inline[1] != "0")
+                                    {
+                                        int va = Convert.ToInt32(inline[1]);
+                                        if (inline[0] != "Game")
+                                        {
+                                            va -= 1;
+                                        }
+                                        if (useHargs)
+                                        {
+                                            hargs += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {va} ";
+                                        }
+                                        else
+                                        {
+                                            args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {va} ";
+                                        }
+                                    }
+                                    break;
+                                case "marg":
+                                    /*case "CUL":*/
+                                    if (inline[1].Length > 0)
+                                    {
+                                        if (useHargs)
+                                        {
+                                            hargs += inline[1] + " ";
+                                        }
+                                        else
+                                        {
+                                            args += inline[1] + " ";
+                                        }
+                                    }
+                                    break;
+                                case "modex":
+                                    ex = ExpParser.getD2MExp(ExpParser.setD2MExp(Convert.ToInt32(inline[1]))) + 1;
+                                    break;
+                                case "mods":
+                                    if (key == "[DOOMII]")
+                                    {
+                                        string[] mods = modParser.deserializeMods(inline[1]);
+                                        if (mods.Length > 0 && mods[0].Length > 0) 
+                                        {
+                                            if (ex == firstEx)
+                                            {
+                                                args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} ";
+                                            }
+                                        
+                                            args += $"ex {ex} {string.Join(" ", mods)} ";
+                                        } else
+                                        {
+                                            firstEx++;
+                                        }
+                                    }
+                                    else if (key == "[DOOM3]")
+                                    {
+                                        if (inline[1] != "(none)")
+                                        {
+                                            args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {inline[1]} ";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        string[] mods = modParser.deserializeMods(inline[1]);
+                                        if (mods[0].Length != 0) {
+                                            if (useHargs)
+                                            {
+                                                hargs += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {string.Join(" ", mods)} ";
+                                            }
+                                            else
+                                            {
+                                                args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {string.Join(" ", mods)} ";
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case "modbase":
+                                    if (inline[1] != "(none)")
+                                    {
+                                        args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {inline[1]} ";
+                                    }
+                                    break;
+                            }
+                        }
+                        line = sr.ReadLine();
+                    }
+                    sr.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return hargs + args;
         }
     }
 }

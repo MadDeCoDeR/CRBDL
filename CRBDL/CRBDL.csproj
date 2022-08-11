@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CDL</RootNamespace>
     <AssemblyName>CDL</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -107,6 +107,8 @@
     <Compile Include="Arguments\Maps\D2ControlMap.cs" />
     <Compile Include="Arguments\Maps\D3CommandMap.cs" />
     <Compile Include="Arguments\Maps\D3ControlMap.cs" />
+    <Compile Include="Arguments\Maps\Settings\SettingsArgsDef.cs" />
+    <Compile Include="CDL.cs" />
     <Compile Include="Expansions\Levels.cs" />
     <Compile Include="Expansions\Names.cs" />
     <Compile Include="filesystem\Filters.cs" />

@@ -42,6 +42,7 @@ namespace CRBDL
         private CDLSetting setting = new CDLSetting();
         private ModLoader modLoader = new ModLoader();
         private bool[] foundExps;
+        private readonly CDL.CDL cdl;
 
 
         private static string[] filenames = { "DoomBFA.exe", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
@@ -51,6 +52,7 @@ namespace CRBDL
             InitializeComponent();
 
             UFS = new UFS();
+            cdl = new CDL.CDL();
 
             adcoms = new string[3];
             for(int i = 0; i < 3; i++)
@@ -94,36 +96,8 @@ namespace CRBDL
 
         public void Launchgame()
         {
-            string args = ArgParser.ParseArgs(this);
-            Process crbd = new Process();
-            
-            foreach (string filename in filenames) {
-                if (UFS.Exists(filename))
-                {
-                    if ((UFS.isUnixFS() && filename.EndsWith(".exe")) || (!UFS.isUnixFS() && !filename.EndsWith(".exe")))
-                    {
-                        continue;
-                    }
-                    crbd.StartInfo.FileName = UFS.getFullPath(filename);
-                    break;
-                }
-            }
-            if (crbd.StartInfo.FileName == null || crbd.StartInfo.FileName == "")
-            {
-                if (MessageBox.Show("Unable to find the main executable for this System", "Error", MessageBoxButtons.OK) == DialogResult.OK)
-                {
-                    Close();
-                }
-            }
-            crbd.StartInfo.WorkingDirectory = UFS.getCurrentDirectory(filenames);
-            if (!UFS.isRunningAsUWP())
-            {
-                StreamWriter sw = new StreamWriter(UFS.createFullPath("args.txt"));
-                sw.Write(args);
-                sw.Close();
-            }
-            crbd.StartInfo.Arguments = args; // if you need some
-            crbd.Start();
+            string args = ArgParser.ParseArgsFromForm(this);
+            cdl.LaunchGame(args);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -440,14 +414,7 @@ namespace CRBDL
 
         private bool CheckFiles()
         {
-            int found = 0;
-            foreach (string filename in filenames)
-            {
-                if (UFS.Exists(filename))
-                {
-                    found++;
-                }
-            }
+            int found = cdl.CheckFiles();
 
             if (found == 0)
             {
@@ -464,6 +431,7 @@ namespace CRBDL
         private void checkClassicExpansions(string folderName)
         {
             int offset = 0;
+            foundExps = cdl.checkClassicExpansions(folderName);
             comboBox2.Items.Clear();
             this.comboBox2.Items.AddRange(new object[] {
             "(none)",
@@ -481,39 +449,26 @@ namespace CRBDL
             "Master Levels",
             "No Rest For the Living"});
             comboBox10.SelectedIndex = 0;
-            if (!UFS.Exists(folderName + "/wads/NERVE.wad") && !foundExps[0])
+            if (!foundExps[0])
             {
                 comboBox2.Items.Remove(comboBox2.Items[2]);
                 comboBox10.Items.Remove(comboBox10.Items[4]);
                 offset++;
-            } else
-            {
-                foundExps[0] = true;
             }
-            if (!UFS.Exists(folderName + "/wads/MASTERLEVELS.wad") && !foundExps[1])
+            if (!foundExps[1])
             {
                 comboBox2.Items.Remove(comboBox2.Items[5 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[3]);
-            } else
-            {
-                foundExps[1] = true;
             }
-            if (!UFS.Exists(folderName + "/wads/PLUTONIA.WAD") && !foundExps[2])
+            if (!UFS.Exists(folderName + "/wads/PLUTONIA.WAD"))
             {
                 comboBox2.Items.Remove(comboBox2.Items[4 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[2]);
             }
-            else
-            {
-                foundExps[2] = true;
-            }
-            if (!UFS.Exists(folderName + "/wads/TNT.WAD") && !foundExps[3])
+            if (!foundExps[3])
             {
                 comboBox2.Items.Remove(comboBox2.Items[3 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[1]);
-            } else
-            {
-                foundExps[3] = true;
             }
         }
 

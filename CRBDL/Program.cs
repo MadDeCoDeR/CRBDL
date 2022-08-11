@@ -22,6 +22,9 @@ SOFTWARE.
 */
 using System;
 using System.Windows.Forms;
+using System.Linq;
+using CDL.Arguments;
+using System.IO;
 
 namespace CRBDL
 {
@@ -31,11 +34,39 @@ namespace CRBDL
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            if (!args.Contains("-cli"))
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
+            } else
+            {
+                string largs = "";
+                if (args.Contains("-conf"))
+                {
+                    int index = Array.FindIndex(args, o => o == "-conf");
+                    largs += ArgParser.ParseArgsFromSettings(new FileStream(args[index + 1], FileMode.Open));
+                }
+
+                if (args.Contains("-pass"))
+                {
+                    int index = Array.FindIndex(args, o => o == "-pass");
+                    string[] pargs = new string[args.Length];
+                    Array.Copy(args, index + 1, pargs, 0, pargs.Length - (index + 1));
+                    largs += string.Join(" ", pargs);
+                }
+                
+                CDL.CDL cdl = new CDL.CDL();
+                if (cdl.CheckFiles() == 0)
+                {
+                    Console.WriteLine("Main Executable not found");
+                    throw new Exception("Main Executable not found");
+                }
+                Console.WriteLine(largs);
+                cdl.LaunchGame(largs);
+            }
         }
     }
 }
