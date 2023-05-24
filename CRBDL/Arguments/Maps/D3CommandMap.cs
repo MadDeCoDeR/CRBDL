@@ -42,6 +42,7 @@ namespace CDL.Arguments
             commands.Add(ArgKeys.SSGI, "+set r_useSSGI ");
             commands.Add(ArgKeys.LANG, "+set sys_lang ");
             commands.Add(ArgKeys.FA, "+set r_forceAmbient ");
+            commands.Add(ArgKeys.GAME_PATH, "+set fs_basepath ");
         }
 
         public Dictionary<string, string> getCommands() { return commands; }

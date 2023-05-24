@@ -45,6 +45,7 @@ namespace CDL.Arguments
             controls.Add(ArgKeys.LANG, form1.getComboBox12());
             controls.Add(ArgKeys.FA, form1.getNumericUpDown3());
             controls.Add(ArgKeys.EXTRA, form1.getTextBox15());
+            controls.Add(ArgKeys.GAME_PATH, form1.GetComboBox8());
         }
 
         public Dictionary<string, Control> getControls() { return controls; }

@@ -191,6 +191,13 @@ namespace CDL.Arguments
                             args += commandDefs.getCommands()[key][subKey]
                                         + $"{ExpParser.getD2MenuExp(((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString())} ";
                             break;
+                        case ArgKeys.GAME_PATH:
+                            if (((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex > 0)
+                            {
+                                args += commandDefs.getCommands()[key][subKey]
+                                    + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString().Split(" -- ".ToCharArray())[1]} ";
+                            }
+                            break;
                     }
                 }
                 if (!DefaultCheck.checkControl(controlDefs.getControls()[key][ArgKeys.EXTRA], key, ArgKeys.EXTRA, form1))

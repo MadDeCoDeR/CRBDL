@@ -27,6 +27,7 @@ using CDL.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -43,9 +44,10 @@ namespace CRBDL
         private ModLoader modLoader = new ModLoader();
         private bool[] foundExps;
         private readonly CDL.CDL cdl;
+        private string gamePathSelected;
 
 
-        private static string[] filenames = { "DoomBFA.exe", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
+        private static string[] filenames = { "DoomBFA.exe", "DoomBFA.sh", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
 
         public Form1()
         {
@@ -85,6 +87,22 @@ namespace CRBDL
             comboBox12.SelectedIndex = -1;
             comboBox14.SelectedIndex = 0;
             comboBox15.SelectedIndex = 0;
+            comboBox8.SelectedIndex = 0;
+
+            label1.Visible = true;
+
+            if (UFS.GetBFGPath() != null && UFS.GetNewD3Path() != null)
+            {
+                label15.Visible = true;
+                comboBox8.Visible = true;
+                comboBox8.Items.Add(UFS.GetBFGPath() + " -- (D3: BFG Edition)");
+                comboBox8.Items.Add(UFS.GetNewD3Path() + " -- (D3: 2019)");
+            } else
+            {
+                this.Height = this.Height - (label15.Height + comboBox8.Height);
+                ALLIN.Height = ALLIN.Height - (label15.Height + comboBox8.Height);
+                flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y - (label15.Height + comboBox8.Height));
+            }
            
             folderBrowserDialog1 = new FolderBrowserDialog();
         }
@@ -276,6 +294,7 @@ namespace CRBDL
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             listBox3.Items.Clear();
+            comboBox8.SelectedIndex = 0;
             numericUpDown1.Value=0.5M;
             for (int i =0; i < 5; i++)
             {
@@ -412,6 +431,8 @@ namespace CRBDL
         public TextBox GetTextBox1() { return textBox1; }
         public CheckBox GetCheckBox6() { return checkBox6; }
 
+        public ComboBox GetComboBox8() { return comboBox8; }
+
         private bool CheckFiles()
         {
             int found = cdl.CheckFiles();
@@ -493,6 +514,14 @@ namespace CRBDL
         private void comboBox15_SelectedIndexChanged(object sender, EventArgs e)
         {
             updateClassicExpansions();
+        }
+
+        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] values = ((string)comboBox8.Items[comboBox8.SelectedIndex]).Split(" -- ".ToCharArray());
+            if (values.Length >= 2) {
+                this.gamePathSelected = values[1];
+            }
         }
     }
 

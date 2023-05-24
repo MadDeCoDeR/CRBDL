@@ -24,48 +24,74 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Security;
-using System.Security.Permissions;
+using System.Security.Cryptography;
 
 namespace CDL.filesystem
 {
     class UFS
     {
-        private string[] paths;
-        DesktopBridge.Helpers helpers;
+        private List<string> paths;
+
+        private static readonly List<string> SHA512s = new List<string> {
+            "EF7CA86405FC3F70717BB1B58C584787EE5D474880675B1D4B4A33075BAD7492CB5A2A37A57F205E0DAF5520D07A593960CFB30AD797A47BE90E9C88DB06A0C7", //DOOM 3: BFG Edition
+            "CD3E74628C4F5609C5A3EF86D71F45C1F58E3746B77DD98604CCBBC93B322D21C649658939B987A1752D4C521B63A9A74EAE580C841960DC2C8D9745CF174EC9" //DOOM 3 re-release (2019)
+        };
+        private static readonly SHA512 sHA512 = new SHA512Managed();
+        private string BFGPath;
+        private string NewD3Path;
+        private string selectedPath;
         public UFS()
         {
-            paths = new string[5];
-            paths[0] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            paths[1] = Directory.GetCurrentDirectory();
-            paths[2] = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA";
-            if (paths[0].StartsWith("/usr"))
+            paths = new List<string>
             {
-                paths[3] = "/usr/bin";
+                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
+                Directory.GetCurrentDirectory(),
+                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA"
+            };
+            if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app"))
+            {
+                paths.Add("/usr/bin");
                 List<string> files = searchFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources");
+                files.AddRange(searchFile("/run/media/", "_common.resources"));
+                files.AddRange(searchFile("/media/", "_common.resources"));
                 if (files.Count >= 1)
                 {
-                    paths[4] = files[0].Substring(0, files[0].LastIndexOf("/"));
-                    paths[4] = paths[4].Substring(0, paths[4].LastIndexOf("/"));
+                    files.ForEach(filePath =>
+                    {
+                        byte[] data = File.ReadAllBytes(filePath);
+                        string fileSha512 = BitConverter.ToString(sHA512.ComputeHash(data)).ToUpper();
+                        if (BFGPath == null && fileSha512 == SHA512s[0])
+                        {
+                            BFGPath = filePath;
+                            paths.Add(filePath.Substring(0, filePath.LastIndexOf("/")));
+                            paths.Insert(4, paths[4].Substring(0, paths[4].LastIndexOf("/")));
+                        }
+                        else if (NewD3Path == null && fileSha512 == SHA512s[1]) { 
+                            NewD3Path = filePath;
+                            paths.Add(filePath.Substring(0, filePath.LastIndexOf("/")));
+                            paths.Insert(4, paths[4].Substring(0, paths[4].LastIndexOf("/")));
+                        }
+                    });
+                    
                 } else
                 {
-                    paths[4] = "";
+                    paths.Add("");
                 }
                 
             } else
             {
-                paths[3] = "";
-                paths[4] = "";
+                paths.Add("");
+                paths.Add("");
             }
-            helpers = new DesktopBridge.Helpers();
+            this.selectedPath = paths[0];
         }
 
         public string createFullPath(string filename) {
             string fullPath;
 
-            if (isUnixFS() || helpers.IsRunningAsUwp())
+            if (isUnixFS())
             {
-                fullPath = paths[0]+ "/" + filename;
+                fullPath = selectedPath + "/" + filename;
             } else
             {
                 fullPath = filename;
@@ -76,7 +102,7 @@ namespace CDL.filesystem
 
         public bool Exists(string filename)
         {
-            for (int i = 0; i < paths.Length; i++)
+            for (int i = 0; i < paths.Count; i++)
             {
                 string path = paths[i] + "/" + filename;
                 if (File.Exists(path))
@@ -89,51 +115,97 @@ namespace CDL.filesystem
 
         public string getFullPath(string filename)
         {
-            for (int i = 0; i < paths.Length; i++)
+            List<string> foundPaths = new List<string>();
+            for (int i = 0; i < paths.Count; i++)
             {
                 string path = paths[i] + "/" + filename;
                 if (File.Exists(path))
                 {
-                    return path;
+                    foundPaths.Add(path);
                 }
             }
+            if (foundPaths.Count > 1)
+            {
+                foreach (string path in foundPaths)
+                {
+                    if (path.StartsWith(selectedPath))
+                    {
+                        return path;
+                    }
+                }
+                return foundPaths[0];
+            }
+            else if (foundPaths.Count > 0)
+            {
+                return foundPaths[0];
+            }
+
             return filename;
         }
 
         public bool isUnixFS()
         {
-            return paths[0].StartsWith("/");
+            return selectedPath.StartsWith("/");
         }
 
-        public bool isRunningAsUWP()
+        public bool isRunningPackaged()
         {
-            return helpers.IsRunningAsUwp() || paths[0].StartsWith("/usr");
+            return paths[0].StartsWith("/usr") || paths[0].StartsWith("/app");
         }
 
         public string getParentPath(string relativeFolder)
         {
-            for (int i = 0; i < paths.Length; i++)
+            List<string> foundPaths = new List<string>();
+            for (int i = 0; i < paths.Count; i++)
             {
                 if (Directory.Exists(paths[i] + "/" + relativeFolder))
                 {
-                    return paths[i];
+                    foundPaths.Add(paths[i]);
                 }
+            }
+            if (foundPaths.Count > 1) {
+                foreach (string path in foundPaths) { 
+                    if (path.StartsWith(selectedPath))
+                    {
+                        return path;
+                    }
+                }
+                return foundPaths[0];
+            } else if (foundPaths.Count > 0)
+            {
+                return foundPaths[0];
             }
             return "";
         }
 
         public string getCurrentDirectory(string [] filenames)
         {
-            for (int i = 0; i < paths.Length; i++)
+            List<string> foundPaths = new List<string>();
+            for (int i = 0; i < paths.Count; i++)
             {
                 for (int j = 0; j < filenames.Length; j++)
                 {
                     string path = paths[i] + "/" + filenames[j];
                     if (File.Exists(path))
                     {
-                        return paths[i];
+                        foundPaths.Add(paths[i]);
                     }
                 }
+            }
+            if (foundPaths.Count > 1)
+            {
+                foreach (string path in foundPaths)
+                {
+                    if (path.StartsWith(selectedPath))
+                    {
+                        return path;
+                    }
+                }
+                return foundPaths[0];
+            }
+            else if (foundPaths.Count > 0)
+            {
+                return foundPaths[0];
             }
             return "";
         }
@@ -147,7 +219,7 @@ namespace CDL.filesystem
             string ogpath = path;
             if (path[0] == '/')
             {
-                for (int i = 0; i < paths.Length; i++)
+                for (int i = 0; i < paths.Count; i++)
                 {
                     string rempath = paths[i] + "/" + subfolder +"/";
                     path = path.Replace(rempath, "");
@@ -195,6 +267,16 @@ namespace CDL.filesystem
                 }
             }
             return filePaths;
+        }
+
+        public string GetBFGPath()
+        {
+            return BFGPath;
+        }
+
+        public string GetNewD3Path()
+        {
+            return NewD3Path;
         }
     }
 }
