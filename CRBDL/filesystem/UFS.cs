@@ -56,6 +56,7 @@ namespace CDL.filesystem
                 files.AddRange(searchFile("/media/", "_common.resources"));
                 if (files.Count >= 1)
                 {
+                    int index = 3;
                     files.ForEach(filePath =>
                     {
                         byte[] data = File.ReadAllBytes(filePath);
@@ -63,27 +64,33 @@ namespace CDL.filesystem
                         if (BFGPath == null && fileSha512 == SHA512s[0])
                         {
                             BFGPath = filePath;
-                            paths.Add(filePath.Substring(0, filePath.LastIndexOf("/")));
-                            paths.Insert(4, paths[4].Substring(0, paths[4].LastIndexOf("/")));
+                            string path = filePath.Substring(0, filePath.LastIndexOf("/"));
+                            paths.Add( path.Substring(0, path.LastIndexOf("/")));
+                            index++;
+                            this.selectedPath = paths[index];
                         }
                         else if (NewD3Path == null && fileSha512 == SHA512s[1]) { 
                             NewD3Path = filePath;
-                            paths.Add(filePath.Substring(0, filePath.LastIndexOf("/")));
-                            paths.Insert(4, paths[4].Substring(0, paths[4].LastIndexOf("/")));
+                            string path = filePath.Substring(0, filePath.LastIndexOf("/"));
+                            paths.Add(path.Substring(0, path.LastIndexOf("/")));
+                            index++;
+                            this.selectedPath = paths[index];
                         }
                     });
                     
                 } else
                 {
                     paths.Add("");
+                    this.selectedPath = paths[0];
                 }
                 
             } else
             {
                 paths.Add("");
                 paths.Add("");
+                this.selectedPath = paths[0];
             }
-            this.selectedPath = paths[0];
+            
         }
 
         public string createFullPath(string filename) {
