@@ -25,6 +25,7 @@ using System.Windows.Forms;
 using System.Linq;
 using CDL.Arguments;
 using System.IO;
+using CDL.filesystem;
 
 namespace CRBDL
 {
@@ -36,6 +37,7 @@ namespace CRBDL
         [STAThread]
         static void Main(string[] args)
         {
+            CDL.CDL.testPackage = args.Contains("-testPack");
             if (!args.Contains("-cli"))
             {
                 Application.EnableVisualStyles();
@@ -57,8 +59,7 @@ namespace CRBDL
                     Array.Copy(args, index + 1, pargs, 0, pargs.Length - (index + 1));
                     largs += string.Join(" ", pargs);
                 }
-                
-                CDL.CDL cdl = new CDL.CDL();
+                CDL.CDL cdl = new CDL.CDL(new UFS());
                 if (cdl.CheckFiles() == 0)
                 {
                     Console.WriteLine("Main Executable not found");

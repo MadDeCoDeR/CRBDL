@@ -31,10 +31,11 @@ namespace CDL
         private static string[] filenames = { "DoomBFA.exe", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
         private readonly UFS ufs;
         private bool[] foundExps;
+        public static bool testPackage = false;
 
-        public CDL()
+        public CDL(UFS ufs)
         {
-            ufs = new UFS();
+            this.ufs = ufs;
             foundExps = new bool[4];
             for (int i = 0; i < foundExps.Length; i++)
             {

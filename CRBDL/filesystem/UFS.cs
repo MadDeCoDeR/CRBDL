@@ -48,7 +48,8 @@ namespace CDL.filesystem
                 Directory.GetCurrentDirectory(),
                 Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA"
             };
-            if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app"))
+            selectedPath = paths[0];
+            if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
             {
                 paths.Add("/usr/bin");
                 List<string> files = searchFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources");
@@ -60,19 +61,19 @@ namespace CDL.filesystem
                     files.ForEach(filePath =>
                     {
                         byte[] data = File.ReadAllBytes(filePath);
-                        string fileSha512 = BitConverter.ToString(sHA512.ComputeHash(data)).ToUpper();
+                        string fileSha512 = BitConverter.ToString(sHA512.ComputeHash(data)).ToUpper().Replace("-", "");
                         if (BFGPath == null && fileSha512 == SHA512s[0])
                         {
-                            BFGPath = filePath;
-                            string path = filePath.Substring(0, filePath.LastIndexOf("/"));
-                            paths.Add( path.Substring(0, path.LastIndexOf("/")));
+                            string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
+                            BFGPath = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
+                            paths.Add(BFGPath);
                             index++;
                             this.selectedPath = paths[index];
                         }
                         else if (NewD3Path == null && fileSha512 == SHA512s[1]) { 
-                            NewD3Path = filePath;
-                            string path = filePath.Substring(0, filePath.LastIndexOf("/"));
-                            paths.Add(path.Substring(0, path.LastIndexOf("/")));
+                            string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
+                            NewD3Path = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
+                            paths.Add(NewD3Path);
                             index++;
                             this.selectedPath = paths[index];
                         }
@@ -98,7 +99,7 @@ namespace CDL.filesystem
 
             if (isUnixFS())
             {
-                fullPath = selectedPath + "/" + filename;
+                fullPath = selectedPath + GetPathSeparator() + filename;
             } else
             {
                 fullPath = filename;
@@ -111,7 +112,7 @@ namespace CDL.filesystem
         {
             for (int i = 0; i < paths.Count; i++)
             {
-                string path = paths[i] + "/" + filename;
+                string path = paths[i] + GetPathSeparator() + filename;
                 if (File.Exists(path))
                 {
                     return true;
@@ -120,12 +121,17 @@ namespace CDL.filesystem
             return false;
         }
 
+        public string GetPathSeparator()
+        {
+            return isUnixFS() ? "/" : "\\";
+        }
+
         public string getFullPath(string filename)
         {
             List<string> foundPaths = new List<string>();
             for (int i = 0; i < paths.Count; i++)
             {
-                string path = paths[i] + "/" + filename;
+                string path = paths[i] + GetPathSeparator() + filename;
                 if (File.Exists(path))
                 {
                     foundPaths.Add(path);
@@ -165,7 +171,7 @@ namespace CDL.filesystem
             List<string> foundPaths = new List<string>();
             for (int i = 0; i < paths.Count; i++)
             {
-                if (Directory.Exists(paths[i] + "/" + relativeFolder))
+                if (Directory.Exists(paths[i] + GetPathSeparator() + relativeFolder))
                 {
                     foundPaths.Add(paths[i]);
                 }
@@ -192,7 +198,7 @@ namespace CDL.filesystem
             {
                 for (int j = 0; j < filenames.Length; j++)
                 {
-                    string path = paths[i] + "/" + filenames[j];
+                    string path = paths[i] + GetPathSeparator() + filenames[j];
                     if (File.Exists(path))
                     {
                         foundPaths.Add(paths[i]);
@@ -260,10 +266,10 @@ namespace CDL.filesystem
                             foreach (string path in folders)
                             {
                                 filePaths.AddRange(searchFile(path, filename));
-                                if (filePaths.Count > 0)
+                                /*if (filePaths.Count > 0)
                                 {
                                     break; //GK: Abrudly stop for performance
-                                }
+                                }*/
                             }
                         }
                     }
@@ -284,6 +290,11 @@ namespace CDL.filesystem
         public string GetNewD3Path()
         {
             return NewD3Path;
+        }
+
+        public void SetSelectedPath(string path)
+        {
+            this.selectedPath = path;
         }
     }
 }

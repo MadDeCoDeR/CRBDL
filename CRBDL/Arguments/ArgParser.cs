@@ -195,7 +195,7 @@ namespace CDL.Arguments
                             if (((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex > 0)
                             {
                                 args += commandDefs.getCommands()[key][subKey]
-                                    + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString().Split(" -- ".ToCharArray())[1]} ";
+                                    + $"\"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString().Split("--".ToCharArray())[0].Trim()}\" ";
                             }
                             break;
                     }

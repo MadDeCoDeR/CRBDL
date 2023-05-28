@@ -28,7 +28,11 @@ namespace CDL.filesystem
 {
     class ModLoader
     {
-        private UFS UFS = new UFS();
+        private UFS ufs;
+
+        public ModLoader(UFS ufs) { 
+            this.ufs = ufs;
+        }
         public string loadMod(ListBox listBox)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -46,7 +50,7 @@ namespace CDL.filesystem
                     {
                         using (myStream)
                         {
-                            listBox.Items.Add(UFS.getRelativePath(openFileDialog1.FileName, "base"));
+                            listBox.Items.Add(ufs.getRelativePath(openFileDialog1.FileName, "base"));
                         }
                     }
                 }

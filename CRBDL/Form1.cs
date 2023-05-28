@@ -39,12 +39,11 @@ namespace CRBDL
     {
         public List<string>[] ml { set; get; }
         public string[] adcoms;
-        private UFS UFS;
+        private UFS ufs;
         private CDLSetting setting = new CDLSetting();
-        private ModLoader modLoader = new ModLoader();
+        private ModLoader modLoader;
         private bool[] foundExps;
         private readonly CDL.CDL cdl;
-        private string gamePathSelected;
 
 
         private static string[] filenames = { "DoomBFA.exe", "DoomBFA.sh", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
@@ -53,8 +52,9 @@ namespace CRBDL
         {
             InitializeComponent();
 
-            UFS = new UFS();
-            cdl = new CDL.CDL();
+            ufs = new UFS();
+            cdl = new CDL.CDL(ufs);
+            modLoader = new ModLoader(ufs);
 
             adcoms = new string[3];
             for(int i = 0; i < 3; i++)
@@ -91,12 +91,12 @@ namespace CRBDL
 
             label1.Visible = true;
 
-            if (UFS.GetBFGPath() != null && UFS.GetNewD3Path() != null)
+            if (ufs.GetBFGPath() != null && ufs.GetNewD3Path() != null)
             {
                 label15.Visible = true;
                 comboBox8.Visible = true;
-                comboBox8.Items.Add(UFS.GetBFGPath() + " -- (D3: BFG Edition)");
-                comboBox8.Items.Add(UFS.GetNewD3Path() + " -- (D3: 2019)");
+                comboBox8.Items.Add(ufs.GetBFGPath() + " -- (D3: BFG Edition)");
+                comboBox8.Items.Add(ufs.GetNewD3Path() + " -- (D3: 2019)");
             } else
             {
                 this.Height = this.Height - (label15.Height + comboBox8.Height);
@@ -122,7 +122,7 @@ namespace CRBDL
         {
             if (CheckFiles())
             {
-                List<string> dirs = new List<string>(Directory.GetDirectories(UFS.getParentPath("base")));
+                List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
                 foreach (var dir in dirs)
                 {
                     string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
@@ -154,7 +154,7 @@ namespace CRBDL
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ml[comboBox10.SelectedIndex].Add(UFS.getRelativePath(modLoader.loadMod(listBox2), "base"));
+            ml[comboBox10.SelectedIndex].Add(ufs.getRelativePath(modLoader.loadMod(listBox2), "base"));
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -481,7 +481,7 @@ namespace CRBDL
                 comboBox2.Items.Remove(comboBox2.Items[5 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[3]);
             }
-            if (!UFS.Exists(folderName + "/wads/PLUTONIA.WAD"))
+            if (!ufs.Exists(folderName + "/wads/PLUTONIA.WAD"))
             {
                 comboBox2.Items.Remove(comboBox2.Items[4 - offset]);
                 comboBox10.Items.Remove(comboBox10.Items[2]);
@@ -518,9 +518,9 @@ namespace CRBDL
 
         private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] values = ((string)comboBox8.Items[comboBox8.SelectedIndex]).Split(" -- ".ToCharArray());
+            string[] values = ((string)comboBox8.Items[comboBox8.SelectedIndex]).Split("--".ToCharArray());
             if (values.Length >= 2) {
-                this.gamePathSelected = values[1];
+                ufs.SetSelectedPath(values[0].Trim());
             }
         }
     }
