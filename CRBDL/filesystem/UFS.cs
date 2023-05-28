@@ -250,6 +250,10 @@ namespace CDL.filesystem
             List<string> filePaths = new List<string>();
             if (!parentPath.Contains("Proton") && Directory.Exists(parentPath)) //GK: Proton search prevention hack
             {
+                DirectoryInfo directoryInfo = new DirectoryInfo(parentPath);
+                if (directoryInfo.Attributes.HasFlag(FileAttributes.ReparsePoint)) { 
+                    return filePaths;
+                }
                 //GK: This is the worst way to handle this but I couldn't find a better way to do that
                 try
                 {
