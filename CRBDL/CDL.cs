@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using CDL.filesystem;
+using System;
 using System.Diagnostics;
 using System.IO;
 
@@ -108,6 +109,9 @@ namespace CDL
                 StreamWriter sw = new StreamWriter(ufs.createFullPath("args.txt"));
                 sw.Write(args);
                 sw.Close();
+            } else if (ufs.isRunningPackaged() && ufs.isUnixFS())
+            {
+                crbd.StartInfo.EnvironmentVariables.Add("LD_LIBRARY_PATH", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.doombfa/base/lib");
             }
             crbd.StartInfo.Arguments = args; // if you need some
             crbd.Start();
