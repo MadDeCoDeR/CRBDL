@@ -134,10 +134,10 @@ namespace CDL.filesystem
                 string path = paths[i] + GetPathSeparator() + filename;
                 if (File.Exists(path))
                 {
-                    foundPaths.Add(path);
+                    return path;
                 }
             }
-            if (foundPaths.Count > 1)
+            /*if (foundPaths.Count > 1)
             {
                 foreach (string path in foundPaths)
                 {
@@ -151,7 +151,7 @@ namespace CDL.filesystem
             else if (foundPaths.Count > 0)
             {
                 return foundPaths[0];
-            }
+            }*/
 
             return filename;
         }
