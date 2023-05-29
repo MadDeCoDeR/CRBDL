@@ -104,11 +104,14 @@ namespace CDL
                 }
             }*/
             crbd.StartInfo.WorkingDirectory = ufs.getCurrentDirectory(filenames);
-            StreamWriter sw = new StreamWriter(ufs.createFullPath("args.txt"));
-            sw.Write(args);
-            sw.Close();
-            if (ufs.isRunningPackaged() && ufs.isUnixFS())
+            if (!ufs.isRunningPackaged())
             {
+                StreamWriter sw = new StreamWriter(ufs.createFullPath("args.txt"));
+                sw.Write(args);
+                sw.Close();
+            } else if (ufs.isRunningPackaged() && ufs.isUnixFS())
+            {
+                Console.WriteLine("Passing Arguments: " + args);
                 crbd.StartInfo.EnvironmentVariables["LD_LIBRARY_PATH"] = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.doombfa/base/lib";
                 crbd.StartInfo.UseShellExecute = false;
             }
