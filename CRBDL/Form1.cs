@@ -90,6 +90,28 @@ namespace CRBDL
             comboBox8.SelectedIndex = 0;
 
             label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
+            label6.Visible = true;
+            label7.Visible = true;
+            label8.Visible = true;
+            label9.Visible = true;
+            label10.Visible = true;
+            label11.Visible = true;
+            label12.Visible = true;
+            label13.Visible = true;
+            label14.Visible = true;
+            label16.Visible = true;
+            label17.Visible = true;
+            label18.Visible = true;
+            label19.Visible = true;
+            label21.Visible = true;
+            label23.Visible = true;
+            label25.Visible = true;
+            label26.Visible = true;
+            label27.Visible = true;
 
             if (ufs.GetBFGPath() != null && ufs.GetNewD3Path() != null)
             {

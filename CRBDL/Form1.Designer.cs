@@ -130,6 +130,10 @@ namespace CRBDL
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.ALLIN.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -139,15 +143,17 @@ namespace CRBDL
             this.DOOM.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(132, 50);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Location = new System.Drawing.Point(255, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 35);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Launch";
             this.button1.UseVisualStyleBackColor = true;
@@ -161,11 +167,10 @@ namespace CRBDL
             this.ALLIN.Controls.Add(this.tabPage3);
             this.ALLIN.Controls.Add(this.DOOM);
             this.ALLIN.Controls.Add(this.tabPage2);
-            this.ALLIN.Location = new System.Drawing.Point(-3, -2);
-            this.ALLIN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ALLIN.Location = new System.Drawing.Point(-2, -1);
             this.ALLIN.Name = "ALLIN";
             this.ALLIN.SelectedIndex = 0;
-            this.ALLIN.Size = new System.Drawing.Size(527, 618);
+            this.ALLIN.Size = new System.Drawing.Size(353, 412);
             this.ALLIN.TabIndex = 2;
             // 
             // tabPage1
@@ -197,25 +202,25 @@ namespace CRBDL
             this.tabPage1.Controls.Add(this.checkBox3);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(519, 585);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(345, 386);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "DOOM 3 BFG";
             // 
             // comboBox8
             // 
+            this.comboBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox8.FormattingEnabled = true;
             this.comboBox8.Items.AddRange(new object[] {
             "(default)"});
-            this.comboBox8.Location = new System.Drawing.Point(15, 547);
-            this.comboBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox8.Location = new System.Drawing.Point(3, 356);
             this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(492, 28);
+            this.comboBox8.Size = new System.Drawing.Size(332, 21);
             this.comboBox8.TabIndex = 33;
             this.comboBox8.Visible = false;
             this.comboBox8.SelectedIndexChanged += new System.EventHandler(this.comboBox8_SelectedIndexChanged);
@@ -223,20 +228,18 @@ namespace CRBDL
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(328, 421);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Location = new System.Drawing.Point(219, 281);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 26);
+            this.textBox1.Size = new System.Drawing.Size(108, 20);
             this.textBox1.TabIndex = 31;
             this.textBox1.Visible = false;
             // 
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(328, 384);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox6.Location = new System.Drawing.Point(219, 256);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(160, 24);
+            this.checkBox6.Size = new System.Drawing.Size(108, 17);
             this.checkBox6.TabIndex = 30;
             this.checkBox6.Text = "Custom language";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -252,8 +255,7 @@ namespace CRBDL
             0,
             0,
             131072});
-            this.numericUpDown3.Location = new System.Drawing.Point(16, 406);
-            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericUpDown3.Location = new System.Drawing.Point(11, 271);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             4,
             0,
@@ -265,7 +267,7 @@ namespace CRBDL
             0,
             131072});
             this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(180, 26);
+            this.numericUpDown3.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown3.TabIndex = 29;
             this.numericUpDown3.Value = new decimal(new int[] {
             1,
@@ -276,15 +278,14 @@ namespace CRBDL
             // numericUpDown2
             // 
             this.numericUpDown2.Enabled = false;
-            this.numericUpDown2.Location = new System.Drawing.Point(14, 147);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericUpDown2.Location = new System.Drawing.Point(9, 98);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             32,
             0,
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(180, 26);
+            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown2.TabIndex = 28;
             this.numericUpDown2.Value = new decimal(new int[] {
             8,
@@ -294,10 +295,9 @@ namespace CRBDL
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(26, 522);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(10, 339);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(462, 20);
+            this.label15.Size = new System.Drawing.Size(308, 13);
             this.label15.TabIndex = 32;
             this.label15.Text = "Game Path";
             this.label15.Visible = false;
@@ -305,10 +305,9 @@ namespace CRBDL
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(20, 86);
-            this.checkBox12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox12.Location = new System.Drawing.Point(13, 57);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(169, 24);
+            this.checkBox12.Size = new System.Drawing.Size(116, 17);
             this.checkBox12.TabIndex = 27;
             this.checkBox12.Text = "Advanced Settings";
             this.checkBox12.UseVisualStyleBackColor = true;
@@ -321,38 +320,34 @@ namespace CRBDL
             this.comboBox15.FormattingEnabled = true;
             this.comboBox15.Items.AddRange(new object[] {
             "(none)"});
-            this.comboBox15.Location = new System.Drawing.Point(328, 216);
-            this.comboBox15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox15.Location = new System.Drawing.Point(219, 144);
             this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(180, 28);
+            this.comboBox15.Size = new System.Drawing.Size(121, 21);
             this.comboBox15.TabIndex = 26;
             this.comboBox15.SelectedIndexChanged += new System.EventHandler(this.comboBox15_SelectedIndexChanged);
             // 
             // label27
             // 
-            this.label27.Location = new System.Drawing.Point(324, 192);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Location = new System.Drawing.Point(216, 128);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(150, 20);
+            this.label27.Size = new System.Drawing.Size(100, 13);
             this.label27.TabIndex = 25;
             this.label27.Text = "Mod Base";
             // 
             // label25
             // 
             this.label25.Enabled = false;
-            this.label25.Location = new System.Drawing.Point(13, 376);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(9, 251);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(171, 20);
+            this.label25.Size = new System.Drawing.Size(114, 13);
             this.label25.TabIndex = 24;
             this.label25.Text = "Shadow Transparency";
             // 
             // label18
             // 
-            this.label18.Location = new System.Drawing.Point(6, 449);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(4, 299);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(176, 20);
+            this.label18.Size = new System.Drawing.Size(117, 13);
             this.label18.TabIndex = 22;
             this.label18.Text = "Additional Parameters";
             // 
@@ -360,18 +355,16 @@ namespace CRBDL
             // 
             this.textBox15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox15.Location = new System.Drawing.Point(9, 474);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox15.Location = new System.Drawing.Point(6, 316);
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(495, 26);
+            this.textBox15.Size = new System.Drawing.Size(333, 20);
             this.textBox15.TabIndex = 21;
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(324, 312);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(216, 208);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(150, 20);
+            this.label13.Size = new System.Drawing.Size(100, 13);
             this.label13.TabIndex = 20;
             this.label13.Text = "Language";
             this.label13.Visible = false;
@@ -388,20 +381,18 @@ namespace CRBDL
             "Italian",
             "Japanese",
             "Spanish"});
-            this.comboBox12.Location = new System.Drawing.Point(328, 342);
-            this.comboBox12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox12.Location = new System.Drawing.Point(219, 228);
             this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(180, 28);
+            this.comboBox12.Size = new System.Drawing.Size(121, 21);
             this.comboBox12.TabIndex = 19;
             this.comboBox12.Visible = false;
             // 
             // checkBox10
             // 
             this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(328, 272);
-            this.checkBox10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox10.Location = new System.Drawing.Point(219, 181);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(103, 24);
+            this.checkBox10.Size = new System.Drawing.Size(71, 17);
             this.checkBox10.TabIndex = 18;
             this.checkBox10.Text = "Skip Intro";
             this.checkBox10.UseVisualStyleBackColor = true;
@@ -413,10 +404,9 @@ namespace CRBDL
             this.comboBox11.FormattingEnabled = true;
             this.comboBox11.Items.AddRange(new object[] {
             "(none)"});
-            this.comboBox11.Location = new System.Drawing.Point(328, 146);
-            this.comboBox11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox11.Location = new System.Drawing.Point(219, 97);
             this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(180, 28);
+            this.comboBox11.Size = new System.Drawing.Size(121, 21);
             this.comboBox11.TabIndex = 17;
             this.comboBox11.SelectedIndexChanged += new System.EventHandler(this.comboBox11_SelectedIndexChanged);
             // 
@@ -424,30 +414,27 @@ namespace CRBDL
             // 
             this.checkBox9.AutoSize = true;
             this.checkBox9.Enabled = false;
-            this.checkBox9.Location = new System.Drawing.Point(13, 341);
-            this.checkBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox9.Location = new System.Drawing.Point(9, 227);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(75, 24);
+            this.checkBox9.Size = new System.Drawing.Size(51, 17);
             this.checkBox9.TabIndex = 16;
             this.checkBox9.Text = "SSGI";
             this.checkBox9.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(324, 116);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(216, 77);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(150, 20);
+            this.label14.Size = new System.Drawing.Size(100, 13);
             this.label14.TabIndex = 13;
             this.label14.Text = "Mod";
             // 
             // label12
             // 
             this.label12.Enabled = false;
-            this.label12.Location = new System.Drawing.Point(14, 272);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(9, 181);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(182, 20);
+            this.label12.Size = new System.Drawing.Size(121, 13);
             this.label12.TabIndex = 9;
             this.label12.Text = "Exposure";
             // 
@@ -460,15 +447,14 @@ namespace CRBDL
             0,
             0,
             131072});
-            this.numericUpDown1.Location = new System.Drawing.Point(16, 301);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericUpDown1.Location = new System.Drawing.Point(11, 201);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(180, 26);
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 8;
             this.numericUpDown1.Value = new decimal(new int[] {
             5,
@@ -482,10 +468,9 @@ namespace CRBDL
             this.checkBox5.Checked = true;
             this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox5.Enabled = false;
-            this.checkBox5.Location = new System.Drawing.Point(13, 236);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox5.Location = new System.Drawing.Point(9, 157);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(150, 24);
+            this.checkBox5.Size = new System.Drawing.Size(102, 17);
             this.checkBox5.TabIndex = 6;
             this.checkBox5.Text = "Trilinear Filtering";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -496,10 +481,9 @@ namespace CRBDL
             this.checkBox4.Checked = true;
             this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(13, 201);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox4.Location = new System.Drawing.Point(9, 134);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(187, 24);
+            this.checkBox4.Size = new System.Drawing.Size(126, 17);
             this.checkBox4.TabIndex = 5;
             this.checkBox4.Text = "Half Lambert Lighting";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -507,20 +491,18 @@ namespace CRBDL
             // label11
             // 
             this.label11.Enabled = false;
-            this.label11.Location = new System.Drawing.Point(13, 116);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(9, 77);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(182, 20);
+            this.label11.Size = new System.Drawing.Size(121, 13);
             this.label11.TabIndex = 4;
             this.label11.Text = "Anisotropic Filtering";
             // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(360, 42);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox3.Location = new System.Drawing.Point(240, 28);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(147, 24);
+            this.checkBox3.Size = new System.Drawing.Size(100, 17);
             this.checkBox3.TabIndex = 2;
             this.checkBox3.Text = "Enable Console";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -531,10 +513,9 @@ namespace CRBDL
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(5, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 20);
+            this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Select game to launch";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -548,10 +529,9 @@ namespace CRBDL
             "DOOM",
             "DOOM II",
             "DOOM 3"});
-            this.comboBox1.Location = new System.Drawing.Point(10, 48);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox1.Location = new System.Drawing.Point(7, 32);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 28);
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 0;
             // 
             // tabPage3
@@ -569,11 +549,10 @@ namespace CRBDL
             this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.listBox3);
             this.tabPage3.Controls.Add(this.checkBox8);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage3.Size = new System.Drawing.Size(519, 585);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Size = new System.Drawing.Size(345, 386);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "DOOM I & II";
             // 
@@ -582,10 +561,9 @@ namespace CRBDL
             this.checkBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox11.AutoSize = true;
             this.checkBox11.Enabled = false;
-            this.checkBox11.Location = new System.Drawing.Point(300, 286);
-            this.checkBox11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox11.Location = new System.Drawing.Point(198, 191);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(204, 24);
+            this.checkBox11.Size = new System.Drawing.Size(138, 17);
             this.checkBox11.TabIndex = 27;
             this.checkBox11.Text = "Aspect Ratio Correction";
             this.checkBox11.UseVisualStyleBackColor = true;
@@ -595,10 +573,9 @@ namespace CRBDL
             // 
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.Enabled = false;
-            this.label26.Location = new System.Drawing.Point(298, 186);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Location = new System.Drawing.Point(199, 124);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(150, 20);
+            this.label26.Size = new System.Drawing.Size(100, 13);
             this.label26.TabIndex = 26;
             this.label26.Text = "Message Lines";
             this.label26.Visible = false;
@@ -615,19 +592,17 @@ namespace CRBDL
             "2",
             "3",
             "4"});
-            this.comboBox14.Location = new System.Drawing.Point(297, 226);
-            this.comboBox14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox14.Location = new System.Drawing.Point(198, 151);
             this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(205, 28);
+            this.comboBox14.Size = new System.Drawing.Size(138, 21);
             this.comboBox14.TabIndex = 25;
             this.comboBox14.Visible = false;
             // 
             // label19
             // 
-            this.label19.Location = new System.Drawing.Point(4, 455);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(3, 303);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(176, 20);
+            this.label19.Size = new System.Drawing.Size(117, 13);
             this.label19.TabIndex = 24;
             this.label19.Text = "Additional Parameters";
             // 
@@ -635,19 +610,17 @@ namespace CRBDL
             // 
             this.textBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox20.Location = new System.Drawing.Point(4, 480);
-            this.textBox20.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox20.Location = new System.Drawing.Point(3, 320);
             this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(498, 26);
+            this.textBox20.Size = new System.Drawing.Size(333, 20);
             this.textBox20.TabIndex = 23;
             // 
             // label17
             // 
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.Location = new System.Drawing.Point(298, 89);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(199, 59);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(150, 20);
+            this.label17.Size = new System.Drawing.Size(100, 13);
             this.label17.TabIndex = 22;
             this.label17.Text = "Difficulty";
             // 
@@ -664,19 +637,17 @@ namespace CRBDL
             "Hurt me plenty",
             "Ultra-Violence",
             "Nightmare!"});
-            this.comboBox9.Location = new System.Drawing.Point(297, 114);
-            this.comboBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox9.Location = new System.Drawing.Point(198, 76);
             this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(205, 28);
+            this.comboBox9.Size = new System.Drawing.Size(138, 21);
             this.comboBox9.TabIndex = 21;
             // 
             // button9
             // 
             this.button9.Enabled = false;
-            this.button9.Location = new System.Drawing.Point(10, 391);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button9.Location = new System.Drawing.Point(7, 261);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(112, 35);
+            this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 13;
             this.button9.Text = "Remove";
             this.button9.UseVisualStyleBackColor = true;
@@ -684,10 +655,9 @@ namespace CRBDL
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(132, 391);
-            this.button10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button10.Location = new System.Drawing.Point(88, 261);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(112, 35);
+            this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 12;
             this.button10.Text = "Add";
             this.button10.UseVisualStyleBackColor = true;
@@ -695,10 +665,9 @@ namespace CRBDL
             // 
             // label16
             // 
-            this.label16.Location = new System.Drawing.Point(14, 45);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(9, 30);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(150, 20);
+            this.label16.Size = new System.Drawing.Size(100, 13);
             this.label16.TabIndex = 11;
             this.label16.Text = "Mods";
             // 
@@ -707,21 +676,18 @@ namespace CRBDL
             this.listBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 20;
-            this.listBox3.Location = new System.Drawing.Point(8, 74);
-            this.listBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBox3.Location = new System.Drawing.Point(5, 49);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(280, 304);
+            this.listBox3.Size = new System.Drawing.Size(188, 199);
             this.listBox3.TabIndex = 10;
             this.listBox3.SelectedIndexChanged += new System.EventHandler(this.ListBox3_SelectedIndexChanged);
             // 
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(9, 9);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox8.Location = new System.Drawing.Point(6, 6);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(236, 24);
+            this.checkBox8.Size = new System.Drawing.Size(159, 17);
             this.checkBox8.TabIndex = 9;
             this.checkBox8.Text = "Enable Classic Cheat Codes";
             this.checkBox8.UseVisualStyleBackColor = true;
@@ -742,20 +708,18 @@ namespace CRBDL
             this.DOOM.Controls.Add(this.label2);
             this.DOOM.Controls.Add(this.listBox1);
             this.DOOM.Controls.Add(this.checkBox2);
-            this.DOOM.Location = new System.Drawing.Point(4, 29);
-            this.DOOM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DOOM.Location = new System.Drawing.Point(4, 22);
             this.DOOM.Name = "DOOM";
-            this.DOOM.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DOOM.Size = new System.Drawing.Size(519, 585);
+            this.DOOM.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.DOOM.Size = new System.Drawing.Size(345, 386);
             this.DOOM.TabIndex = 0;
             this.DOOM.Text = "DOOM";
             // 
             // label21
             // 
-            this.label21.Location = new System.Drawing.Point(5, 455);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(3, 303);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(254, 20);
+            this.label21.Size = new System.Drawing.Size(169, 13);
             this.label21.TabIndex = 24;
             this.label21.Text = "Additional Parameters for DOOM";
             // 
@@ -763,19 +727,17 @@ namespace CRBDL
             // 
             this.textBox22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox22.Location = new System.Drawing.Point(9, 480);
-            this.textBox22.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox22.Location = new System.Drawing.Point(6, 320);
             this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(494, 26);
+            this.textBox22.Size = new System.Drawing.Size(331, 20);
             this.textBox22.TabIndex = 23;
             // 
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.Location = new System.Drawing.Point(297, 272);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(198, 181);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(150, 20);
+            this.label8.Size = new System.Drawing.Size(100, 13);
             this.label8.TabIndex = 18;
             this.label8.Text = "Difficulty";
             // 
@@ -792,29 +754,26 @@ namespace CRBDL
             "Hurt me plenty",
             "Ultra-Violence",
             "Nightmare!"});
-            this.comboBox6.Location = new System.Drawing.Point(297, 297);
-            this.comboBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox6.Location = new System.Drawing.Point(198, 198);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(205, 28);
+            this.comboBox6.Size = new System.Drawing.Size(138, 21);
             this.comboBox6.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.Location = new System.Drawing.Point(294, 190);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(196, 127);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(150, 20);
+            this.label6.Size = new System.Drawing.Size(100, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "Map";
             // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.Location = new System.Drawing.Point(300, 106);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(200, 71);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 20);
+            this.label7.Size = new System.Drawing.Size(100, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Episode";
             // 
@@ -835,10 +794,9 @@ namespace CRBDL
             "7",
             "8",
             "9"});
-            this.comboBox4.Location = new System.Drawing.Point(298, 215);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox4.Location = new System.Drawing.Point(199, 143);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(205, 28);
+            this.comboBox4.Size = new System.Drawing.Size(138, 21);
             this.comboBox4.TabIndex = 14;
             this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
@@ -854,20 +812,18 @@ namespace CRBDL
             "The Shores of Hell",
             "Inferno",
             "Thy Flesh Consumed"});
-            this.comboBox5.Location = new System.Drawing.Point(298, 131);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox5.Location = new System.Drawing.Point(199, 87);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(205, 28);
+            this.comboBox5.Size = new System.Drawing.Size(138, 21);
             this.comboBox5.TabIndex = 13;
             this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             // 
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(12, 392);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button3.Location = new System.Drawing.Point(8, 261);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 35);
+            this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
             this.button3.Text = "Remove";
             this.button3.UseVisualStyleBackColor = true;
@@ -875,10 +831,9 @@ namespace CRBDL
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(134, 392);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Location = new System.Drawing.Point(89, 261);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 35);
+            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Add";
             this.button2.UseVisualStyleBackColor = true;
@@ -886,10 +841,9 @@ namespace CRBDL
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(10, 50);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(7, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 20);
+            this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Mods";
             // 
@@ -898,21 +852,18 @@ namespace CRBDL
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(9, 75);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBox1.Location = new System.Drawing.Point(6, 50);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(280, 304);
+            this.listBox1.Size = new System.Drawing.Size(188, 199);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(10, 11);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox2.Location = new System.Drawing.Point(7, 7);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(236, 24);
+            this.checkBox2.Size = new System.Drawing.Size(159, 17);
             this.checkBox2.TabIndex = 0;
             this.checkBox2.Text = "Enable Classic Cheat Codes";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -934,20 +885,18 @@ namespace CRBDL
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.listBox2);
             this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(519, 585);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(345, 386);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DOOM II";
             // 
             // label23
             // 
-            this.label23.Location = new System.Drawing.Point(253, 444);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(169, 296);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(258, 20);
+            this.label23.Size = new System.Drawing.Size(172, 13);
             this.label23.TabIndex = 24;
             this.label23.Text = "Additional Parameters for DOOM II";
             // 
@@ -955,10 +904,9 @@ namespace CRBDL
             // 
             this.textBox24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox24.Location = new System.Drawing.Point(12, 474);
-            this.textBox24.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox24.Location = new System.Drawing.Point(8, 316);
             this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(494, 26);
+            this.textBox24.Size = new System.Drawing.Size(332, 20);
             this.textBox24.TabIndex = 23;
             // 
             // comboBox10
@@ -972,20 +920,18 @@ namespace CRBDL
             "The Plutonia Experiment",
             "Master Levels",
             "No Rest For the Living"});
-            this.comboBox10.Location = new System.Drawing.Point(12, 71);
-            this.comboBox10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox10.Location = new System.Drawing.Point(8, 47);
             this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(180, 28);
+            this.comboBox10.Size = new System.Drawing.Size(121, 21);
             this.comboBox10.TabIndex = 21;
             this.comboBox10.SelectedIndexChanged += new System.EventHandler(this.comboBox10_SelectedIndexChanged);
             // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.Location = new System.Drawing.Point(300, 275);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(201, 183);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(150, 20);
+            this.label9.Size = new System.Drawing.Size(100, 13);
             this.label9.TabIndex = 20;
             this.label9.Text = "Difficulty";
             // 
@@ -1002,29 +948,26 @@ namespace CRBDL
             "Hurt me plenty",
             "Ultra-Violence",
             "Nightmare!"});
-            this.comboBox7.Location = new System.Drawing.Point(298, 300);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox7.Location = new System.Drawing.Point(200, 200);
             this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(205, 28);
+            this.comboBox7.Size = new System.Drawing.Size(138, 21);
             this.comboBox7.TabIndex = 19;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Location = new System.Drawing.Point(298, 183);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(200, 122);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 20);
+            this.label5.Size = new System.Drawing.Size(100, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "Map";
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.Location = new System.Drawing.Point(300, 109);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(201, 73);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 20);
+            this.label4.Size = new System.Drawing.Size(100, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Expansion";
             // 
@@ -1068,10 +1011,9 @@ namespace CRBDL
             "30",
             "31",
             "32"});
-            this.comboBox3.Location = new System.Drawing.Point(300, 218);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox3.Location = new System.Drawing.Point(201, 145);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(204, 28);
+            this.comboBox3.Size = new System.Drawing.Size(137, 21);
             this.comboBox3.TabIndex = 10;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
@@ -1088,20 +1030,18 @@ namespace CRBDL
             "TNT: Evilution",
             "The Plutonia Experiment",
             "Master Levels"});
-            this.comboBox2.Location = new System.Drawing.Point(300, 134);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox2.Location = new System.Drawing.Point(201, 89);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(204, 28);
+            this.comboBox2.Size = new System.Drawing.Size(137, 21);
             this.comboBox2.TabIndex = 9;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(12, 429);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button4.Location = new System.Drawing.Point(8, 286);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(112, 35);
+            this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
             this.button4.Text = "Remove";
             this.button4.UseVisualStyleBackColor = true;
@@ -1109,10 +1049,9 @@ namespace CRBDL
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(134, 429);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button5.Location = new System.Drawing.Point(89, 286);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(112, 35);
+            this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 7;
             this.button5.Text = "Add";
             this.button5.UseVisualStyleBackColor = true;
@@ -1120,10 +1059,9 @@ namespace CRBDL
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(6, 46);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(4, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(178, 20);
+            this.label3.Size = new System.Drawing.Size(119, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Mods for expansion:";
             // 
@@ -1132,31 +1070,27 @@ namespace CRBDL
             this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 20;
-            this.listBox2.Location = new System.Drawing.Point(9, 112);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBox2.Location = new System.Drawing.Point(6, 75);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(280, 304);
+            this.listBox2.Size = new System.Drawing.Size(189, 199);
             this.listBox2.TabIndex = 5;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.ListBox2_SelectedIndexChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 11);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox1.Location = new System.Drawing.Point(7, 7);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(236, 24);
+            this.checkBox1.Size = new System.Drawing.Size(159, 17);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Enable Classic Cheat Codes";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(4, 5);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button6.Location = new System.Drawing.Point(3, 3);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(112, 35);
+            this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 2;
             this.button6.Text = "Save Config";
             this.button6.UseVisualStyleBackColor = true;
@@ -1164,10 +1098,9 @@ namespace CRBDL
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(124, 5);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button7.Location = new System.Drawing.Point(84, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(112, 35);
+            this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 3;
             this.button7.Text = "Load Config";
             this.button7.UseVisualStyleBackColor = true;
@@ -1178,10 +1111,9 @@ namespace CRBDL
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 45);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(3, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(0, 20);
+            this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 4;
             // 
             // folderBrowserDialog1
@@ -1192,10 +1124,9 @@ namespace CRBDL
             // button8
             // 
             this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.Location = new System.Drawing.Point(12, 50);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button8.Location = new System.Drawing.Point(174, 3);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(112, 35);
+            this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 5;
             this.button8.Text = "Launch DM";
             this.button8.UseVisualStyleBackColor = true;
@@ -1204,11 +1135,10 @@ namespace CRBDL
             // button11
             // 
             this.button11.Enabled = false;
-            this.button11.Location = new System.Drawing.Point(244, 5);
-            this.button11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button11.Location = new System.Drawing.Point(165, 3);
             this.button11.Name = "button11";
             this.button11.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button11.Size = new System.Drawing.Size(124, 35);
+            this.button11.Size = new System.Drawing.Size(83, 23);
             this.button11.TabIndex = 6;
             this.button11.Text = "Make Default";
             this.button11.UseVisualStyleBackColor = true;
@@ -1217,10 +1147,9 @@ namespace CRBDL
             // button12
             // 
             this.button12.Enabled = false;
-            this.button12.Location = new System.Drawing.Point(376, 5);
-            this.button12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button12.Location = new System.Drawing.Point(254, 3);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(120, 35);
+            this.button12.Size = new System.Drawing.Size(80, 23);
             this.button12.TabIndex = 7;
             this.button12.Text = "Reset Default";
             this.button12.UseVisualStyleBackColor = true;
@@ -1228,29 +1157,66 @@ namespace CRBDL
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this.button6);
-            this.flowLayoutPanel1.Controls.Add(this.button7);
-            this.flowLayoutPanel1.Controls.Add(this.button11);
-            this.flowLayoutPanel1.Controls.Add(this.button12);
-            this.flowLayoutPanel1.Controls.Add(this.label10);
-            this.flowLayoutPanel1.Controls.Add(this.button8);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 620);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel3);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 413);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(505, 128);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(345, 115);
             this.flowLayoutPanel1.TabIndex = 33;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.button6);
+            this.flowLayoutPanel2.Controls.Add(this.button7);
+            this.flowLayoutPanel2.Controls.Add(this.button11);
+            this.flowLayoutPanel2.Controls.Add(this.button12);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(341, 29);
+            this.flowLayoutPanel2.TabIndex = 8;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoScroll = true;
+            this.flowLayoutPanel3.Controls.Add(this.label10);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(2, 35);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(341, 33);
+            this.flowLayoutPanel3.TabIndex = 9;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel5);
+            this.flowLayoutPanel4.Controls.Add(this.button8);
+            this.flowLayoutPanel4.Controls.Add(this.button1);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(2, 72);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(340, 29);
+            this.flowLayoutPanel4.TabIndex = 10;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(2, 2);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(167, 25);
+            this.flowLayoutPanel5.TabIndex = 6;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(527, 750);
+            this.ClientSize = new System.Drawing.Size(353, 531);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.ALLIN);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -1270,7 +1236,10 @@ namespace CRBDL
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1356,6 +1325,10 @@ namespace CRBDL
         private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
     }
 }
 
