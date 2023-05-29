@@ -201,11 +201,11 @@ namespace CDL.filesystem
                     string path = paths[i] + GetPathSeparator() + filenames[j];
                     if (File.Exists(path))
                     {
-                        return paths[i];
+                        foundPaths.Add(paths[i]);
                     }
                 }
             }
-            /*if (foundPaths.Count > 1)
+            if (foundPaths.Count > 1)
             {
                 foreach (string path in foundPaths)
                 {
@@ -219,7 +219,7 @@ namespace CDL.filesystem
             else if (foundPaths.Count > 0)
             {
                 return foundPaths[0];
-            }*/
+            }
             return "";
         }
 

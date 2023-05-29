@@ -54,10 +54,12 @@ namespace CRBDL
             this.button1 = new System.Windows.Forms.Button();
             this.ALLIN = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.comboBox15 = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -127,8 +129,6 @@ namespace CRBDL
             this.button8 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.ALLIN.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -205,6 +205,21 @@ namespace CRBDL
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "DOOM 3 BFG";
             // 
+            // comboBox8
+            // 
+            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Items.AddRange(new object[] {
+            "(default)"});
+            this.comboBox8.Location = new System.Drawing.Point(15, 547);
+            this.comboBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(492, 28);
+            this.comboBox8.TabIndex = 33;
+            this.comboBox8.Visible = false;
+            this.comboBox8.SelectedIndexChanged += new System.EventHandler(this.comboBox8_SelectedIndexChanged);
+            // 
             // textBox1
             // 
             this.textBox1.Enabled = false;
@@ -276,6 +291,16 @@ namespace CRBDL
             0,
             0,
             0});
+            // 
+            // label15
+            // 
+            this.label15.Location = new System.Drawing.Point(26, 522);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(462, 20);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Game Path";
+            this.label15.Visible = false;
             // 
             // checkBox12
             // 
@@ -548,7 +573,7 @@ namespace CRBDL
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage3.Size = new System.Drawing.Size(522, 527);
+            this.tabPage3.Size = new System.Drawing.Size(519, 585);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "DOOM I & II";
             // 
@@ -721,13 +746,13 @@ namespace CRBDL
             this.DOOM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DOOM.Name = "DOOM";
             this.DOOM.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DOOM.Size = new System.Drawing.Size(522, 527);
+            this.DOOM.Size = new System.Drawing.Size(519, 585);
             this.DOOM.TabIndex = 0;
             this.DOOM.Text = "DOOM";
             // 
             // label21
             // 
-            this.label21.Location = new System.Drawing.Point(4, 455);
+            this.label21.Location = new System.Drawing.Point(5, 455);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(254, 20);
@@ -747,7 +772,7 @@ namespace CRBDL
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.Location = new System.Drawing.Point(300, 272);
+            this.label8.Location = new System.Drawing.Point(297, 272);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(150, 20);
@@ -776,7 +801,7 @@ namespace CRBDL
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.Location = new System.Drawing.Point(298, 186);
+            this.label6.Location = new System.Drawing.Point(294, 190);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(150, 20);
@@ -861,7 +886,7 @@ namespace CRBDL
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(15, 46);
+            this.label2.Location = new System.Drawing.Point(10, 50);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 20);
@@ -913,13 +938,13 @@ namespace CRBDL
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(522, 527);
+            this.tabPage2.Size = new System.Drawing.Size(519, 585);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DOOM II";
             // 
             // label23
             // 
-            this.label23.Location = new System.Drawing.Point(255, 445);
+            this.label23.Location = new System.Drawing.Point(253, 444);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(258, 20);
@@ -957,7 +982,7 @@ namespace CRBDL
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.Location = new System.Drawing.Point(298, 271);
+            this.label9.Location = new System.Drawing.Point(300, 275);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(150, 20);
@@ -986,7 +1011,7 @@ namespace CRBDL
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Location = new System.Drawing.Point(300, 189);
+            this.label5.Location = new System.Drawing.Point(298, 183);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(150, 20);
@@ -1095,7 +1120,7 @@ namespace CRBDL
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(15, 46);
+            this.label3.Location = new System.Drawing.Point(6, 46);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(178, 20);
@@ -1200,31 +1225,6 @@ namespace CRBDL
             this.button12.Text = "Reset Default";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "(default)"});
-            this.comboBox8.Location = new System.Drawing.Point(15, 547);
-            this.comboBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(492, 28);
-            this.comboBox8.TabIndex = 33;
-            this.comboBox8.Visible = false;
-            this.comboBox8.SelectedIndexChanged += new System.EventHandler(this.comboBox8_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.Location = new System.Drawing.Point(26, 522);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(462, 20);
-            this.label15.TabIndex = 32;
-            this.label15.Text = "Game Path";
-            this.label15.Visible = false;
             // 
             // flowLayoutPanel1
             // 
