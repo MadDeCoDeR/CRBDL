@@ -112,8 +112,8 @@ namespace CDL
             } else if (ufs.isRunningPackaged() && ufs.isUnixFS())
             {
                 Console.WriteLine("Passing Arguments: " + args);
-                crbd.StartInfo.EnvironmentVariables["LD_LIBRARY_PATH"] = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.doombfa/base/lib";
-                crbd.StartInfo.UseShellExecute = false;
+                /*crbd.StartInfo.EnvironmentVariables["LD_LIBRARY_PATH"] = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.doombfa/base/lib";
+                crbd.StartInfo.UseShellExecute = false;*/
             }
             crbd.StartInfo.Arguments = args; // if you need some
             crbd.Start();
