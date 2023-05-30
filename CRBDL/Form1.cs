@@ -45,6 +45,7 @@ namespace CRBDL
         private ModLoader modLoader;
         private bool[] foundExps;
         private readonly CDL.CDL cdl;
+        private bool gamePathDirty;
 
 
         private static string[] filenames = { "DoomBFA.exe", "DoomBFA.sh", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
@@ -56,6 +57,8 @@ namespace CRBDL
             ufs = new UFS();
             cdl = new CDL.CDL(ufs);
             modLoader = new ModLoader(ufs);
+
+            this.gamePathDirty = false;
 
             adcoms = new string[3];
             for (int i = 0; i < 3; i++)
@@ -111,9 +114,10 @@ namespace CRBDL
         {
             await Task.Run(() =>
             {
+                bool runOnce = false;
                 while (true)
                 {
-                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1)
+                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1 & !runOnce)
                     {
                         this.Invoke(new Action(() =>
                         {
@@ -127,7 +131,34 @@ namespace CRBDL
                             button1.Enabled = true;
                             button8.Enabled = true;
                         }));
-                        break;
+                        runOnce = true;
+                    }
+                    if (this.gamePathDirty)
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            if (CheckFiles())
+                            {
+                                comboBox11.Items.Clear();
+                                comboBox11.Items.Add("(none)");
+                                comboBox11.SelectedIndex = 0;
+                                comboBox15.Items.Clear();
+                                comboBox15.Items.Add("(none)");
+                                comboBox15.SelectedIndex = 0;
+                                List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
+                                foreach (var dir in dirs)
+                                {
+                                    string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
+                                    tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
+                                    if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc"))
+                                    {
+                                        comboBox11.Items.Add(tdir);
+                                        comboBox15.Items.Add(tdir);
+                                    }
+                                }
+                            }
+                        }));
+                        this.gamePathDirty = false;
                     }
 
                     Task.Delay(4000);
@@ -148,25 +179,29 @@ namespace CRBDL
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (CheckFiles())
+            if (!ufs.isRunningPackaged())
             {
-                List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
-                foreach (var dir in dirs)
+                if (CheckFiles())
                 {
-                    string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
-                    tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
-                    if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc"))
+                    List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
+                    foreach (var dir in dirs)
                     {
-                        comboBox11.Items.Add(tdir);
-                        comboBox15.Items.Add(tdir);
+                        string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
+                        tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
+                        if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc"))
+                        {
+                            comboBox11.Items.Add(tdir);
+                            comboBox15.Items.Add(tdir);
+                        }
                     }
+
                 }
-                if (Settings.Default.defaultSettings != "")
-                {
-                    Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
-                    setting.loadSettings(stream, this, Settings.Default.defaultSettings);
-                    button12.Enabled = true;
-                }
+            }
+            if (Settings.Default.defaultSettings != "")
+            {
+                Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                button12.Enabled = true;
             }
         }
 
@@ -551,6 +586,7 @@ namespace CRBDL
             if (values.Length >= 2)
             {
                 ufs.SetSelectedPath(values[0].Trim());
+                this.gamePathDirty = true;
             }
         }
     }
