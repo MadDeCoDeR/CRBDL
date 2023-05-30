@@ -41,7 +41,8 @@ namespace CDL.setting
             d2defs.Add("smod", form1.getComboBox10());
         }
 
-        public Dictionary<string, Control> getDefs() {
+        public Dictionary<string, Control> getDefs()
+        {
             return d2defs;
         }
     }

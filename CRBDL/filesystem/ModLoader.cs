@@ -30,7 +30,8 @@ namespace CDL.filesystem
     {
         private UFS ufs;
 
-        public ModLoader(UFS ufs) { 
+        public ModLoader(UFS ufs)
+        {
             this.ufs = ufs;
         }
         public string loadMod(ListBox listBox)

@@ -38,7 +38,8 @@ namespace CDL.setting
             d12defs.Add("marg", form1.getTextBox20());
         }
 
-        public Dictionary<string, Control> getDefs() {
+        public Dictionary<string, Control> getDefs()
+        {
             return d12defs;
         }
     }

@@ -24,8 +24,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Security.AccessControl;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace CDL.filesystem
 {
@@ -38,8 +38,8 @@ namespace CDL.filesystem
             "6DAECF3E621756C8A77B3C3064ED5FB488AFE357A80B7C14BEF35B6811B073CE" //DOOM 3 re-release (2019)
         };
         private static readonly SHA256 sHA256 = new SHA256Managed();
-        private string BFGPath;
-        private string NewD3Path;
+        public List<string> BFGPaths { get; }
+        public List<string> NewD3Paths { get; }
         private string selectedPath;
         public UFS()
         {
@@ -53,55 +53,29 @@ namespace CDL.filesystem
             if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
             {
                 paths.Add("/usr/bin");
-                List<string> files = searchFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources");
-                files.AddRange(searchFile("/run/media/", "_common.resources"));
-                files.AddRange(searchFile("/media/", "_common.resources"));
-                if (files.Count >= 1)
-                {
-                    int index = 3;
-                    files.ForEach(filePath =>
-                    {
-                        byte[] data = File.ReadAllBytes(filePath);
-                        string fileSha256 = BitConverter.ToString(sHA256.ComputeHash(data)).ToUpper().Replace("-", "");
-                        if (BFGPath == null && fileSha256 == SHA256s[0])
-                        {
-                            string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
-                            BFGPath = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
-                            paths.Add(BFGPath);
-                            index++;
-                            this.selectedPath = paths[index];
-                        }
-                        else if (NewD3Path == null && fileSha256 == SHA256s[1]) { 
-                            string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
-                            NewD3Path = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
-                            paths.Add(NewD3Path);
-                            index++;
-                            this.selectedPath = paths[index];
-                        }
-                    });
-                    
-                } else
-                {
-                    paths.Add("");
-                    this.selectedPath = paths[0];
-                }
-                
-            } else
+                BFGPaths = new List<string>();
+                NewD3Paths = new List<string>();
+                checkGamePaths();
+
+            }
+            else
             {
                 paths.Add("");
                 paths.Add("");
                 this.selectedPath = paths[0];
             }
-            
+
         }
 
-        public string createFullPath(string filename) {
+        public string createFullPath(string filename)
+        {
             string fullPath;
 
             if (isUnixFS())
             {
                 fullPath = selectedPath + GetPathSeparator() + filename;
-            } else
+            }
+            else
             {
                 fullPath = filename;
             }
@@ -164,7 +138,7 @@ namespace CDL.filesystem
 
         public bool isRunningPackaged()
         {
-            return paths[0].StartsWith("/usr") || paths[0].StartsWith("/app");
+            return paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage;
         }
 
         public string getParentPath(string relativeFolder)
@@ -177,22 +151,25 @@ namespace CDL.filesystem
                     foundPaths.Add(paths[i]);
                 }
             }
-            if (foundPaths.Count > 1) {
-                foreach (string path in foundPaths) { 
+            if (foundPaths.Count > 1)
+            {
+                foreach (string path in foundPaths)
+                {
                     if (path.StartsWith(selectedPath))
                     {
                         return path;
                     }
                 }
                 return foundPaths[0];
-            } else if (foundPaths.Count > 0)
+            }
+            else if (foundPaths.Count > 0)
             {
                 return foundPaths[0];
             }
             return "";
         }
 
-        public string getCurrentDirectory(string [] filenames)
+        public string getCurrentDirectory(string[] filenames)
         {
             List<string> foundPaths = new List<string>();
             for (int i = 0; i < paths.Count; i++)
@@ -226,7 +203,7 @@ namespace CDL.filesystem
 
         public string getRelativePath(string path, string subfolder)
         {
-            if  (path.Length <= 0)
+            if (path.Length <= 0)
             {
                 return path;
             }
@@ -235,7 +212,7 @@ namespace CDL.filesystem
             {
                 for (int i = 0; i < paths.Count; i++)
                 {
-                    string rempath = paths[i] + "/" + subfolder +"/";
+                    string rempath = paths[i] + "/" + subfolder + "/";
                     path = path.Replace(rempath, "");
                     if (!path.Equals(ogpath))
                     {
@@ -252,7 +229,8 @@ namespace CDL.filesystem
             if (!parentPath.Contains("Proton") && Directory.Exists(parentPath)) //GK: Proton search prevention hack
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(parentPath);
-                if (directoryInfo.Attributes.HasFlag(FileAttributes.ReparsePoint)) { 
+                if (directoryInfo.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                {
                     return filePaths;
                 }
                 //GK: This is the worst way to handle this but I couldn't find a better way to do that
@@ -274,7 +252,7 @@ namespace CDL.filesystem
                             foreach (string path in folders)
                             {
                                 filePaths.AddRange(searchFile(path, filename));
-                                /*if (filePaths.Count > 0)
+                                /*if (filePaths.Count > 0 )
                                 {
                                     break; //GK: Abrudly stop for performance
                                 }*/
@@ -282,7 +260,7 @@ namespace CDL.filesystem
                         }
                     }
                 }
-                catch (UnauthorizedAccessException e)
+                catch (UnauthorizedAccessException)
                 {
                     //Do nothing
                 }
@@ -290,19 +268,52 @@ namespace CDL.filesystem
             return filePaths;
         }
 
-        public string GetBFGPath()
-        {
-            return BFGPath;
-        }
-
-        public string GetNewD3Path()
-        {
-            return NewD3Path;
-        }
-
         public void SetSelectedPath(string path)
         {
             this.selectedPath = path;
+        }
+
+        private async void checkGamePaths()
+        {
+            await Task.Run(() =>
+            {
+                List<string> files = searchFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources");
+                files.AddRange(searchFile("/run/media/", "_common.resources"));
+                files.AddRange(searchFile("/media/", "_common.resources"));
+                if (files.Count >= 1)
+                {
+                    int index = 3;
+                    files.ForEach(filePath =>
+                    {
+                        byte[] data = File.ReadAllBytes(filePath);
+                        string fileSha256 = BitConverter.ToString(sHA256.ComputeHash(data)).ToUpper().Replace("-", "");
+                        if (fileSha256 == SHA256s[0])
+                        {
+                            string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
+                            path = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
+                            BFGPaths.Add(path);
+                            paths.Add(path);
+                            index++;
+                            this.selectedPath = paths[index];
+                        }
+                        else if (fileSha256 == SHA256s[1])
+                        {
+                            string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
+                            path = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
+                            NewD3Paths.Add(path);
+                            paths.Add(path);
+                            index++;
+                            this.selectedPath = paths[index];
+                        }
+                    });
+
+                }
+                else
+                {
+                    paths.Add("");
+                    this.selectedPath = paths[0];
+                }
+            });
         }
     }
 }

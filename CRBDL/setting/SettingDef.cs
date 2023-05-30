@@ -30,7 +30,7 @@ namespace CDL.filesystem
     class SettingDef
     {
         private Dictionary<string, Dictionary<string, Control>> defs = new Dictionary<string, Dictionary<string, Control>>();
-        
+
         public SettingDef(Form1 form1)
         {
             D1defs d1Defs = new D1defs(form1);

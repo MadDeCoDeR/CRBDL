@@ -40,7 +40,8 @@ namespace CDL.setting
             d1defs.Add("Map", form1.getComboBox4());
         }
 
-        public Dictionary<string, Control> getDefs() {
+        public Dictionary<string, Control> getDefs()
+        {
             return d1defs;
         }
     }

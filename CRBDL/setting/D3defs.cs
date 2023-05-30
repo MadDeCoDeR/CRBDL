@@ -50,7 +50,8 @@ namespace CDL.setting
             d3defs.Add("modbase", form1.getComboBox15());
         }
 
-        public Dictionary<string, Control> getDefs() {
+        public Dictionary<string, Control> getDefs()
+        {
             return d3defs;
         }
     }

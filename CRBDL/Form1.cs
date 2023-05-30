@@ -26,9 +26,10 @@ using CDL.filesystem;
 using CDL.Properties;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -57,15 +58,15 @@ namespace CRBDL
             modLoader = new ModLoader(ufs);
 
             adcoms = new string[3];
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 adcoms[i] = "";
             }
 
             ml = new List<string>[5];
-            for (int i=0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
-                ml[i]= new List<string>();
+                ml[i] = new List<string>();
             }
 
             foundExps = new bool[4];
@@ -91,22 +92,49 @@ namespace CRBDL
 
             label1.Visible = true;
 
-            if (ufs.GetBFGPath() != null && ufs.GetNewD3Path() != null)
+            this.Height = this.Height - (label15.Height + comboBox8.Height);
+            ALLIN.Height = ALLIN.Height - (label15.Height + comboBox8.Height);
+            flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y - (label15.Height + comboBox8.Height));
+            if (ufs.isRunningPackaged())
             {
-                label15.Visible = true;
-                comboBox8.Visible = true;
-                comboBox8.Items.Add(ufs.GetBFGPath() + " -- (D3: BFG Edition)");
-                comboBox8.Items.Add(ufs.GetNewD3Path() + " -- (D3: 2019)");
-            } else
-            {
-                this.Height = this.Height - (label15.Height + comboBox8.Height);
-                ALLIN.Height = ALLIN.Height - (label15.Height + comboBox8.Height);
-                flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y - (label15.Height + comboBox8.Height));
+                button1.Enabled = false;
+                button8.Enabled = false;
+                checkIfNewPathsAdded();
             }
-           
+
+            
+
             folderBrowserDialog1 = new FolderBrowserDialog();
         }
-        
+
+        private async void checkIfNewPathsAdded()
+        {
+            await Task.Run(() =>
+            {
+                while (true)
+                {
+                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1)
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            label15.Visible = true;
+                            comboBox8.Visible = true;
+                            comboBox8.Items.AddRange(ufs.BFGPaths.Select(path => path + " -- (D3: BFG Edition)").ToArray());
+                            comboBox8.Items.AddRange(ufs.NewD3Paths.Select(path => path + " -- (D3: 2019)").ToArray());
+                            this.Height = this.Height + (label15.Height + comboBox8.Height);
+                            ALLIN.Height = ALLIN.Height + (label15.Height + comboBox8.Height);
+                            flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y + (label15.Height + comboBox8.Height));
+                            button1.Enabled = true;
+                            button8.Enabled = true;
+                        }));
+                        break;
+                    }
+
+                    Task.Delay(4000);
+                }
+            });
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Launchgame();
@@ -205,7 +233,8 @@ namespace CRBDL
             if (comboBox4.SelectedIndex != 0 && comboBox5.SelectedIndex <= 0)
             {
                 comboBox5.SelectedIndex = 1;
-            }else if (comboBox4.SelectedIndex == 0 && comboBox5.SelectedIndex > 0)
+            }
+            else if (comboBox4.SelectedIndex == 0 && comboBox5.SelectedIndex > 0)
             {
                 comboBox5.SelectedIndex = 0;
             }
@@ -257,23 +286,23 @@ namespace CRBDL
         public void resetUi()
         {
             comboBox1.SelectedIndex = 0;
-           // comboBox1.ResetText();
+            // comboBox1.ResetText();
             comboBox2.SelectedIndex = 0;
-          //  comboBox2.ResetText();
+            //  comboBox2.ResetText();
             comboBox3.SelectedIndex = 0;
-          //  comboBox3.ResetText();
+            //  comboBox3.ResetText();
             comboBox4.SelectedIndex = 0;
-          //  comboBox4.ResetText();
+            //  comboBox4.ResetText();
             comboBox5.SelectedIndex = 0;
-           // comboBox5.ResetText();
+            // comboBox5.ResetText();
             comboBox6.SelectedIndex = 0;
-          //  comboBox6.ResetText();
+            //  comboBox6.ResetText();
             comboBox7.SelectedIndex = 0;
-          //  comboBox7.ResetText();
+            //  comboBox7.ResetText();
             numericUpDown2.Value = 8;
-          //  comboBox8.ResetText();
+            //  comboBox8.ResetText();
             comboBox9.SelectedIndex = 0;
-          //  comboBox9.ResetText();
+            //  comboBox9.ResetText();
             comboBox10.SelectedIndex = 0;
             comboBox11.SelectedIndex = 0;
             comboBox12.SelectedIndex = 0;
@@ -295,8 +324,8 @@ namespace CRBDL
             listBox2.Items.Clear();
             listBox3.Items.Clear();
             comboBox8.SelectedIndex = 0;
-            numericUpDown1.Value=0.5M;
-            for (int i =0; i < 5; i++)
+            numericUpDown1.Value = 0.5M;
+            for (int i = 0; i < 5; i++)
             {
                 ml[i].Clear();
             }
@@ -324,7 +353,7 @@ namespace CRBDL
         {
             listBox2.Items.Clear();
             button4.Enabled = false;
-            if ( ml[comboBox10.SelectedIndex].Count >= 1)
+            if (ml[comboBox10.SelectedIndex].Count >= 1)
             {
                 foreach (string file in ml[comboBox10.SelectedIndex])
                 {
@@ -341,17 +370,17 @@ namespace CRBDL
 
         private void checkBox12_CheckedChanged(object sender, EventArgs e)
         {
-                label11.Enabled = ((CheckBox)sender).Checked;
-                numericUpDown2.Enabled = ((CheckBox)sender).Checked;
-                checkBox4.Enabled = ((CheckBox)sender).Checked;
-                checkBox5.Enabled = ((CheckBox)sender).Checked;
-                label12.Enabled = ((CheckBox)sender).Checked;
-                numericUpDown1.Enabled = ((CheckBox)sender).Checked;
-                checkBox9.Enabled = ((CheckBox)sender).Checked;
-                //label13.Enabled = ((CheckBox)sender).Checked;
-                //comboBox12.Enabled = ((CheckBox)sender).Checked;
-                label25.Enabled = ((CheckBox)sender).Checked;
-                numericUpDown3.Enabled = ((CheckBox)sender).Checked;
+            label11.Enabled = ((CheckBox)sender).Checked;
+            numericUpDown2.Enabled = ((CheckBox)sender).Checked;
+            checkBox4.Enabled = ((CheckBox)sender).Checked;
+            checkBox5.Enabled = ((CheckBox)sender).Checked;
+            label12.Enabled = ((CheckBox)sender).Checked;
+            numericUpDown1.Enabled = ((CheckBox)sender).Checked;
+            checkBox9.Enabled = ((CheckBox)sender).Checked;
+            //label13.Enabled = ((CheckBox)sender).Checked;
+            //comboBox12.Enabled = ((CheckBox)sender).Checked;
+            label25.Enabled = ((CheckBox)sender).Checked;
+            numericUpDown3.Enabled = ((CheckBox)sender).Checked;
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -519,7 +548,8 @@ namespace CRBDL
         private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] values = ((string)comboBox8.Items[comboBox8.SelectedIndex]).Split("--".ToCharArray());
-            if (values.Length >= 2) {
+            if (values.Length >= 2)
+            {
                 ufs.SetSelectedPath(values[0].Trim());
             }
         }

@@ -20,6 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+using CRBDL;
 using System;
 using System.Linq;
 using System.Net;
@@ -29,14 +30,12 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-using CRBDL;
-
 namespace CDL
 {
     public partial class Form2 : Form
     {
         private static string[] addr;
-        private static bool endt;
+        //private static bool endt;
         TcpListener serverSocket = null;
         TcpClient[] clientSocket;
         private bool abort = false;
@@ -99,21 +98,21 @@ namespace CDL
             {
                 var ipProp = nic.GetIPProperties();
                 var gwAddresses = ipProp.GatewayAddresses;
-                if (nic.OperationalStatus == OperationalStatus.Up && nic.Speed > 0 && gwAddresses.Count > 0 )
+                if (nic.OperationalStatus == OperationalStatus.Up && nic.Speed > 0 && gwAddresses.Count > 0)
                 {
                     IPAddress localIP = ipProp.UnicastAddresses.First(d => d.Address.AddressFamily == AddressFamily.InterNetwork).Address;
                     return localIP.ToString();
                 }
             }
-                // throw new Exception("No network adapters with an IPv4 address in the system!");
-                return Addresses;
+            // throw new Exception("No network adapters with an IPv4 address in the system!");
+            return Addresses;
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             maxplayers = Convert.ToInt32(comboBox2.GetItemText(comboBox2.Items[comboBox2.SelectedIndex]));
-            
+
             ipaddr = string.Empty;
             for (int i = 0; i < maskedTextBox1.Text.Length; i++)
             {
@@ -122,19 +121,19 @@ namespace CDL
                     ipaddr += maskedTextBox1.Text[i];
                 }
             }
-            if (!checkBox1.Checked && !IPAddress.TryParse(ipaddr,out ip))
+            if (!checkBox1.Checked && !IPAddress.TryParse(ipaddr, out ip))
                 return;
             comboBox2.Enabled = false;
             checkBox1.Enabled = false;
             comboBox1.Enabled = false;
             maskedTextBox1.Enabled = false;
-            endt = false;
+            //endt = false;
             button2.Enabled = false;
             pointer = comboBox1.SelectedIndex;
             form1.adcoms[pointer] = "-net ";
             if (checkBox1.Checked)
             {
-                form1.adcoms[pointer] += "0 "+GetLocalIPAddress()+" ";
+                form1.adcoms[pointer] += "0 " + GetLocalIPAddress() + " ";
                 th = new Thread(startServer);
                 th.IsBackground = true;
                 th.Start();
@@ -147,7 +146,7 @@ namespace CDL
                 th = new Thread(startClient);
                 th.IsBackground = true;
                 th.Start();
-                
+
                 //Thread.Sleep(1000);
                 //startClient();
             }
@@ -155,7 +154,7 @@ namespace CDL
 
         private void startServer()
         {
-            serverSocket = new TcpListener(6666);
+            serverSocket = new TcpListener(IPAddress.Any, 6666);
             int requestCount = 0;
             for (int i = 0; i < 3; i++)
             {
@@ -192,16 +191,17 @@ namespace CDL
                     }
                     else
                     {
-                            NetworkStream networkStream = clientSocket[sendcount-1].GetStream();
-                            serverResponse = Convert.ToString(true);
-                            Byte[] sendBytes = System.Text.Encoding.ASCII.GetBytes(serverResponse);
-                            networkStream.Write(sendBytes, 0, sendBytes.Length);
-                            networkStream.Flush();
-                            Array.Clear(bytesFrom, 0, bytesFrom.Length);
-                            networkStream.Read(bytesFrom, 0, bytesFrom.Length);
-                            dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
-                            int client = Convert.ToInt32(dataFromClient);
-                            for (int j = 1; j < maxplayers; j++) {
+                        NetworkStream networkStream = clientSocket[sendcount - 1].GetStream();
+                        serverResponse = Convert.ToString(true);
+                        Byte[] sendBytes = System.Text.Encoding.ASCII.GetBytes(serverResponse);
+                        networkStream.Write(sendBytes, 0, sendBytes.Length);
+                        networkStream.Flush();
+                        Array.Clear(bytesFrom, 0, bytesFrom.Length);
+                        networkStream.Read(bytesFrom, 0, bytesFrom.Length);
+                        dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
+                        int client = Convert.ToInt32(dataFromClient);
+                        for (int j = 1; j < maxplayers; j++)
+                        {
                             if (j != client)
                             {
                                 string sip = addr[j];
@@ -210,11 +210,11 @@ namespace CDL
                                 networkStream.Write(sendBytes, 0, sendBytes.Length);
                                 networkStream.Flush();
                             }
-                            }
-                            clientSocket[sendcount-1].Close();
-                        sendcount++;
                         }
-                        
+                        clientSocket[sendcount - 1].Close();
+                        sendcount++;
+                    }
+
                     if (sendcount == maxplayers)
                         break;
                 }
@@ -228,31 +228,30 @@ namespace CDL
                 //clientSocket.Close();
                 serverSocket.Stop();
                 Invoke((MethodInvoker)(() => label2.Text = "Found Players"));
-                Invoke((MethodInvoker)(() => checkBox1.Enabled = true)) ;
+                Invoke((MethodInvoker)(() => checkBox1.Enabled = true));
                 Invoke((MethodInvoker)(() => comboBox1.Enabled = true));
                 Invoke((MethodInvoker)(() => maskedTextBox1.Enabled = true));
-                endt = true;
+                //endt = true;
                 Invoke((MethodInvoker)(() => button2.Enabled = true));
                 Invoke((MethodInvoker)(() => button1.Enabled = true));
                 Invoke((MethodInvoker)(() => comboBox2.Enabled = true));
             }
-            
+
         }
 
         private void startClient()
         {
             clientSocket[0] = new TcpClient();
-            int players;
             clientSocket[0].Connect(ip, 6666);
             NetworkStream serverStream = clientSocket[0].GetStream();
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(GetLocalIPAddress()+"IP");
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(GetLocalIPAddress() + "IP");
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
             byte[] inStream = new byte[10025];
             serverStream.Read(inStream, 0, inStream.Length);
             string returndata = System.Text.Encoding.ASCII.GetString(inStream);
             int player = Convert.ToInt32(returndata);
-            form1.adcoms[pointer] += player + " "+ip.ToString()+" ";
+            form1.adcoms[pointer] += player + " " + ip.ToString() + " ";
             Array.Clear(inStream, 0, inStream.Length);
             serverStream.Read(inStream, 0, inStream.Length);
             returndata = System.Text.Encoding.ASCII.GetString(inStream);
@@ -264,7 +263,7 @@ namespace CDL
             serverStream.Flush();
             for (int i = 1; i < maxplayers; i++)
             {
-                if(i == player)
+                if (i == player)
                 {
                     form1.adcoms[pointer] += GetLocalIPAddress() + " ";
                 }
@@ -280,7 +279,7 @@ namespace CDL
             Invoke((MethodInvoker)(() => checkBox1.Enabled = true));
             Invoke((MethodInvoker)(() => comboBox1.Enabled = true));
             Invoke((MethodInvoker)(() => maskedTextBox1.Enabled = true));
-            endt = true;
+            //endt = true;
             Invoke((MethodInvoker)(() => button2.Enabled = true));
             Invoke((MethodInvoker)(() => button1.Enabled = true));
             Invoke((MethodInvoker)(() => comboBox2.Enabled = true));
@@ -316,7 +315,7 @@ namespace CDL
                 serverSocket.Stop();
                 serverSocket = null;
             }
-            for (int i=0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 form1.adcoms[i] = "";
             }
@@ -339,7 +338,7 @@ namespace CDL
             label4.Enabled = checkBox3.Checked;
             label6.Enabled = checkBox3.Checked;
             label8.Enabled = checkBox3.Checked;
-            checkBox2.Enabled= !checkBox3.Checked;
+            checkBox2.Enabled = !checkBox3.Checked;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace CDL.Expansions
             comboBox.Items.Add("(none)");
             for (int i = 0; i < max; i++)
             {
-                comboBox.Items.Add(i+1);
+                comboBox.Items.Add(i + 1);
             }
             comboBox.SelectedIndex = 0;
         }

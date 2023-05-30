@@ -21,11 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using CDL.Arguments.Maps.Settings;
-using CDL.filesystem;
 using CDL.parser;
 using CRBDL;
 using System;
-using System.CodeDom.Compiler;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -64,7 +62,7 @@ namespace CDL.Arguments
                         case ArgKeys.FA:
                             if (form1.getCheckBox12().Checked)
                             {
-                                string value = 
+                                string value =
                                     ((NumericUpDown)controlDefs.getControls()[key][subKey]).Value.ToString(CultureInfo.InvariantCulture);
                                 args += commandDefs.getCommands()[key][subKey] + value + " ";
                             }
@@ -77,11 +75,12 @@ namespace CDL.Arguments
                             break;
                         case ArgKeys.CONSOLE:
                         case ArgKeys.VIDEO:
-                            args += commandDefs.getCommands()[key][subKey] 
+                            args += commandDefs.getCommands()[key][subKey]
                                 + $"{Convert.ToInt32(((CheckBox)controlDefs.getControls()[key][subKey]).Checked)} ";
                             break;
                         case ArgKeys.EPISODE:
-                            if (!DefaultCheck.checkControl(controlDefs.getControls()[key][subKey], key, subKey, form1)) {
+                            if (!DefaultCheck.checkControl(controlDefs.getControls()[key][subKey], key, subKey, form1))
+                            {
                                 if (key == "DOOM1")
                                 {
                                     args += commandDefs.getCommands()[key][subKey]
@@ -120,7 +119,8 @@ namespace CDL.Arguments
                                     args += commandDefs.getCommands()[key][subKey]
                                         + $"{((string)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).ToLower()} ";
                                 }
-                            } else
+                            }
+                            else
                             {
                                 if (form1.GetTextBox1().Text != null && form1.GetTextBox1().Text != "")
                                 {
@@ -232,7 +232,7 @@ namespace CDL.Arguments
                         {
                             key = line;
                             useHargs = false;
-                            switch(key)
+                            switch (key)
                             {
                                 case "[DOOM]":
                                     args += "-doom ";
@@ -242,7 +242,7 @@ namespace CDL.Arguments
                                     break;
                                 case "[DOOM I & II]":
                                     useHargs = true;
-                                    
+
                                     break;
                             }
                         }
@@ -264,10 +264,11 @@ namespace CDL.Arguments
                                 case "HDR":
                                 case "SSAO":*/
                                 case "Skip Intro":
-                                /*case "as":
-                                case "USE_CUL":*/
+                                    /*case "as":
+                                    case "USE_CUL":*/
                                     bool value = Convert.ToBoolean(inline[1]);
-                                    if (value) {
+                                    if (value)
+                                    {
                                         if (useHargs)
                                         {
                                             hargs += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} ";
@@ -335,15 +336,16 @@ namespace CDL.Arguments
                                     if (key == "[DOOMII]")
                                     {
                                         string[] mods = modParser.deserializeMods(inline[1]);
-                                        if (mods.Length > 0 && mods[0].Length > 0) 
+                                        if (mods.Length > 0 && mods[0].Length > 0)
                                         {
                                             if (ex == firstEx)
                                             {
                                                 args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} ";
                                             }
-                                        
+
                                             args += $"ex {ex} {string.Join(" ", mods)} ";
-                                        } else
+                                        }
+                                        else
                                         {
                                             firstEx++;
                                         }
@@ -358,7 +360,8 @@ namespace CDL.Arguments
                                     else
                                     {
                                         string[] mods = modParser.deserializeMods(inline[1]);
-                                        if (mods[0].Length != 0) {
+                                        if (mods[0].Length != 0)
+                                        {
                                             if (useHargs)
                                             {
                                                 hargs += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {string.Join(" ", mods)} ";

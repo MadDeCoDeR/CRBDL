@@ -39,7 +39,7 @@ namespace CDL.Arguments
             return isDefault;
         }
 
-        public static bool checkControl(Control control,string superKey, string key, Form1 form1)
+        public static bool checkControl(Control control, string superKey, string key, Form1 form1)
         {
             bool isDefault = true;
             switch (key)
@@ -66,7 +66,7 @@ namespace CDL.Arguments
                     }
                     break;
                 case ArgKeys.EXTRA:
-                   if( ((TextBox)control).Text != "")
+                    if (((TextBox)control).Text != "")
                     {
                         isDefault = false;
                     }

@@ -24,6 +24,8 @@ SOFTWARE.
 //TODO
 using CRBDL;
 using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -34,14 +36,19 @@ namespace CDL.network
         TcpListener serverSocket = null;
         private bool abort = false;
         private int maxplayers = -1;
-        TcpClient[] clientSocket;
+        List<TcpClient> clientSocket = new List<TcpClient>();
         private Form1 form1;
         private int pointer = -1;
-        private static string[] addr;
-        private Form2 form2;
+        private static List<string> addr = new List<string>();
+        //private Form2 form2;
+
+        public Server(Form1 form1)
+        {
+            this.form1 = form1;
+        }
         private void startServer()
         {
-            serverSocket = new TcpListener(6666);
+            serverSocket = new TcpListener(IPAddress.Any, 6666);
             int requestCount = 0;
             for (int i = 0; i < 3; i++)
             {

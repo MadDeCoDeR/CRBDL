@@ -109,7 +109,8 @@ namespace CDL
                 StreamWriter sw = new StreamWriter(ufs.createFullPath("args.txt"));
                 sw.Write(args);
                 sw.Close();
-            } else if (ufs.isRunningPackaged() && ufs.isUnixFS())
+            }
+            else if (ufs.isRunningPackaged() && ufs.isUnixFS())
             {
                 Console.WriteLine("Passing Arguments: " + args);
                 crbd.StartInfo.UseShellExecute = true;

@@ -40,7 +40,8 @@ namespace CDL.filesystem
                 StreamWriter sw = new StreamWriter(path);
 
                 SettingDef settingDef = new SettingDef(form1);
-                foreach (string key in settingDef.getDefs().Keys) {
+                foreach (string key in settingDef.getDefs().Keys)
+                {
                     sw.WriteLine(key);
                     foreach (string subkey in settingDef.getDefs()[key].Keys)
                     {
@@ -66,7 +67,8 @@ namespace CDL.filesystem
                                 {
                                     sw.WriteLine(subkey + " = " + ExpParser.getD2Exp(((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem.ToString()));
                                 }
-                                else {
+                                else
+                                {
                                     sw.WriteLine(subkey + " = " + ((ComboBox)settingDef.getDefs()[key][subkey]).SelectedIndex);
                                 }
                                 break;
@@ -137,7 +139,7 @@ namespace CDL.filesystem
                                 case "AA":
                                 case "EX":
                                 case "fo":
-                                   ((NumericUpDown)settingDef.getDefs()[key][inline[0]]).Value = Convert.ToDecimal(inline[1]);
+                                    ((NumericUpDown)settingDef.getDefs()[key][inline[0]]).Value = Convert.ToDecimal(inline[1]);
                                     break;
                                 case "classich":
                                 case "console":
@@ -154,7 +156,8 @@ namespace CDL.filesystem
                                     {
                                         ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedItem = parser.setD2Exp(Convert.ToInt32(inline[1]));
                                     }
-                                    else {
+                                    else
+                                    {
                                         ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedIndex = Convert.ToInt32(inline[1]);
                                     }
                                     break;
@@ -179,7 +182,7 @@ namespace CDL.filesystem
                                     else
                                     {
                                         string[] mods = modParser.deserializeMods(inline[1]);
-                                        if (mods[0].Length != 0)((ListBox)settingDef.getDefs()[key][inline[0]]).Items.AddRange(mods);
+                                        if (mods[0].Length != 0) ((ListBox)settingDef.getDefs()[key][inline[0]]).Items.AddRange(mods);
                                     }
                                     break;
                                 case "modbase":
@@ -192,7 +195,7 @@ namespace CDL.filesystem
                             }
                         }
                         line = sr.ReadLine();
-                        }
+                    }
                     sr.Close();
                     form1.getLabel10().Text = filename;
 
