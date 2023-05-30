@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Security.AccessControl;
 using System.Security.Cryptography;
 
 namespace CDL.filesystem
@@ -32,11 +33,11 @@ namespace CDL.filesystem
     {
         private List<string> paths;
 
-        private static readonly List<string> SHA512s = new List<string> {
-            "EF7CA86405FC3F70717BB1B58C584787EE5D474880675B1D4B4A33075BAD7492CB5A2A37A57F205E0DAF5520D07A593960CFB30AD797A47BE90E9C88DB06A0C7", //DOOM 3: BFG Edition
-            "CD3E74628C4F5609C5A3EF86D71F45C1F58E3746B77DD98604CCBBC93B322D21C649658939B987A1752D4C521B63A9A74EAE580C841960DC2C8D9745CF174EC9" //DOOM 3 re-release (2019)
+        private static readonly List<string> SHA256s = new List<string> {
+            "B683AC1B1D3F0CA6B92111DB85FC77ECE9D5C034CE5461EB8A7C4ADD8E239A22", //DOOM 3: BFG Edition
+            "6DAECF3E621756C8A77B3C3064ED5FB488AFE357A80B7C14BEF35B6811B073CE" //DOOM 3 re-release (2019)
         };
-        private static readonly SHA512 sHA512 = new SHA512Managed();
+        private static readonly SHA256 sHA256 = new SHA256Managed();
         private string BFGPath;
         private string NewD3Path;
         private string selectedPath;
@@ -61,8 +62,8 @@ namespace CDL.filesystem
                     files.ForEach(filePath =>
                     {
                         byte[] data = File.ReadAllBytes(filePath);
-                        string fileSha512 = BitConverter.ToString(sHA512.ComputeHash(data)).ToUpper().Replace("-", "");
-                        if (BFGPath == null && fileSha512 == SHA512s[0])
+                        string fileSha256 = BitConverter.ToString(sHA256.ComputeHash(data)).ToUpper().Replace("-", "");
+                        if (BFGPath == null && fileSha256 == SHA256s[0])
                         {
                             string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
                             BFGPath = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
@@ -70,7 +71,7 @@ namespace CDL.filesystem
                             index++;
                             this.selectedPath = paths[index];
                         }
-                        else if (NewD3Path == null && fileSha512 == SHA512s[1]) { 
+                        else if (NewD3Path == null && fileSha256 == SHA256s[1]) { 
                             string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
                             NewD3Path = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
                             paths.Add(NewD3Path);
@@ -257,15 +258,18 @@ namespace CDL.filesystem
                 //GK: This is the worst way to handle this but I couldn't find a better way to do that
                 try
                 {
-                    string[] files = Directory.GetFiles(parentPath, filename);
-                    if (files.Length > 0)
+                    if (parentPath.Contains("base"))
                     {
-                        filePaths.AddRange(files);
+                        string[] files = Directory.GetFiles(parentPath, filename);
+                        if (files.Length > 0)
+                        {
+                            filePaths.AddRange(files);
+                        }
                     }
                     else
                     {
-                        string[] folders = Directory.GetDirectories(parentPath);
-                        if (folders.Length > 0)
+                        List<string> folders = new List<string>(Directory.EnumerateDirectories(parentPath, "*", SearchOption.TopDirectoryOnly));
+                        if (folders.Count > 0)
                         {
                             foreach (string path in folders)
                             {
