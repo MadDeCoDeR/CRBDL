@@ -379,6 +379,12 @@ namespace CDL.Arguments
                                         args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} {inline[1]} ";
                                     }
                                     break;
+                                case "game_path":
+                                    if (inline[1] != "(default)")
+                                    {
+                                        args += SettingsArgsDef.settingsArgDefs[key][inline[0]] +  $" \"{inline[1].Split("--".ToCharArray())[0].Trim()}\" ";
+                                    }
+                                    break;
                             }
                         }
                         line = sr.ReadLine();

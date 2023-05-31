@@ -47,6 +47,7 @@ namespace CRBDL
             else
             {
                 string largs = "";
+                
                 if (args.Contains("-conf"))
                 {
                     int index = Array.FindIndex(args, o => o == "-conf");
@@ -60,7 +61,14 @@ namespace CRBDL
                     Array.Copy(args, index + 1, pargs, 0, pargs.Length - (index + 1));
                     largs += string.Join(" ", pargs);
                 }
-                CDL.CDL cdl = new CDL.CDL(new UFS());
+                string[] eargs = largs.Split(' ');
+                int pathIndex = Array.IndexOf(eargs, "fs_basepath");
+                string path = "";
+                if (pathIndex != -1)
+                {
+                    path = eargs[pathIndex + 1];
+                }
+                CDL.CDL cdl = new CDL.CDL(new UFS(true, path));
                 if (cdl.CheckFiles() == 0)
                 {
                     Console.WriteLine("Main Executable not found");

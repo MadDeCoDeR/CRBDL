@@ -42,7 +42,8 @@ namespace CDL.Arguments.Maps.Settings
             { "Game", "+set com_game_mode" },
             { "console", "+set com_allowConsole" },
             { "Skip Intro", "+set com_skipIntroVideos" },
-            { "modbase", "+set fs_game_base" }
+            { "modbase", "+set fs_game_base" },
+            { "game_path", "+set fs_basepath" }
         };
 
         public static readonly Dictionary<string, Dictionary<string, string>> settingsArgDefs = new Dictionary<string, Dictionary<string, string>>()

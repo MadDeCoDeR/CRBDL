@@ -48,6 +48,7 @@ namespace CDL.setting
             d3defs.Add("fo", form1.getNumericUpDown3());
             d3defs.Add("as", form1.getCheckBox12());
             d3defs.Add("modbase", form1.getComboBox15());
+            d3defs.Add("game_path", form1.GetComboBox8());
         }
 
         public Dictionary<string, Control> getDefs()

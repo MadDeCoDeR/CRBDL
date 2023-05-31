@@ -100,6 +100,8 @@ namespace CRBDL
             flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y - (label15.Height + comboBox8.Height));
             if (ufs.isRunningPackaged())
             {
+                button6.Enabled = false;
+                button7.Enabled = false;
                 button1.Enabled = false;
                 button8.Enabled = false;
                 checkIfNewPathsAdded();
@@ -115,9 +117,11 @@ namespace CRBDL
             await Task.Run(() =>
             {
                 bool runOnce = false;
+                bool enableLaunch = true;
+                bool loadOnce = false;
                 while (true)
                 {
-                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1 & !runOnce)
+                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1 && !runOnce)
                     {
                         this.Invoke(new Action(() =>
                         {
@@ -125,13 +129,25 @@ namespace CRBDL
                             comboBox8.Visible = true;
                             comboBox8.Items.AddRange(ufs.BFGPaths.Select(path => path + " -- (D3: BFG Edition)").ToArray());
                             comboBox8.Items.AddRange(ufs.NewD3Paths.Select(path => path + " -- (D3: 2019)").ToArray());
+                            comboBox8.SelectedIndex = 1;
                             this.Height = this.Height + (label15.Height + comboBox8.Height);
                             ALLIN.Height = ALLIN.Height + (label15.Height + comboBox8.Height);
                             flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y + (label15.Height + comboBox8.Height));
+                        }));
+                        runOnce = true;
+                        this.gamePathDirty = true;
+                    }
+                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 0 && enableLaunch)
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            button6.Enabled = true;
+                            button7.Enabled = true;
                             button1.Enabled = true;
                             button8.Enabled = true;
                         }));
-                        runOnce = true;
+                        enableLaunch = false;
+                        this.gamePathDirty = true;
                     }
                     if (this.gamePathDirty)
                     {
@@ -156,6 +172,13 @@ namespace CRBDL
                                         comboBox15.Items.Add(tdir);
                                     }
                                 }
+                                if (Settings.Default.defaultSettings != "" && !loadOnce)
+                                {
+                                    Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                                    setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                                    button12.Enabled = true;
+                                    loadOnce = true;
+                                }
                             }
                         }));
                         this.gamePathDirty = false;
@@ -175,6 +198,9 @@ namespace CRBDL
         {
             string args = ArgParser.ParseArgsFromForm(this);
             cdl.LaunchGame(args);
+            if (ufs.isRunningPackaged()) {
+                this.Close();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -194,15 +220,16 @@ namespace CRBDL
                             comboBox15.Items.Add(tdir);
                         }
                     }
+                    if (Settings.Default.defaultSettings != "")
+                    {
+                        Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                        setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                        button12.Enabled = true;
+                    }
 
                 }
             }
-            if (Settings.Default.defaultSettings != "")
-            {
-                Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
-                setting.loadSettings(stream, this, Settings.Default.defaultSettings);
-                button12.Enabled = true;
-            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -99,6 +99,9 @@ namespace CDL.filesystem
                             case "modbase":
                                 sw.WriteLine(subkey + " = " + ((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem.ToString());
                                 break;
+                            case "game_path":
+                                sw.WriteLine(subkey + " = " + ((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem.ToString());
+                                break;
                         }
                     }
                 }
@@ -191,6 +194,9 @@ namespace CDL.filesystem
                                 case "smod":
                                     line = modParser.loadD2Mods(form1, settingDef, inline[1], sr);
                                     if (line != null) continue;
+                                    break;
+                                case "game_path":
+                                    ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedIndex = PathParser.SetGamePath(inline[1], (ComboBox)settingDef.getDefs()[key][inline[0]]);
                                     break;
                             }
                         }

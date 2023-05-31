@@ -41,7 +41,7 @@ namespace CDL.filesystem
         public List<string> BFGPaths { get; }
         public List<string> NewD3Paths { get; }
         private string selectedPath;
-        public UFS()
+        public UFS(bool waitThread = false, string selectedPath = "")
         {
             paths = new List<string>
             {
@@ -49,13 +49,22 @@ namespace CDL.filesystem
                 Directory.GetCurrentDirectory(),
                 Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA"
             };
-            selectedPath = paths[0];
+            this.selectedPath = paths[0];
             if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
             {
                 paths.Add("/usr/bin");
                 BFGPaths = new List<string>();
                 NewD3Paths = new List<string>();
-                checkGamePaths();
+
+                if (selectedPath.Length > 0)
+                {
+                    this.selectedPath = selectedPath;
+                }
+                else
+                {
+                    checkGamePaths(waitThread);
+                }
+                
 
             }
             else
@@ -273,9 +282,9 @@ namespace CDL.filesystem
             this.selectedPath = path;
         }
 
-        private async void checkGamePaths()
+        private async void checkGamePaths(bool waitThread)
         {
-            await Task.Run(() =>
+            Task task = Task.Run(() =>
             {
                 List<string> files = searchFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "_common.resources");
                 files.AddRange(searchFile("/run/media/", "_common.resources"));
@@ -314,6 +323,13 @@ namespace CDL.filesystem
                     this.selectedPath = paths[0];
                 }
             });
+            if (waitThread)
+            {
+                Task.WaitAny(task);
+            }
+            else {
+                await task;
+            }
         }
     }
 }
