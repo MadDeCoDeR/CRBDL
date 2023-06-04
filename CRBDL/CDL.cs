@@ -24,6 +24,7 @@ using CDL.filesystem;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace CDL
 {
@@ -33,6 +34,7 @@ namespace CDL
         private readonly UFS ufs;
         private bool[] foundExps;
         public static bool testPackage = false;
+        public bool isRunning {  get; private set; }
 
         public CDL(UFS ufs)
         {
@@ -118,7 +120,11 @@ namespace CDL
                 crbd.StartInfo.UseShellExecute = false;*/
             }
             crbd.StartInfo.Arguments = args; // if you need some
-            crbd.Start();
+            crbd.Exited += (s, e) =>
+            {
+                this.isRunning = false;
+            };
+            this.isRunning = crbd.Start();
         }
     }
 }

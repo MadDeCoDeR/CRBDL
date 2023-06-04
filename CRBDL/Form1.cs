@@ -118,8 +118,7 @@ namespace CRBDL
             {
                 bool runOnce = false;
                 bool enableLaunch = true;
-                bool loadOnce = false;
-                while (true)
+                while (!cdl.isRunning)
                 {
                     if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1 && !runOnce)
                     {
@@ -145,43 +144,9 @@ namespace CRBDL
                             button7.Enabled = true;
                             button1.Enabled = true;
                             button8.Enabled = true;
+                            this.updateD3Mods();
                         }));
                         enableLaunch = false;
-                        this.gamePathDirty = true;
-                    }
-                    if (this.gamePathDirty)
-                    {
-                        this.Invoke(new Action(() =>
-                        {
-                            if (CheckFiles())
-                            {
-                                comboBox11.Items.Clear();
-                                comboBox11.Items.Add("(none)");
-                                comboBox11.SelectedIndex = 0;
-                                comboBox15.Items.Clear();
-                                comboBox15.Items.Add("(none)");
-                                comboBox15.SelectedIndex = 0;
-                                List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
-                                foreach (var dir in dirs)
-                                {
-                                    string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
-                                    tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
-                                    if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc"))
-                                    {
-                                        comboBox11.Items.Add(tdir);
-                                        comboBox15.Items.Add(tdir);
-                                    }
-                                }
-                                if (Settings.Default.defaultSettings != "" && !loadOnce)
-                                {
-                                    Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
-                                    setting.loadSettings(stream, this, Settings.Default.defaultSettings);
-                                    button12.Enabled = true;
-                                    loadOnce = true;
-                                }
-                            }
-                        }));
-                        this.gamePathDirty = false;
                     }
 
                     Task.Delay(4000);
@@ -198,9 +163,6 @@ namespace CRBDL
         {
             string args = ArgParser.ParseArgsFromForm(this);
             cdl.LaunchGame(args);
-            if (ufs.isRunningPackaged()) {
-                this.Close();
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -613,7 +575,37 @@ namespace CRBDL
             if (values.Length >= 2)
             {
                 ufs.SetSelectedPath(values[0].Trim());
-                this.gamePathDirty = true;
+                this.updateD3Mods();
+            }
+        }
+
+        private void updateD3Mods()
+        {
+            if (CheckFiles())
+            {
+                comboBox11.Items.Clear();
+                comboBox11.Items.Add("(none)");
+                comboBox11.SelectedIndex = 0;
+                comboBox15.Items.Clear();
+                comboBox15.Items.Add("(none)");
+                comboBox15.SelectedIndex = 0;
+                List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
+                foreach (var dir in dirs)
+                {
+                    string tdir = dir.Substring(dir.LastIndexOf("\\") + 1);
+                    tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
+                    if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc"))
+                    {
+                        comboBox11.Items.Add(tdir);
+                        comboBox15.Items.Add(tdir);
+                    }
+                }
+                if (Settings.Default.defaultSettings != "")
+                {
+                    Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                    setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                    button12.Enabled = true;
+                }
             }
         }
     }
