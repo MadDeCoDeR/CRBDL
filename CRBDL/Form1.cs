@@ -45,7 +45,6 @@ namespace CRBDL
         private ModLoader modLoader;
         private bool[] foundExps;
         private readonly CDL.CDL cdl;
-        private bool gamePathDirty;
 
 
         private static string[] filenames = { "DoomBFA.exe", "DoomBFA.sh", "DoomBFA", "RBDoom3BFG.exe", "RBDoom3BFG", "Doom3BFG.exe" };
@@ -57,8 +56,6 @@ namespace CRBDL
             ufs = new UFS();
             cdl = new CDL.CDL(ufs);
             modLoader = new ModLoader(ufs);
-
-            this.gamePathDirty = false;
 
             adcoms = new string[3];
             for (int i = 0; i < 3; i++)
@@ -134,7 +131,6 @@ namespace CRBDL
                             flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y + (label15.Height + comboBox8.Height));
                         }));
                         runOnce = true;
-                        this.gamePathDirty = true;
                     }
                     if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 0 && enableLaunch)
                     {
