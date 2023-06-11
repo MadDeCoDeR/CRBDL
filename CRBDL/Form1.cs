@@ -123,12 +123,18 @@ namespace CRBDL
                         {
                             label15.Visible = true;
                             comboBox8.Visible = true;
-                            comboBox8.Items.AddRange(ufs.BFGPaths.Select(path => path + " -- (D3: BFG Edition)").ToArray());
-                            comboBox8.Items.AddRange(ufs.NewD3Paths.Select(path => path + " -- (D3: 2019)").ToArray());
+                            comboBox8.Items.AddRange(ufs.BFGPaths.Select(path => "(D3: BFG Edition) -- " + path).ToArray());
+                            comboBox8.Items.AddRange(ufs.NewD3Paths.Select(path => "(D3: 2019) -- " + path).ToArray());
                             comboBox8.SelectedIndex = 1;
                             this.Height = this.Height + (label15.Height + comboBox8.Height);
                             ALLIN.Height = ALLIN.Height + (label15.Height + comboBox8.Height);
                             flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y + (label15.Height + comboBox8.Height));
+                            if (Settings.Default.defaultSettings != "")
+                            {
+                                Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                                setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                                button12.Enabled = true;
+                            }
                         }));
                         runOnce = true;
                     }
@@ -568,9 +574,9 @@ namespace CRBDL
         private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] values = ((string)comboBox8.Items[comboBox8.SelectedIndex]).Split("--".ToCharArray());
-            if (values.Length >= 2)
+            if (values.Length == 3)
             {
-                ufs.SetSelectedPath(values[0].Trim());
+                ufs.SetSelectedPath(values[2].Trim());
                 this.updateD3Mods();
             }
         }
@@ -596,12 +602,7 @@ namespace CRBDL
                         comboBox15.Items.Add(tdir);
                     }
                 }
-                if (Settings.Default.defaultSettings != "")
-                {
-                    Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
-                    setting.loadSettings(stream, this, Settings.Default.defaultSettings);
-                    button12.Enabled = true;
-                }
+                
             }
         }
     }

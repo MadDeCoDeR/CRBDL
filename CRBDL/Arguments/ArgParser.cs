@@ -195,7 +195,7 @@ namespace CDL.Arguments
                             if (((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex > 0)
                             {
                                 args += commandDefs.getCommands()[key][subKey]
-                                    + $"\"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString().Split("--".ToCharArray())[0].Trim()}\" ";
+                                    + $"\"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString().Split("--".ToCharArray())[2].Trim()}\" ";
                             }
                             break;
                     }
@@ -382,7 +382,7 @@ namespace CDL.Arguments
                                 case "game_path":
                                     if (inline[1] != "(default)")
                                     {
-                                        args += SettingsArgsDef.settingsArgDefs[key][inline[0]] +  $" \"{inline[1].Split("--".ToCharArray())[0].Trim()}\" ";
+                                        args += SettingsArgsDef.settingsArgDefs[key][inline[0]] +  $" \"{inline[1].Split("--".ToCharArray())[2].Trim()}\" ";
                                     }
                                     break;
                             }
