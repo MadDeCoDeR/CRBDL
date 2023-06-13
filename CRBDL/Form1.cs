@@ -159,6 +159,10 @@ namespace CRBDL
         private void button1_Click(object sender, EventArgs e)
         {
             Launchgame();
+            if (ufs.isRunningPackaged())
+            {
+                this.Close();
+            }
         }
 
         public void Launchgame()
