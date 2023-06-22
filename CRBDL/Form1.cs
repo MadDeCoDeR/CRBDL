@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -115,43 +116,58 @@ namespace CRBDL
             {
                 bool runOnce = false;
                 bool enableLaunch = true;
-                while (!cdl.isRunning)
+                while (true)
                 {
-                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1 && !runOnce)
+                    while (!cdl.isRunning)
                     {
-                        this.Invoke(new Action(() =>
+                        if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1 && !runOnce)
                         {
-                            label15.Visible = true;
-                            comboBox8.Visible = true;
-                            comboBox8.Items.AddRange(ufs.BFGPaths.Select(path => "(D3: BFG Edition) -- " + path).ToArray());
-                            comboBox8.Items.AddRange(ufs.NewD3Paths.Select(path => "(D3: 2019) -- " + path).ToArray());
-                            comboBox8.SelectedIndex = 1;
-                            this.Height = this.Height + (label15.Height + comboBox8.Height);
-                            ALLIN.Height = ALLIN.Height + (label15.Height + comboBox8.Height);
-                            flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y + (label15.Height + comboBox8.Height));
-                            if (Settings.Default.defaultSettings != "")
+                            this.Invoke(new Action(() =>
                             {
-                                Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
-                                setting.loadSettings(stream, this, Settings.Default.defaultSettings);
-                                button12.Enabled = true;
-                            }
-                        }));
-                        runOnce = true;
+                                label15.Visible = true;
+                                comboBox8.Visible = true;
+                                comboBox8.Items.AddRange(ufs.BFGPaths.Select(path => "(D3: BFG Edition) -- " + path).ToArray());
+                                comboBox8.Items.AddRange(ufs.NewD3Paths.Select(path => "(D3: 2019) -- " + path).ToArray());
+                                comboBox8.SelectedIndex = 1;
+                                this.Height = this.Height + (label15.Height + comboBox8.Height);
+                                ALLIN.Height = ALLIN.Height + (label15.Height + comboBox8.Height);
+                                flowLayoutPanel1.Location = new Point(flowLayoutPanel1.Location.X, flowLayoutPanel1.Location.Y + (label15.Height + comboBox8.Height));
+                                if (Settings.Default.defaultSettings != "")
+                                {
+                                    Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
+                                    setting.loadSettings(stream, this, Settings.Default.defaultSettings);
+                                    button12.Enabled = true;
+                                }
+                            }));
+                            runOnce = true;
+                        }
+                        if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 0 && enableLaunch)
+                        {
+                            this.Invoke(new Action(() =>
+                            {
+                                button6.Enabled = true;
+                                button7.Enabled = true;
+                                button1.Enabled = true;
+                                button8.Enabled = true;
+                                this.updateD3Mods();
+                            }));
+                            enableLaunch = false;
+                        }
+
+                        Thread.Sleep(4000);
                     }
-                    if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 0 && enableLaunch)
+                    if (ufs.isRunningPackaged())
                     {
+                        while (cdl.isRunning)
+                        {
+                            Thread.Sleep(4000);
+                        }
                         this.Invoke(new Action(() =>
                         {
-                            button6.Enabled = true;
-                            button7.Enabled = true;
-                            button1.Enabled = true;
-                            button8.Enabled = true;
-                            this.updateD3Mods();
+                            this.Show();
                         }));
-                        enableLaunch = false;
                     }
-
-                    Task.Delay(4000);
+                    Thread.Sleep(4000);
                 }
             });
         }
@@ -161,7 +177,7 @@ namespace CRBDL
             Launchgame();
             if (ufs.isRunningPackaged())
             {
-                this.Close();
+                this.Hide();
             }
         }
 

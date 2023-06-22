@@ -35,6 +35,7 @@ namespace CDL
         private bool[] foundExps;
         public static bool testPackage = false;
         public bool isRunning {  get; private set; }
+        private readonly Process crbd;
 
         public CDL(UFS ufs)
         {
@@ -44,6 +45,12 @@ namespace CDL
             {
                 foundExps[i] = false;
             }
+            this.crbd = new Process();
+            crbd.Exited += (s, e) =>
+            {
+                this.isRunning = false;
+            };
+            crbd.EnableRaisingEvents = true;
         }
 
         public int CheckFiles()
@@ -84,7 +91,7 @@ namespace CDL
 
         public void LaunchGame(string args)
         {
-            Process crbd = new Process();
+            
 
             foreach (string filename in filenames)
             {
@@ -120,10 +127,6 @@ namespace CDL
                 crbd.StartInfo.UseShellExecute = false;*/
             }
             crbd.StartInfo.Arguments = args; // if you need some
-            crbd.Exited += (s, e) =>
-            {
-                this.isRunning = false;
-            };
             this.isRunning = crbd.Start();
         }
     }
