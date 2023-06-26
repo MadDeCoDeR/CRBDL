@@ -25,6 +25,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace CDL
 {
@@ -129,5 +130,18 @@ namespace CDL
             crbd.StartInfo.Arguments = args; // if you need some
             this.isRunning = crbd.Start();
         }
+
+        public void LaunchAndWaitGame(string args)
+        {
+            this.LaunchGame(args);
+            Task task = Task.Run(() => { 
+                while (this.isRunning)
+                {
+                    Thread.Sleep(4000);
+                }
+            });
+
+            Task.WaitAny(task);
+        } 
     }
 }

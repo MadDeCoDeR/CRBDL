@@ -399,5 +399,19 @@ namespace CDL.Arguments
             }
             return hargs + args;
         }
+
+        public static bool IsNewArgument(string arg)
+        {
+            bool result = arg.Equals("+set");
+            if (!result )
+            {
+                if (arg.Length> 1)
+                {
+                    result = arg[0] == '-' && int.TryParse(arg.Substring(1), out int test);
+                }
+            }
+
+            return result;
+        }
     }
 }

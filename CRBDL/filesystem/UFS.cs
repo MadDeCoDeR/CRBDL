@@ -59,6 +59,18 @@ namespace CDL.filesystem
                 if (selectedPath.Length > 0)
                 {
                     this.selectedPath = selectedPath;
+                    this.paths.Add(selectedPath);
+                    string filePath = selectedPath + GetPathSeparator() + "base" + GetPathSeparator() + "_common.resources";
+                    byte[] data = File.ReadAllBytes(filePath);
+                    string fileSha256 = BitConverter.ToString(sHA256.ComputeHash(data)).ToUpper().Replace("-", "");
+                    if (fileSha256.Equals(SHA256s[0]) )
+                    {
+                        BFGPaths.Add(selectedPath);
+                    } 
+                    else if (fileSha256.Equals(SHA256s[1]))
+                    {
+                        NewD3Paths.Add(selectedPath);
+                    }
                 }
                 else
                 {

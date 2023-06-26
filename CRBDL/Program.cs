@@ -66,16 +66,34 @@ namespace CRBDL
                 string path = "";
                 if (pathIndex != -1)
                 {
-                    path = eargs[pathIndex + 1];
+                    int index = 1;
+                    while (!ArgParser.IsNewArgument(eargs[pathIndex + index]))
+                    {
+                        path += " " + eargs[pathIndex + index];
+                        index++;
+                        if ((pathIndex + index) >= eargs.Length)
+                        {
+                            break;
+                        }
+                    }
+                    path = path.Trim().Replace('\"', ' ').Trim();
                 }
-                CDL.CDL cdl = new CDL.CDL(new UFS(true, path));
+                UFS ufs = new UFS(true, path);
+                CDL.CDL cdl = new CDL.CDL(ufs);
                 if (cdl.CheckFiles() == 0)
                 {
                     Console.WriteLine("Main Executable not found");
                     throw new Exception("Main Executable not found");
                 }
                 Console.WriteLine(largs);
-                cdl.LaunchGame(largs);
+                if (ufs.isRunningPackaged())
+                {
+                    cdl.LaunchAndWaitGame(largs);
+                } 
+                else
+                {
+                    cdl.LaunchGame(largs);
+                } 
             }
         }
     }
