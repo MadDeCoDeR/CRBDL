@@ -5,19 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
-            "type": "mono",
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
             "request": "launch",
-            "program": "${workspaceRoot}/CRBDL/bin/x64/Debug/CDL.exe",
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": "build"
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/dbfal/bin/Debug/net10.0/dbfal.dll",
+            "args": [],
+            "cwd": "/path/to/DOOM3BFG",
+            "console": "internalConsole",
+            "stopAtEntry": false
         },
         {
-            "name": "Attach",
-            "type": "mono",
-            "request": "attach",
-            "address": "localhost",
-            "port": 55555
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
         }
     ]
 }
