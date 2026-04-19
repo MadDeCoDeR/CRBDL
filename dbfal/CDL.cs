@@ -118,7 +118,7 @@ namespace CDL
                 }
             }*/
             crbd.StartInfo.WorkingDirectory = ufs.getCurrentDirectory(filenames);
-            if (!ufs.isRunningPackaged())
+            if (!ufs.isRunningPackaged() && !ufs.isUnixFS())
             {
                 StreamWriter sw = new StreamWriter(ufs.createFullPath("args.txt"));
                 sw.Write(args);

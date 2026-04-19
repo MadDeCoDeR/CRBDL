@@ -200,7 +200,7 @@ public partial class MainWindow : Window
                 // ButtonResult result = await messageBox.ShowAsync();
                 // if (result == ButtonResult.Ok)
                 {
-                    Close();
+                    this.Close();
                     return false;
                 }
             }

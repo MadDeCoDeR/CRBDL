@@ -4,7 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="320" d:DesignHeight="200"
         x:Class="dbfal.MainWindow"
-        Title="dbfal" Loaded="Window_Loaded">
+        Icon="Assets/1.png"
+        Title="DOOM BFA Launcher" Loaded="Window_Loaded">
     <StackPanel>
         <TabbedPage>
             <ContentPage Header="DOOM 3 BFG">

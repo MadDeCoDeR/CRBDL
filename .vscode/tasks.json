@@ -54,6 +54,11 @@
                 "${workspaceFolder}/CRBDL.sln"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "AppDir Bundle",
+            "type": "shell",
+            "command": "${workspaceFolder}/dbfal/Setup-AppDir.sh"
         }
     ]
 }
