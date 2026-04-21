@@ -59,6 +59,11 @@
             "label": "AppDir Bundle",
             "type": "shell",
             "command": "${workspaceFolder}/dbfal/Setup-AppDir.sh"
+        },
+        {
+            "label": "Make EXE",
+            "type": "shell",
+            "command": "dotnet restore -r win-x64 && dotnet publish -c Release -r win-x64 --self-contained true"
         }
     ]
 }

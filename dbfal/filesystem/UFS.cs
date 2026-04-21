@@ -45,9 +45,9 @@ namespace CDL.filesystem
         {
             paths = new List<string>
             {
-                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
+                Path.GetDirectoryName(System.AppContext.BaseDirectory),
                 Directory.GetCurrentDirectory(),
-                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../DoomBFA"
+                Path.GetDirectoryName(System.AppContext.BaseDirectory) + "/../DoomBFA"
             };
             this.selectedPath = paths[0];
             if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
