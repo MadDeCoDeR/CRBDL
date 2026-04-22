@@ -127,7 +127,7 @@ namespace CDL.Arguments
                                     {
                                         if (mainWindow.ml[i].Count > 0)
                                         {
-                                            args += $"ex {ExpParser.getD2MExp(ExpParser.setD2MExp(i)) + 1} ";
+                                            args += i == 0 ? "" : $"ex {ExpParser.getD2MExp(ExpParser.setD2MExp(i))} ";
                                             foreach (string mod in mainWindow.ml[i])
                                             {
                                                 args += $"\"{mod}\" ";

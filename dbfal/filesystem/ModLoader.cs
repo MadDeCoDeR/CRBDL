@@ -27,6 +27,9 @@ using System.Threading.Tasks;
 using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Base;
+using MsBox.Avalonia.Enums;
 
 namespace CDL.filesystem
 {
@@ -40,13 +43,22 @@ namespace CDL.filesystem
         }
         public async Task<string> loadMod(ListBox listBox)
         {
+            List<FilePickerFileType> filters = new List<FilePickerFileType>();
+            foreach(FilterFormat filter in Filters.CDOOMMODFILTERS)
+            {
+                filters.Add(new FilePickerFileType(filter.Name)
+                {
+                    Patterns = filter.Type.Split(";")
+                });
+            }
             IReadOnlyList<IStorageFile>? files = await TopLevel.GetTopLevel(listBox).StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
             {
-                SuggestedFileType = new FilePickerFileType(Filters.ALLCLASSICDOOMMODFILES)
+                FileTypeFilter = filters
             });
 
             if (files.Count > 0)
             {
+                 string filePath = "";
                 try
                 {
                     Stream myStream;
@@ -54,16 +66,19 @@ namespace CDL.filesystem
                     {
                         using (myStream)
                         {
-                            listBox.Items.Add(ufs.getRelativePath(files[0].Name, "base"));
+                            filePath = ufs.getRelativePath(files[0].Path.AbsolutePath, "base");
+                            listBox.Items.Add(filePath);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    IMsBox<ButtonResult> messageBox = MessageBoxManager.GetMessageBoxStandard("Error", "Error: Could not read file from disk. Original error: " + ex.Message, ButtonEnum.Ok);
+                    ButtonResult result = await messageBox.ShowAsync();
                 }
+                return filePath;
             }
-            return files[0].Name;
+            return "";
         }
     }
 }

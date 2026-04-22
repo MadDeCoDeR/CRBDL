@@ -66,7 +66,7 @@ namespace CDL.parser
         public void saveD2Mods(MainWindow mainWindow, StreamWriter sw, SettingDef settingDef)
         {
             sw.WriteLine("smod = " + ExpParser.getD2MExp(((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem.ToString()));
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
                 sw.WriteLine("modex = " + i);
                 sw.WriteLine("mods = " + serializeMods(mainWindow.ml[i].ToArray()));
@@ -80,7 +80,7 @@ namespace CDL.parser
             string[] inline;
             int index = 0;
             ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem = ExpParser.setD2MExp(selected);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
                 line = reader.ReadLine();
                 inline = line.Split(new string[] { " = " }, StringSplitOptions.None);

@@ -24,7 +24,25 @@ namespace CDL.filesystem
 {
     class Filters
     {
-        public const string ALLCLASSICDOOMMODFILES = "All files (*.wad,*.deh,*.bex,*.dlc,*.pk3,*.zip)|*.wad;*.deh;*.bex;*.dlc;*.pk3;*.zip;*.WAD;*.DEH;*.BEX;*.DLC;*.PK3;*.ZIP|wad files (*.wad)|*.wad;*.WAD|DeHackeD files (*.deh)|*.deh;*.DEH|Extended DeHackeD files (*.bex)|*.bex;*.BEX|Expansion Info (*.dlc)|*.dlc;*.DLC|pk3 files (*.pk3)|*.pk3;*.PK3|zip files (*.zip)|*.zip;*.ZIP";
-        public const string SETTINGFILE = "Classic RBDOOM 3 BFG Launcher Settings files (*.cdl)|*.cdl";
+        public static readonly FilterFormat[] CDOOMMODFILTERS =
+        {
+            new FilterFormat{ Name = "All Files", Type = "*.wad;*.WAD;*.deh;*.DEH;*.bex;*.BEX;*.dlc;*.DLC;*.zip;*.ZIP"},
+            new FilterFormat{ Name = "wad files (*.wad)", Type = "*.wad;*.WAD"},
+            new FilterFormat{ Name = "DeHackeD files (*.deh)", Type = "*.deh;*.DEH"},
+            new FilterFormat{ Name = "Extended DeHackeD files (*.bex)", Type = "*.bex;*.BEX"},
+            new FilterFormat{ Name = "Expansion Info (*.dlc)", Type = "*.dlc;*.DLC"},
+            new FilterFormat{ Name = "zip files (*.zip)", Type = "*.zip;*.ZIP"}
+        };
+        public static readonly FilterFormat SETTINGSFILTER = new FilterFormat
+        {
+            Name = "DOOM BFA Launcher Settings (*.cdl)",
+            Type = "*.cdl"
+        };
+    }
+
+    class FilterFormat
+    {
+        public string? Name {get; set;}
+        public string? Type {get; set;}
     }
 }

@@ -159,7 +159,7 @@ namespace CDL.filesystem
 
         public bool isRunningPackaged()
         {
-            return paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage;
+            return paths[0].Contains("/usr") || paths[0].StartsWith("/app") || CDL.testPackage;
         }
 
         public string getParentPath(string relativeFolder)

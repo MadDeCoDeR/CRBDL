@@ -66,7 +66,7 @@ namespace CDL.Arguments
                     }
                     break;
                 case ArgKeys.EXTRA:
-                    if (((TextBox)control).Text != "")
+                    if (!string.IsNullOrEmpty(((TextBox)control).Text))
                     {
                         isDefault = false;
                     }

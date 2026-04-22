@@ -1,8 +1,9 @@
+using System.Collections;
 using Avalonia.Controls;
 
 public static class AvaloniaExtensions
 {
-    public static void AddRange(this ItemCollection itemCollection, string[] arr)
+    public static void AddRangeComboBox(this ItemCollection itemCollection, IEnumerable arr)
     {
         foreach(string name in arr)
         {
@@ -10,6 +11,14 @@ public static class AvaloniaExtensions
             {
                 Content = name
             });
+        }
+    }
+
+    public static void AddRangeListBox(this ItemCollection itemCollection, IEnumerable arr)
+    {
+        foreach(string name in arr)
+        {
+            itemCollection.Add(name);
         }
     }
 }

@@ -41,8 +41,8 @@ public partial class MainWindow : Window
                 adcoms[i] = "";
             }
 
-            ml = new List<string>[5];
-            for (int i = 0; i < 5; i++)
+            ml = new List<string>[7];
+            for (int i = 0; i < 7; i++)
             {
                 ml[i] = new List<string>();
             }
@@ -76,18 +76,18 @@ public partial class MainWindow : Window
                             {
                                 GamePath_Group.IsVisible = true;
                                 GamePath.IsVisible = true;
-                                GamePath.Items.AddRange(ufs.BFGPaths.Select(path => "(D3: BFG Edition) -- " + path).ToArray());
-                                GamePath.Items.AddRange(ufs.NewD3Paths.Select(path => "(D3: 2019) -- " + path).ToArray());
+                                GamePath.Items.AddRangeComboBox(ufs.BFGPaths.Select(path => "(D3: BFG Edition) -- " + path).ToArray());
+                                GamePath.Items.AddRangeComboBox(ufs.NewD3Paths.Select(path => "(D3: 2019) -- " + path).ToArray());
                                 GamePath.SelectedIndex = 1;
                             }));
                             runOnce = true;
                         }
                         if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 0 && enableLaunch)
                         {
-                            this.Dispatcher.Invoke(new Action(() =>
+                            this.Dispatcher.Invoke(new Action(async () =>
                             {
                                 Launch_Button.IsEnabled = true;
-                                this.updateD3Mods();
+                                await this.updateD3Mods();
                             }));
                             enableLaunch = false;
                         }
@@ -115,17 +115,81 @@ public partial class MainWindow : Window
         Launchgame();
     }
 
+    private async void CDOOM_Add_Mod(object? sender, RoutedEventArgs e)
+    {
+        int page = GameTab.SelectedIndex;
+        switch(page) {
+            case 1:
+                await modLoader.loadMod(D12Mods);
+                break;
+            case 2:
+                await modLoader.loadMod(D1Mods);
+                break;
+            case 3:
+                ml[D2Expansion.SelectedIndex].Add(ufs.getRelativePath(await modLoader.loadMod(D2Mods), "base"));
+                break;
+        }
+    }
+
+    public void EnableRemButton(object? sender, SelectionChangedEventArgs e)
+    {
+        int page = GameTab.SelectedIndex;
+        switch(page)
+        {
+            case 1:
+                D12RemMod.IsEnabled = true;
+                break;
+            case 2:
+                D1RemMod.IsEnabled = true;
+                break;
+            case 3:
+                D2RemMod.IsEnabled = true;
+                break;
+        }
+    }
+
+    private void CDOOM_Rem_Mod(object? sender, RoutedEventArgs e)
+    {
+        int page = GameTab.SelectedIndex;
+        switch(page) {
+            case 1:
+                D12Mods.Items.Remove(D12Mods.SelectedItem);
+                D12RemMod.IsEnabled = false;
+                break;
+            case 2:
+                D1Mods.Items.Remove(D1Mods.SelectedItem);
+                D1RemMod.IsEnabled = false;
+                break;
+            case 3:
+                ml[D2Expansion.SelectedIndex].Remove(D2Mods.SelectedItem.ToString());
+                D2Mods.Items.Remove(D2Mods.SelectedItem);
+                D2RemMod.IsEnabled = false;
+                break;
+        }
+    }
+
+    public void UpdateD2ModList(object? sender, SelectionChangedEventArgs e)
+    {
+        if (D2Expansion == null)
+        {
+            return;
+        }
+        int exp = D2Expansion.SelectedIndex;
+        D2Mods.Items.Clear();
+        D2Mods.Items.AddRangeListBox(ml[exp]);
+    }
+
     public void Launchgame()
     {
         string args = ArgParser.ParseArgsFromForm(this);
         cdl.LaunchGame(args);
     }
 
-    private void Window_Loaded(object? sender, RoutedEventArgs e)
+    private async void Window_Loaded(object? sender, RoutedEventArgs e)
         {
             if (!ufs.isRunningPackaged())
             {
-                if (CheckFiles())
+                if (await CheckFiles())
                 {
                     List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
                     foreach (var dir in dirs)
@@ -190,15 +254,15 @@ public partial class MainWindow : Window
             }
         }
 
-    private bool CheckFiles()
+    private async Task<bool> CheckFiles()
         {
             int found = cdl.CheckFiles();
 
             if (found == 0)
             {
-                // IMsBox<ButtonResult> messageBox = MessageBoxManager.GetMessageBoxStandard("Error", "Main executable not found", ButtonEnum.Ok);
-                // ButtonResult result = await messageBox.ShowAsync();
-                // if (result == ButtonResult.Ok)
+                IMsBox<ButtonResult> messageBox = MessageBoxManager.GetMessageBoxStandard("Error", "Main executable not found", ButtonEnum.Ok);
+                ButtonResult result = await messageBox.ShowAsync();
+                if (result == ButtonResult.Ok)
                 {
                     this.Close();
                     return false;
@@ -242,9 +306,9 @@ public partial class MainWindow : Window
         }
 
 
-        private void updateD3Mods()
+        private async Task updateD3Mods()
         {
-            if (CheckFiles())
+            if (await CheckFiles())
             {
                 fs_game.Items.Clear();
                 fs_game.Items.Add("(none)");
