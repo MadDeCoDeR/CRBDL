@@ -66,7 +66,7 @@ namespace CDL.filesystem
                             case "Episode":
                                 if (key == "[DOOMII]")
                                 {
-                                    sw.WriteLine(subkey + " = " + ExpParser.getD2Exp(((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem.ToString()));
+                                    sw.WriteLine(subkey + " = " + ExpParser.getD2Exp(((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString()));
                                 }
                                 else
                                 {
@@ -90,7 +90,7 @@ namespace CDL.filesystem
                                 }
                                 else if (key == "[DOOM3]")
                                 {
-                                    sw.WriteLine(subkey + " = " + ((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem.ToString());
+                                    sw.WriteLine(subkey + " = " + ((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString());
                                 }
                                 else
                                 {
@@ -98,10 +98,10 @@ namespace CDL.filesystem
                                 }
                                 break;
                             case "modbase":
-                                sw.WriteLine(subkey + " = " + ((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem.ToString());
+                                sw.WriteLine(subkey + " = " + ((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString());
                                 break;
                             case "game_path":
-                                sw.WriteLine(subkey + " = " + ((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem.ToString());
+                                sw.WriteLine(subkey + " = " + ((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString());
                                 break;
                         }
                     }
@@ -109,6 +109,7 @@ namespace CDL.filesystem
                 sw.WriteLine("");
                 //Close the file
                 sw.Close();
+                mainWindow.GetSettingsPath().Content = path;
                 //form1.getLabel10().Text = path;
             }
             catch (Exception ex)
@@ -140,25 +141,25 @@ namespace CDL.filesystem
                             inline = line.Split(new string[] { " = " }, StringSplitOptions.None);
                             switch (inline[0])
                             {
-                                case "AA":
-                                case "EX":
-                                case "fo":
-                                    ((NumericUpDown)settingDef.getDefs()[key][inline[0]]).Value = Convert.ToDecimal(inline[1]);
-                                    break;
+                                // case "AA":
+                                // case "EX":
+                                // case "fo":
+                                //     ((NumericUpDown)settingDef.getDefs()[key][inline[0]]).Value = Convert.ToDecimal(inline[1]);
+                                //     break;
                                 case "classich":
                                 case "console":
-                                case "SM":
-                                case "HDR":
-                                case "SSAO":
+                                //case "SM":
+                                //case "HDR":
+                                //case "SSAO":
                                 case "Skip Intro":
-                                case "as":
+                                //case "as":
                                 case "USE_CUL":
                                     ((CheckBox)settingDef.getDefs()[key][inline[0]]).IsChecked = Convert.ToBoolean(inline[1]);
                                     break;
                                 case "Episode":
                                     if (key == "[DOOMII]")
                                     {
-                                        ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedItem = parser.setD2Exp(Convert.ToInt32(inline[1]));
+                                        ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedIndex = Convert.ToInt32(inline[1]);
                                     }
                                     else
                                     {
@@ -168,7 +169,7 @@ namespace CDL.filesystem
                                 case "Map":
                                 case "Skill":
                                 case "Game":
-                                case "CL":
+                                //case "CL":
                                     ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedIndex = Convert.ToInt32(inline[1]);
                                     break;
                                 case "marg":
@@ -204,7 +205,7 @@ namespace CDL.filesystem
                         line = sr.ReadLine();
                     }
                     sr.Close();
-                    //form1.getLabel10().Text = filename;
+                    mainWindow.GetSettingsPath().Content = filename;
 
                 }
                 catch (Exception ex)

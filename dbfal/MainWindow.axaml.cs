@@ -1,7 +1,9 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CDL.Arguments;
+using CDL.Expansions;
 using CDL.filesystem;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Base;
@@ -170,13 +172,89 @@ public partial class MainWindow : Window
 
     public void UpdateD2ModList(object? sender, SelectionChangedEventArgs e)
     {
-        if (D2Expansion == null)
+        if (D2Expansion == null || D2Mods == null)
         {
             return;
         }
         int exp = D2Expansion.SelectedIndex;
         D2Mods.Items.Clear();
         D2Mods.Items.AddRangeListBox(ml[exp]);
+    }
+
+    public void UpdateD2LeveCount(object? sender, SelectionChangedEventArgs e)
+    {
+        if (D2Episode == null)
+        {
+            return;
+        }
+        Levels levels = new Levels();
+            switch (((ComboBoxItem)D2Episode.SelectedItem).Content.ToString())
+            {
+                case Names.D2:
+                    levels.setLevels(33, D2Level);
+                    break;
+                case Names.TNT:
+                case Names.PLUTONIA:
+                    levels.setLevels(32, D2Level);
+                    break;
+                case Names.NERVE:
+                    levels.setLevels(9, D2Level);
+                    break;
+                case Names.MASTER:
+                    levels.setLevels(21, D2Level);
+                    break;
+                case Names.LOR:
+                levels.setLevels(18, D2Level);
+                break;
+                default:
+                    if (D2Level.SelectedIndex > 0) D2Level.SelectedIndex = 0;
+                    break;
+
+            }
+    }
+
+    private async void SaveSetting(object? sender, RoutedEventArgs e)
+    {
+        List<FilePickerFileType> filters = new List<FilePickerFileType>();
+                filters.Add(new FilePickerFileType(Filters.SETTINGSFILTER.Name)
+                {
+                    Patterns = Filters.SETTINGSFILTER.Type.Split(";")
+                });
+            IStorageFile? file = await TopLevel.GetTopLevel(this).StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+            {
+                FileTypeChoices = filters,
+                Title = "Save current configuration"
+            });
+
+            if (file != null)
+            {
+                setting.saveSettings(file.Path.AbsolutePath, this);
+                //button11.Enabled = true;
+            }
+    }
+
+    private async void LoadSettings(object? sender, RoutedEventArgs e)
+    {
+        Stream myStream;
+            List<FilePickerFileType> filters = new List<FilePickerFileType>();
+                filters.Add(new FilePickerFileType(Filters.SETTINGSFILTER.Name)
+                {
+                    Patterns = Filters.SETTINGSFILTER.Type.Split(";")
+                });
+            IReadOnlyList<IStorageFile>? files = await TopLevel.GetTopLevel(this).StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
+            {
+                FileTypeFilter = filters,
+                Title = "Load configuration"
+            });
+
+            if (files.Count > 0)
+            {
+                if ((myStream = await files[0].OpenReadAsync()) != null)
+                {
+                    setting.loadSettings(myStream, this, files[0].Path.AbsolutePath);
+                    //button11.Enabled = true;
+                }
+            }
     }
 
     public void Launchgame()
@@ -198,8 +276,8 @@ public partial class MainWindow : Window
                         tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
                         if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc") && tdir != "base_new" && tdir != "base_BFG" && tdir != "third-party-licenses")
                         {
-                            fs_game.Items.Add(tdir);
-                            fs_game_base.Items.Add(tdir);
+                            fs_game.Items.Add(new ComboBoxItem { Content = tdir });
+                            fs_game_base.Items.Add(new ComboBoxItem { Content = tdir });
                         }
                     }
                     // if (Settings.Default.defaultSettings != "")
@@ -323,8 +401,8 @@ public partial class MainWindow : Window
                     tdir = tdir.Substring(tdir.LastIndexOf("/") + 1);
                     if (tdir != "base" && tdir != "directx" && !tdir.StartsWith("msvc") && tdir != "base_new" && tdir != "base_BFG" && tdir != "third-party-licenses")
                     {
-                        fs_game.Items.Add(tdir);
-                        fs_game_base.Items.Add(tdir);
+                        fs_game.Items.Add(new ComboBoxItem { Content = tdir });
+                        fs_game_base.Items.Add(new ComboBoxItem { Content = tdir });
                     }
                 }
                 
@@ -333,11 +411,6 @@ public partial class MainWindow : Window
     public ComboBox GetGameMode()
     {
         return Game_Mode;
-    }
-
-    public TextBox GetExtraArgs()
-    {
-        return Extra_Args;
     }
 
     public CheckBox GetConsole()
@@ -453,5 +526,10 @@ public partial class MainWindow : Window
     public ComboBox GetD2Expansion()
     {
         return D2Expansion;
+    }
+
+    public Label GetSettingsPath()
+    {
+        return SettingsPath;
     }
 }

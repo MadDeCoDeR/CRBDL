@@ -45,14 +45,18 @@ namespace CDL.parser
         {
             switch (value)
             {
-                case 1:
-                    return "TNT: Evilution";
+                case 0:
+                    return "(all)";
                 case 2:
-                    return "The Plutonia Experiment";
+                    return "TNT: Evilution";
                 case 3:
-                    return "Master Levels";
+                    return "The Plutonia Experiment";
                 case 4:
+                    return "Master Levels";
+                case 5:
                     return "No Rest For the Living";
+                case 6:
+                    return "Legacy  of Rust";
                 default:
                     return "Hell on Earth";
             }

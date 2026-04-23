@@ -29,10 +29,14 @@ namespace CDL.Expansions
         public void setLevels(int max, ComboBox comboBox)
         {
             comboBox.Items.Clear();
-            comboBox.Items.Add("(none)");
+            comboBox.Items.Add(new ComboBoxItem {
+                Content = "(none)"
+                });
             for (int i = 0; i < max; i++)
             {
-                comboBox.Items.Add(i + 1);
+                comboBox.Items.Add(new ComboBoxItem {
+                    Content = i + 1
+                    });
             }
             comboBox.SelectedIndex = 0;
         }

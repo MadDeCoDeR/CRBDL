@@ -26,6 +26,7 @@ using dbfal;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace CDL.parser
 {
@@ -36,7 +37,7 @@ namespace CDL.parser
         {
             for (int i = 0; i < comboBox.Items.Count; i++)
             {
-                if (name == comboBox.Items[i].ToString())
+                if (name == ((ComboBoxItem)comboBox.Items[i]).Content.ToString())
                 {
                     return i;
                 }
@@ -65,7 +66,7 @@ namespace CDL.parser
 
         public void saveD2Mods(MainWindow mainWindow, StreamWriter sw, SettingDef settingDef)
         {
-            sw.WriteLine("smod = " + ExpParser.getD2MExp(((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem.ToString()));
+            sw.WriteLine("smod = " + ExpParser.getD2MExp(((ComboBoxItem)((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem).Content.ToString()));
             for (int i = 0; i < 7; i++)
             {
                 sw.WriteLine("modex = " + i);
@@ -79,7 +80,8 @@ namespace CDL.parser
             string line = "";
             string[] inline;
             int index = 0;
-            ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem = ExpParser.setD2MExp(selected);
+            ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem = ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).
+            Items.First(item => ((ComboBoxItem)item).Content.ToString() == ExpParser.setD2MExp(selected));
             for (int i = 0; i < 7; i++)
             {
                 line = reader.ReadLine();
@@ -91,10 +93,10 @@ namespace CDL.parser
                 string[] mods = deserializeMods(inline[1]);
                 if (mods[0].Length != 0)
                 {
-                    if (index == selected) ((List<string>)((ListBox)settingDef.getDefs()["[DOOMII]"]["mods"]).ItemsSource).AddRange(mods);
+                    if (index == selected) ((ListBox)settingDef.getDefs()["[DOOMII]"]["mods"]).Items.AddRangeListBox(mods);
                     mainWindow.ml[index].AddRange(mods);
                 }
-                if (i == 4) line = null;
+                if (i == 6) line = null;
             }
             return line;
         }

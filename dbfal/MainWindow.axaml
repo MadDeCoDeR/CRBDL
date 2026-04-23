@@ -6,6 +6,7 @@
         x:Class="dbfal.MainWindow"
         Icon="Assets/1.png"
         Title="DOOM BFA Launcher" Loaded="Window_Loaded">
+        
     <StackPanel>
         <TabbedPage BorderThickness="1" Name="GameTab">
             <ContentPage Header="DOOM 3 BFG">
@@ -172,7 +173,7 @@
                             </ComboBox>
                         </GroupBox>
                         <GroupBox Header="Episode" BorderThickness="0">
-                            <ComboBox SelectedIndex="0" Name="D2Episode">
+                            <ComboBox SelectedIndex="0" Name="D2Episode" SelectionChanged="UpdateD2LeveCount">
                                 <ComboBoxItem>(none)</ComboBoxItem>
                                 <ComboBoxItem>Hell on Earth</ComboBoxItem>
                                 <ComboBoxItem>No Rest For the Living</ComboBoxItem>
@@ -230,15 +231,14 @@
                 </DockPanel>
             </ContentPage>
         </TabbedPage>
-        <GroupBox BorderThickness="0">
-            <Grid HorizontalAlignment="Stretch" RowSpacing="10" ColumnSpacing="10">
-            <GroupBox BorderThickness="0" Header="Additional Arguments">
-                <TextBox Name="Extra_Args"></TextBox>
-            </GroupBox>
-            <GridSplitter Grid.Column="1" Grid.Row="0" ResizeDirection="Columns"></GridSplitter>
-            <GridSplitter Grid.Column="0" Grid.Row="1" ResizeDirection="Rows"></GridSplitter>
-            <Button HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Click="Launch_OnClick" Name="Launch_Button">Launch</Button>
-        </Grid>
-        </GroupBox>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Classes="wrap" Name="SettingsPath" MaxWidth="200" ></Label>
+                <Button Click="SaveSetting">Save Settings</Button>
+                <Button Click="LoadSettings">Load Settings</Button>
+            </StackPanel>
+            <Button HorizontalAlignment="Right" Click="Launch_OnClick" Name="Launch_Button">Launch</Button>
+
+        </StackPanel>
     </StackPanel>
 </Window>

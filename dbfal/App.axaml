@@ -6,5 +6,9 @@
 
     <Application.Styles>
         <FluentTheme />
+        <Style Selector="Label.wrap > TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
     </Application.Styles>
+    
 </Application>

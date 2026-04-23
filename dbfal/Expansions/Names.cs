@@ -29,5 +29,6 @@ namespace CDL.Expansions
         public const string TNT = "TNT: Evilution";
         public const string PLUTONIA = "The Plutonia Experiment";
         public const string MASTER = "Master Levels";
+        public const string LOR = "Legacy of Rust";
     }
 }

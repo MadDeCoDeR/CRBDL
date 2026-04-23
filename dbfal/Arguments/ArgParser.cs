@@ -112,7 +112,7 @@ namespace CDL.Arguments
                                         extrArg = true;
                                     }
                                     args += commandDefs.getCommands()[key][subKey]
-                                        + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString()} ";
+                                        + $"{((ComboBoxItem)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).Content.ToString()} ";
 
                                 }
                             }
