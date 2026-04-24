@@ -186,8 +186,9 @@ namespace CDL.filesystem
                                     }
                                     else
                                     {
+                                        ((ListBox)settingDef.getDefs()[key][inline[0]]).Items.Clear();
                                         string[] mods = modParser.deserializeMods(inline[1]);
-                                        if (mods[0].Length != 0) ((List<string>)((ListBox)settingDef.getDefs()[key][inline[0]]).ItemsSource).AddRange(mods);
+                                        if (mods[0].Length != 0) ((ListBox)settingDef.getDefs()[key][inline[0]]).Items.AddRangeListBox(mods);
                                     }
                                     break;
                                 case "modbase":
