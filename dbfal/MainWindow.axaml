@@ -233,7 +233,7 @@
         </TabbedPage>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Label Classes="wrap" Name="SettingsPath" MaxWidth="200" ></Label>
+                <Label Classes="wrap" Name="SettingsPath" MaxWidth="200"/>
                 <Button Click="SaveSetting">Save Settings</Button>
                 <Button Click="LoadSettings">Load Settings</Button>
             </StackPanel>
