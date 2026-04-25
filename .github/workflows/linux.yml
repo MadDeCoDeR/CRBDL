@@ -35,7 +35,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: DBFAL
+        name: DBFAL-linux-x64
         path: |
           ${{ env.Project_Directory }}/bin/Release/net10.0/linux-x64/publish/dbfal
           ${{ env.Project_Directory }}/bin/Release/net10.0/linux-x64/publish/*.dll

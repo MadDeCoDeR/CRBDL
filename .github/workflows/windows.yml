@@ -38,7 +38,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: DBFAL
+        name: DBFAL-windows-x64
         path: |
           ${{ env.Project_Directory }}\bin\Release\net10.0\win-x64\publish\dbfal.exe
           ${{ env.Project_Directory }}\bin\Release\net10.0\win-x64\publish\*.dll
