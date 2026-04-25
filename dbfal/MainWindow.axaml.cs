@@ -179,7 +179,7 @@ public partial class MainWindow : Window
         int exp = D2Expansion.SelectedIndex;
         D2Mods.Items.Clear();
         D2Mods.Items.AddRangeListBox(ml[exp]);
-    }
+    } 
 
     public void UpdateD2LeveCount(object? sender, SelectionChangedEventArgs e)
     {
