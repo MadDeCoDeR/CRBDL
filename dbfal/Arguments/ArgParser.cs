@@ -83,7 +83,7 @@ namespace CDL.Arguments
                                     if (level > 0)
                                     {
                                         args += commandDefs.getCommands()[key][subKey]
-                                            + $"{ExpParser.getD2Exp(((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString())} ";
+                                            + $"{ExpParser.getD2Exp(((ComboBoxItem)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).Content.ToString())} ";
                                     }
                                 }
                             }
@@ -130,7 +130,9 @@ namespace CDL.Arguments
                                             args += i == 0 ? "" : $"ex {ExpParser.getD2MExp(ExpParser.setD2MExp(i))} ";
                                             foreach (string mod in mainWindow.ml[i])
                                             {
-                                                args += $"\"{mod}\" ";
+                                                if (!string.IsNullOrEmpty(mod)) {
+                                                    args += $"\"{mod}\" ";
+                                                }
                                             }
                                         }
                                     }

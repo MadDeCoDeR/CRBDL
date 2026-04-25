@@ -159,7 +159,8 @@ namespace CDL.filesystem
                                 case "Episode":
                                     if (key == "[DOOMII]")
                                     {
-                                        ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedIndex = Convert.ToInt32(inline[1]);
+                                        string selectedExp = ExpParser.setD2Exp(Convert.ToInt32(inline[1]));
+                                        ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedItem = ((ComboBox)settingDef.getDefs()[key][inline[0]]).Items.First(ci => ((ComboBoxItem)ci).Content.ToString() == selectedExp);
                                     }
                                     else
                                     {

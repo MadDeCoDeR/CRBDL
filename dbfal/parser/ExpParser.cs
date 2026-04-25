@@ -28,14 +28,18 @@ namespace CDL.parser
         {
             switch (name)
             {
-                case "TNT: Evilution":
+                case "Hell on Earth":
                     return 1;
-                case "The Plutonia Experiment":
+                case "TNT: Evilution":
                     return 2;
-                case "Master Levels":
+                case "The Plutonia Experiment":
                     return 3;
-                case "No Rest For the Living":
+                case "Master Levels":
                     return 4;
+                case "No Rest For the Living":
+                    return 5;
+                case "Legacy of Rust":
+                    return 7;
                 default:
                     return 0;
             }
@@ -56,7 +60,7 @@ namespace CDL.parser
                 case 5:
                     return "No Rest For the Living";
                 case 6:
-                    return "Legacy  of Rust";
+                    return "Legacy of Rust";
                 default:
                     return "Hell on Earth";
             }
@@ -76,12 +80,14 @@ namespace CDL.parser
                     return 5;
                 case "No Rest For the Living":
                     return 2;
+                case "Legacy of Rust":
+                    return 6;   
                 default:
                     return 0;
             }
         }
 
-        public string setD2Exp(int value)
+        public static string setD2Exp(int value)
         {
             switch (value)
             {
@@ -95,6 +101,8 @@ namespace CDL.parser
                     return "Master Levels";
                 case 2:
                     return "No Rest For the Living";
+                case 6:
+                    return "Legacy of Rust";
                 default:
                     return "(none)";
             }
