@@ -10,8 +10,18 @@
     <StackPanel>
         <TabbedPage BorderThickness="1" Name="GameTab">
             <ContentPage Header="DOOM 3 BFG">
-                <DockPanel ClipToBounds="True" >
-                    <StackPanel DockPanel.Dock="Left" Spacing="10" Orientation="Vertical" Height="400">
+                <DockPanel >
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox Header="Game Path" BorderThickness="0" Name="GamePath_Group" IsVisible="False">
+                            <ComboBox SelectedIndex="0" Name="GamePath" IsVisible="False">
+                                <ComboBoxItem>(default path)</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D3Extra_Args"></TextBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Left" Spacing="10" Orientation="Vertical" >
                     <GroupBox Header="Game Mode" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Name="Game_Mode_Group">
                         <ComboBox SelectedIndex="0" Name="Game_Mode" Padding="5">
                             <ComboBoxItem>(Default)</ComboBoxItem>
@@ -23,7 +33,7 @@
                     <CheckBox Name="Console_D3" Padding="5">Enable Console</CheckBox>
                     <CheckBox Name="SkipIntro" Padding="5">Skip Cinematic Intro</CheckBox>
                     </StackPanel>
-                    <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10" Height="400">
+                    <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10" >
                     <GroupBox Header="Mod" BorderThickness="0">
                         <ComboBox SelectedIndex="0" Name="fs_game">
                             <ComboBoxItem>(none)</ComboBoxItem>
@@ -35,17 +45,7 @@
                         </ComboBox>
                     </GroupBox>
                 </StackPanel>
-                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="353">
-                        <GroupBox Header="Game Path" BorderThickness="0" Name="GamePath_Group" IsVisible="False">
-                            <ComboBox SelectedIndex="0" Name="GamePath" IsVisible="False">
-                                <ComboBoxItem>(default path)</ComboBoxItem>
-                            </ComboBox>
-                        </GroupBox>
-                        <GroupBox BorderThickness="0" Header="Additional Arguments">
-                            <TextBox Name="D3Extra_Args"></TextBox>
-                        </GroupBox>
-                    </StackPanel>
-                    <StackPanel Height="350"></StackPanel>
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
                 </DockPanel>
             </ContentPage>
             <ContentPage Header="DOOM I + II">
@@ -53,12 +53,17 @@
                     <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Spacing="10">
                         <CheckBox Name="D12Cheat">Enable Cheat Codes</CheckBox>
                         <GroupBox Header="Mod List" BorderThickness="1" Height="200">
-                            <ListBox Name="D12Mods" SelectionChanged="EnableRemButton"></ListBox>
+                            <ListBox Name="D12Mods" SelectionChanged="EnableRemButton" MaxWidth="200"></ListBox>
                         </GroupBox>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <Button Click="CDOOM_Add_Mod">Add Mod</Button>
                             <Button IsEnabled="False" Name="D12RemMod" Click="CDOOM_Rem_Mod">Remove Mod</Button>
                         </StackPanel>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D12Extra_Args"></TextBox>
+                        </GroupBox>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10">
                         <GroupBox Header="Difficulty" BorderThickness="0">
@@ -73,12 +78,8 @@
                             </ComboBox>
                         </GroupBox>
                     </StackPanel>
-                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="353">
-                        <GroupBox BorderThickness="0" Header="Additional Arguments">
-                            <TextBox Name="D12Extra_Args"></TextBox>
-                        </GroupBox>
-                    </StackPanel>
-                    <StackPanel Height="350"></StackPanel>
+                    
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
                 </DockPanel>
             </ContentPage>
             <ContentPage Header="DOOM">
@@ -86,12 +87,17 @@
                     <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Spacing="10">
                         <CheckBox Name="D1Cheat">Enable Cheat Codes</CheckBox>
                         <GroupBox Header="Mod List" BorderThickness="1" Height="200">
-                            <ListBox Name="D1Mods" SelectionChanged="EnableRemButton"></ListBox>
+                            <ListBox Name="D1Mods" SelectionChanged="EnableRemButton" MaxWidth="200"></ListBox>
                         </GroupBox>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <Button Click="CDOOM_Add_Mod">Add Mod</Button>
                             <Button IsEnabled="False" Name="D1RemMod" Click="CDOOM_Rem_Mod">Remove Mod</Button>
                         </StackPanel>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D1Extra_Args"></TextBox>
+                        </GroupBox>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10">
                         <GroupBox Header="Difficulty" BorderThickness="0">
@@ -129,12 +135,8 @@
                             </ComboBox>
                         </GroupBox>
                     </StackPanel>
-                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="353">
-                        <GroupBox BorderThickness="0" Header="Additional Arguments">
-                            <TextBox Name="D1Extra_Args"></TextBox>
-                        </GroupBox>
-                    </StackPanel>
-                    <StackPanel Height="350"></StackPanel>
+                    
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
                 </DockPanel>
             </ContentPage>
             <ContentPage Header="DOOM II">
@@ -153,12 +155,17 @@
                             </ComboBox>
                         </GroupBox>
                         <GroupBox Header="Mod List" BorderThickness="1" Height="200">
-                            <ListBox Name="D2Mods" SelectionChanged="EnableRemButton"></ListBox>
+                            <ListBox Name="D2Mods" SelectionChanged="EnableRemButton" MaxWidth="200"></ListBox>
                         </GroupBox>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <Button Click="CDOOM_Add_Mod">Add Mod</Button>
                             <Button IsEnabled="False" Name="D2RemMod" Click="CDOOM_Rem_Mod">Remove Mod</Button>
                         </StackPanel>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D2Extra_Args"></TextBox>
+                        </GroupBox>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10">
                         <GroupBox Header="Difficulty" BorderThickness="0">
@@ -222,12 +229,8 @@
                             </ComboBox>
                         </GroupBox>
                     </StackPanel>
-                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="353">
-                        <GroupBox BorderThickness="0" Header="Additional Arguments">
-                            <TextBox Name="D2Extra_Args"></TextBox>
-                        </GroupBox>
-                    </StackPanel>
-                    <StackPanel Height="350"></StackPanel>
+                    
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
                 </DockPanel>
             </ContentPage>
         </TabbedPage>
