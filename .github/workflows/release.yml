@@ -39,7 +39,12 @@ jobs:
       id: date
       run: echo "date=$(date +'%Y-%m-%d-%H-%M-%s')" >> $GITHUB_OUTPUT
     - uses: actions/download-artifact@v8
-    - name: Debug downloaded artifacts
+    - name: Zip artifact files
+      shell: bash
+      run: |
+            zip -m -r DBFAL-linux-x64 ./DBFAL-linux-x64/*
+            zip -m -r DBFAL-windows-x64 ./DBFAL-windows-x64/*
+    - name: Debug Working directory
       run: ls -R
     - name: Make release
       id: create_release
@@ -52,5 +57,5 @@ jobs:
         draft: true
         prerelease: false
         files: |
-            ${{github.workspace}}/DBFAL-linux-x64
-            ${{github.workspace}}/DBFAL-windows-x64
+            ${{github.workspace}}/DBFAL-linux-x64.zip
+            ${{github.workspace}}/DBFAL-windows-x64.zip
