@@ -19,7 +19,7 @@ runs:
   using: "composite"
   steps:
       - name: Download artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: ${{inputs.artifact_name}}
           path: ${{github.workspace}}

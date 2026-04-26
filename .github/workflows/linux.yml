@@ -16,13 +16,13 @@ jobs:
       
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
 
     # Install the .NET Core workload
     - name: Install .NET Core
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 10.0.x
 
@@ -30,7 +30,7 @@ jobs:
       run: dotnet restore -r linux-x64 && dotnet publish -c Release -r linux-x64 --self-contained true
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: DBFAL-linux-x64
         path: |

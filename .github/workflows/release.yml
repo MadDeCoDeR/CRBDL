@@ -15,7 +15,7 @@ jobs:
     needs: [ linux-build, windows-build]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
 
     - name: Get Project Version
       id: get_ver
@@ -38,27 +38,17 @@ jobs:
     - name: Get current date
       id: date
       run: echo "date=$(date +'%Y-%m-%d-%H-%M-%s')" >> $GITHUB_OUTPUT
+    - uses: actions/download-artifact@v8
     - name: Make release
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v3
       with:
         tag_name: ${{ steps.get_ver.outputs.version }}
-        release_name: DOOM BFA Launcher Version ${{ steps.get_ver.outputs.version }}
+        name: DOOM BFA Launcher Version ${{ steps.get_ver.outputs.version }}
         body: |
           ${{ steps.messages.outputs.messages }}
         draft: false
         prerelease: false
-    - name: Upload Linux Artifact
-      uses: ./.github/actions/file_uploader
-      with:
-        artifact_name: DBFAL-linux-x64
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        access_token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload x64 Windows Artifact
-      uses: ./.github/actions/file_uploader
-      with:
-        artifact_name: DBFAL-windows-x64
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        access_token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+            ${{github.workspace}}/DBFAL-linux-x64.zip
+            ${{github.workspace}}/DBFAL-windows-x64.zip
