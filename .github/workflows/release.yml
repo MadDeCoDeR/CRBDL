@@ -40,7 +40,7 @@ jobs:
       run: echo "date=$(date +'%Y-%m-%d-%H-%M-%s')" >> $GITHUB_OUTPUT
     - uses: actions/download-artifact@v8
     - name: Debug downloaded artifacts
-      run: ls -a
+      run: ls -R
     - name: Make release
       id: create_release
       uses: softprops/action-gh-release@v3
