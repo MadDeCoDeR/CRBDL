@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - 'Avalonia_ui'
+  
+
+jobs:
+  linux-build:
+      uses: ./.github/workflows/linux.yml
+  windows-build:
+      uses: ./.github/workflows/windows.yml
+  make-release:
+    needs: [ linux-build, windows-build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Get Project Version
+      id: get_ver
+      uses: bbonkr/get-version-action@v1
+      with:
+        project: './dbfal/dbfal.csproj'
+        show_log_message: true
+
+    - name: Get log messages
+      id: messages
+      working-directory: ${{ github.workspace }}
+      run: |
+        git fetch --prune --unshallow --tags 
+        COMMITS=$(git log --no-merges $(git describe --tags --abbrev=0)..HEAD --pretty=format:'- %s')
+        {
+          echo 'messages<<EOF'
+          echo "${COMMITS}"
+          echo EOF
+        } >> $GITHUB_OUTPUT
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d-%H-%M-%s')" >> $GITHUB_OUTPUT
+    - name: Make release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.get_ver.outputs.version }}
+        release_name: DOOM BFA Launcher Version ${{ steps.get_ver.outputs.version }}
+        body: |
+          ${{ steps.messages.outputs.messages }}
+        draft: false
+        prerelease: false
+    - name: Upload Linux Artifact
+      uses: ./.github/actions/file_uploader
+      with:
+        artifact_name: DBFAL-linux-x64
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        access_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload x64 Windows Artifact
+      uses: ./.github/actions/file_uploader
+      with:
+        artifact_name: DBFAL-windows-x64
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        access_token: ${{ secrets.GITHUB_TOKEN }}

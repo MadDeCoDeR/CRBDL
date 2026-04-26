@@ -2,10 +2,7 @@
 name: linux Build
 
 on:
-  push:
-    branches: [ "Avalonia_ui" ]
-  pull_request:
-    branches: [ "Avalonia_ui" ]
+    workflow_call:
 
 jobs:
 
