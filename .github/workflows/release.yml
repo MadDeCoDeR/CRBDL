@@ -44,8 +44,6 @@ jobs:
       run: |
             zip -m -r DBFAL-linux-x64 ./DBFAL-linux-x64/*
             zip -m -r DBFAL-windows-x64 ./DBFAL-windows-x64/*
-    - name: Debug Working directory
-      run: ls -R
     - name: Make release
       id: create_release
       uses: softprops/action-gh-release@v3
@@ -54,7 +52,7 @@ jobs:
         name: DOOM BFA Launcher Version ${{ steps.get_ver.outputs.version }}
         body: |
           ${{ steps.messages.outputs.messages }}
-        draft: true
+        draft: false
         prerelease: false
         files: |
             ${{github.workspace}}/DBFAL-linux-x64.zip
