@@ -22,17 +22,17 @@ runs:
         uses: actions/download-artifact@v5
         with:
           name: ${{inputs.artifact_name}}
-          path: ${{github.workspace}}/temp
+          path: ${{github.workspace}}
       - name: Upload Artifact to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ inputs.access_token }}
         with:
           upload_url: ${{ inputs.upload_url }}
-          asset_path: ${{github.workspace}}/temp/${{inputs.artifact_name}}.zip
+          asset_path: ${{github.workspace}}/${{inputs.artifact_name}}.zip
           asset_name: ${{inputs.artifact_name}}.zip
           asset_content_type: application/zip
       - name: Delete artifact zip file
-        working-directory: ${{github.workspace}}/temp
+        working-directory: ${{github.workspace}}
         shell: bash
         run: rm ${{inputs.artifact_name}}.zip
