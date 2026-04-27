@@ -81,7 +81,7 @@ namespace CDL.parser
             string[] inline;
             int index = 0;
             ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem = ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).
-            Items.First(item => ((ComboBoxItem)item).Content.ToString() == ExpParser.setD2MExp(selected));
+            Items.First(item => ((ComboBoxItem)item).Content.ToString() == ExpParser.setD2MExp(selected, mainWindow.GetD2Expansion()));
             for (int i = 0; i < 7; i++)
             {
                 line = reader.ReadLine();

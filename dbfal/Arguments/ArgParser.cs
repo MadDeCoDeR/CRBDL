@@ -127,7 +127,7 @@ namespace CDL.Arguments
                                     {
                                         if (mainWindow.ml[i].Count > 0)
                                         {
-                                            args += i == 0 ? "" : $"ex {ExpParser.getD2MExp(ExpParser.setD2MExp(i))} ";
+                                            args += i == 0 ? "" : $"ex {ExpParser.getD2MExp(ExpParser.setD2MExp(i, mainWindow.GetD2Expansion()))} ";
                                             foreach (string mod in mainWindow.ml[i])
                                             {
                                                 if (!string.IsNullOrEmpty(mod)) {
@@ -160,7 +160,7 @@ namespace CDL.Arguments
                             if (((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex > 0)
                             {
                                 args += commandDefs.getCommands()[key][subKey]
-                                    + $"\"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem.ToString().Split("--".ToCharArray())[2].Trim()}\" ";
+                                    + $"\"{((ComboBoxItem)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).Content.ToString().Split("--".ToCharArray())[2].Trim()}\" ";
                             }
                             break;
                     }

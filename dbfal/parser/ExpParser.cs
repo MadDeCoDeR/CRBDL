@@ -20,6 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+using Avalonia.Controls;
+
 namespace CDL.parser
 {
     class ExpParser
@@ -45,8 +47,11 @@ namespace CDL.parser
             }
         }
 
-        public static string setD2MExp(int value)
+        public static string setD2MExp(int value, ComboBox? D2Exp = null)
         {
+            if(D2Exp != null) {
+                return ((ComboBoxItem)D2Exp.Items[value]).Content.ToString();
+            }
             switch (value)
             {
                 case 0:
