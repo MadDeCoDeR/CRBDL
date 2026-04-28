@@ -50,7 +50,7 @@ namespace CDL.filesystem
                 Path.GetDirectoryName(System.AppContext.BaseDirectory) + "/../DoomBFA"
             };
             this.selectedPath = paths[0];
-            if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
+            if (paths[0].Contains("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
             {
                 paths.Add("/usr/bin");
                 BFGPaths = new List<string>();

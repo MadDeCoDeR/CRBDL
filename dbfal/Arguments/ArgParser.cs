@@ -189,7 +189,7 @@ namespace CDL.Arguments
                     string line = sr.ReadLine();
                     string[] inline;
                     int ex = 0;
-                    int firstEx = 1;
+                    int firstEx = 0;
                     bool useHargs = false;
                     while (!sr.EndOfStream)
                     {
@@ -295,7 +295,7 @@ namespace CDL.Arguments
                                     }
                                     break;
                                 case "modex":
-                                    ex = ExpParser.getD2MExp(ExpParser.setD2MExp(Convert.ToInt32(inline[1]))) + 1;
+                                    ex = ExpParser.getD2MExp(ExpParser.setD2MExp(Convert.ToInt32(inline[1])));
                                     break;
                                 case "mods":
                                     if (key == "[DOOMII]")
@@ -308,7 +308,12 @@ namespace CDL.Arguments
                                                 args += $"{SettingsArgsDef.settingsArgDefs[key][inline[0]]} ";
                                             }
 
-                                            args += $"ex {ex} {string.Join(" ", mods)} ";
+                                            if (ex > 0)
+                                            {
+                                                args += $"ex {ex}";
+                                            }
+
+                                             args +=$" {string.Join(" ", mods)} ";
                                         }
                                         else
                                         {
