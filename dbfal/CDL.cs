@@ -70,23 +70,27 @@ namespace CDL
 
         public bool[] checkClassicExpansions(string folderName)
         {
-            if ((ufs.Exists(folderName + "/wads/NERVE.wad") || ufs.Exists(folderName + "/wads/nerve.wad") || ufs.Exists(folderName + "/wads/NERVE.WAD")) && !foundExps[0])
+            for (int i = 0; i < foundExps.Length; i++)
+            {
+                foundExps[i] = false;
+            }
+            if ((ufs.Exists(folderName + "/wads/NERVE.wad", true) || ufs.Exists(folderName + "/wads/nerve.wad", true) || ufs.Exists(folderName + "/wads/NERVE.WAD", true)) && !foundExps[0])
             {
                 foundExps[0] = true;
             }
-            if (ufs.Exists(folderName + "/wads/MASTERLEVELS.wad") && !foundExps[1])
+            if (ufs.Exists(folderName + "/wads/MASTERLEVELS.wad", true) && !foundExps[1])
             {
                 foundExps[1] = true;
             }
-            if ((ufs.Exists(folderName + "/wads/PLUTONIA.WAD") || ufs.Exists(folderName + "/wads/plutonia.wad")) && !foundExps[2])
+            if ((ufs.Exists(folderName + "/wads/PLUTONIA.WAD", true) || ufs.Exists(folderName + "/wads/plutonia.wad", true)) && !foundExps[2])
             {
                 foundExps[2] = true;
             }
-            if ((ufs.Exists(folderName + "/wads/TNT.WAD") || ufs.Exists(folderName + "/wads/tnt.wad")) && !foundExps[3])
+            if ((ufs.Exists(folderName + "/wads/TNT.WAD", true) || ufs.Exists(folderName + "/wads/tnt.wad", true)) && !foundExps[3])
             {
                 foundExps[3] = true;
             }
-            if ((ufs.Exists(folderName + "/wads/ID1.WAD") || ufs.Exists(folderName + "/wads/id1.wad")) && !foundExps[4])
+            if ((ufs.Exists(folderName + "/wads/ID1.WAD", true) || ufs.Exists(folderName + "/wads/id1.wad", true)) && !foundExps[4])
             {
                 foundExps[4] = true;
             }

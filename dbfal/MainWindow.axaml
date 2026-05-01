@@ -13,7 +13,7 @@
                 <DockPanel >
                     <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
                         <GroupBox Header="Game Path" BorderThickness="0" Name="GamePath_Group" IsVisible="False">
-                            <ComboBox SelectedIndex="0" Name="GamePath" IsVisible="False">
+                            <ComboBox SelectedIndex="0" Name="GamePath" IsVisible="False" SelectionChanged="UpdateGamePath">
                                 <ComboBoxItem>(default path)</ComboBoxItem>
                             </ComboBox>
                         </GroupBox>
@@ -45,7 +45,7 @@
                         </ComboBox>
                     </GroupBox>
                 </StackPanel>
-                    <StackPanel Height="350" MinWidth="1"></StackPanel>
+                    <StackPanel Name="D3_Spacing" Height="350" MinWidth="1"></StackPanel>
                 </DockPanel>
             </ContentPage>
             <ContentPage Header="DOOM I + II">

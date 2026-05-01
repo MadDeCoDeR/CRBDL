@@ -72,19 +72,21 @@ public partial class MainWindow : Window
                 {
                     while (!cdl.isRunning)
                     {
-                        if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 1 && !runOnce)
+                        if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count + ufs.BFAClassicPaths.Count > 1 && !runOnce)
                         {
                             this.Dispatcher.Invoke(new Action(() =>
                             {
                                 GamePath_Group.IsVisible = true;
                                 GamePath.IsVisible = true;
+                                D3_Spacing.Height = 285.0f;
                                 GamePath.Items.AddRangeComboBox(ufs.BFGPaths.Select(path => "(D3: BFG Edition) -- " + path).ToArray());
                                 GamePath.Items.AddRangeComboBox(ufs.NewD3Paths.Select(path => "(D3: 2019) -- " + path).ToArray());
+                                GamePath.Items.AddRangeComboBox(ufs.BFAClassicPaths.Select(path => "(BFA Classic) -- " + path).ToArray());
                                 GamePath.SelectedIndex = 1;
                             }));
                             runOnce = true;
                         }
-                        if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count > 0 && enableLaunch)
+                        if (ufs.BFGPaths.Count + ufs.NewD3Paths.Count + ufs.BFAClassicPaths.Count > 0 && enableLaunch)
                         {
                             this.Dispatcher.Invoke(new Action(async () =>
                             {
@@ -177,6 +179,10 @@ public partial class MainWindow : Window
             return;
         }
         int exp = D2Expansion.SelectedIndex;
+        if (exp < 0 || exp >= 7)
+        {
+            return;
+        }
         D2Mods.Items.Clear();
         D2Mods.Items.AddRangeListBox(ml[exp]);
     } 
@@ -184,6 +190,10 @@ public partial class MainWindow : Window
     public void UpdateD2LeveCount(object? sender, SelectionChangedEventArgs e)
     {
         if (D2Episode == null)
+        {
+            return;
+        }
+        if (D2Episode.Items.Count == 0)
         {
             return;
         }
@@ -257,6 +267,20 @@ public partial class MainWindow : Window
             }
     }
 
+    private async void UpdateGamePath(object? sender, SelectionChangedEventArgs e)
+        {
+            if (GamePath == null)
+        {
+            return;
+        }
+            string[] values = ((ComboBoxItem)GamePath.Items[GamePath.SelectedIndex]).Content.ToString().Split("--".ToCharArray());
+            if (values.Length == 3)
+            {
+                ufs.SetSelectedPath(values[2].Trim());
+                await this.updateD3Mods();
+            }
+        }
+
     public void Launchgame()
     {
         string args = ArgParser.ParseArgsFromForm(this);
@@ -295,6 +319,26 @@ public partial class MainWindow : Window
     private void checkClassicExpansions(string folderName)
         {
             foundExps = cdl.checkClassicExpansions(folderName);
+            D2Episode.Items.Clear();
+            D2Episode.Items.AddRangeComboBox(new object[] {
+            "(none)",
+            "Hell on Earth",
+            "No Rest For the Living",
+            "TNT: Evilution",
+            "The Plutonia Experiment",
+            "Master Levels",
+            "Legacy of Rust"});
+            D2Episode.SelectedIndex = 0;
+            D2Expansion.Items.Clear();
+            D2Expansion.Items.AddRangeComboBox(new object[] {
+            "(all)",
+            "Hell on Earth",
+            "TNT: Evilution",
+            "The Plutonia Experiment",
+            "Master Levels",
+            "No Rest For the Living",
+            "Legacy of Rust"});
+            D2Expansion.SelectedIndex = 0;
             if (!foundExps[0])
             {
                 int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "No Rest For the Living"));
