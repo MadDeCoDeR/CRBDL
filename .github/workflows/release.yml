@@ -42,7 +42,6 @@ jobs:
     - name: Zip artifact files
       shell: bash
       run: |
-            zip -m -r DBFAL-linux-x64 ./DBFAL-linux-x64/*
             zip -m -r DBFAL-windows-x64 ./DBFAL-windows-x64/*
     - name: Make release
       id: create_release
@@ -55,5 +54,5 @@ jobs:
         draft: false
         prerelease: false
         files: |
-            ${{github.workspace}}/DBFAL-linux-x64.zip
+            ${{github.workspace}}/DBFAL-linux-x64/*
             ${{github.workspace}}/DBFAL-windows-x64.zip
