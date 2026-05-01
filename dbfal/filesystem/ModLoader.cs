@@ -66,7 +66,7 @@ namespace CDL.filesystem
                     {
                         using (myStream)
                         {
-                            filePath = ufs.getRelativePath(files[0].Path.AbsolutePath, "base");
+                            filePath = ufs.getRelativePath(files[0].Path.LocalPath, "base");
                             listBox.Items.Add(filePath);
                         }
                     }
