@@ -27,12 +27,15 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Build dotnet
-      run: dotnet restore -r linux-x64 && dotnet publish -c Release -r linux-x64 --self-contained true
+      run: |
+          ./dbfal/Setup-AppDir.sh
+          cd ./dbfal/bin
+          wget https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-x86_64.AppImage
+          ARCH=x86_64 ./appimagetool-x86_64.AppImage ./AppDir/ ./DBFAL-x86_64.AppImage
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v7
       with:
         name: DBFAL-linux-x64
         path: |
-          ${{ env.Project_Directory }}/bin/Release/net10.0/linux-x64/publish/dbfal
-          ${{ env.Project_Directory }}/bin/Release/net10.0/linux-x64/publish/*.so
+          ${{ env.Project_Directory }}/bin/DBFAL-x86_64.AppImage
