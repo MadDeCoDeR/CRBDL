@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - 'Avalonia_ui'
+  
+
+jobs:
+  linux-build:
+      uses: ./.github/workflows/linux.yml
+  windows-build:
+      uses: ./.github/workflows/windows.yml
+  make-release:
+    needs: [ linux-build, windows-build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Get Project Version
+      id: get_ver
+      uses: bbonkr/get-version-action@v1
+      with:
+        project: './dbfal/dbfal.csproj'
+        show_log_message: true
+
+    - name: Get log messages
+      id: messages
+      working-directory: ${{ github.workspace }}
+      run: |
+        git fetch --prune --unshallow --tags 
+        COMMITS=$(git log Avalonia_ui --no-merges $(git describe --tags --abbrev=0)..HEAD --pretty=format:'- %s')
+        {
+          echo 'messages<<EOF'
+          echo "${COMMITS}"
+          echo EOF
+        } >> $GITHUB_OUTPUT
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d-%H-%M-%s')" >> $GITHUB_OUTPUT
+    - uses: actions/download-artifact@v8
+    - name: Zip artifact files
+      shell: bash
+      run: |
+            zip -m -r DBFAL-linux-x64 ./DBFAL-linux-x64/*
+            zip -m -r DBFAL-windows-x64 ./DBFAL-windows-x64/*
+    - name: Make release
+      id: create_release
+      uses: softprops/action-gh-release@v3
+      with:
+        tag_name: ${{ steps.get_ver.outputs.version }}
+        name: DOOM BFA Launcher Version ${{ steps.get_ver.outputs.version }}
+        body: |
+          ${{ steps.messages.outputs.messages }}
+        draft: false
+        prerelease: false
+        files: |
+            ${{github.workspace}}/DBFAL-linux-x64.zip
+            ${{github.workspace}}/DBFAL-windows-x64.zip

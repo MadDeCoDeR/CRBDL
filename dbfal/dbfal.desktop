@@ -1,0 +1,7 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=DOOM BFA Launcher
+Exec=dbfal
+Icon=1
+Type=Application
+Categories=Game;

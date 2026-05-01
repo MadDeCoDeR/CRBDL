@@ -1,0 +1,247 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="453" Height="531" CanResize= "False"
+        x:Class="dbfal.MainWindow"
+        Icon="Assets/1.png"
+        Title="DOOM BFA Launcher" Loaded="Window_Loaded">
+        
+    <StackPanel>
+        <TabbedPage BorderThickness="1" Name="GameTab">
+            <ContentPage Header="DOOM 3 BFG">
+                <DockPanel >
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox Header="Game Path" BorderThickness="0" Name="GamePath_Group" IsVisible="False">
+                            <ComboBox SelectedIndex="0" Name="GamePath" IsVisible="False">
+                                <ComboBoxItem>(default path)</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D3Extra_Args"></TextBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Left" Spacing="10" Orientation="Vertical" >
+                    <GroupBox Header="Game Mode" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Name="Game_Mode_Group">
+                        <ComboBox SelectedIndex="0" Name="Game_Mode" Padding="5">
+                            <ComboBoxItem>(Default)</ComboBoxItem>
+                            <ComboBoxItem>DOOM I</ComboBoxItem>
+                            <ComboBoxItem>DOOM II</ComboBoxItem>
+                            <ComboBoxItem>DOOM 3</ComboBoxItem>
+                        </ComboBox>
+                    </GroupBox>
+                    <CheckBox Name="Console_D3" Padding="5">Enable Console</CheckBox>
+                    <CheckBox Name="SkipIntro" Padding="5">Skip Cinematic Intro</CheckBox>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10" >
+                    <GroupBox Header="Mod" BorderThickness="0">
+                        <ComboBox SelectedIndex="0" Name="fs_game">
+                            <ComboBoxItem>(none)</ComboBoxItem>
+                        </ComboBox>
+                    </GroupBox>
+                    <GroupBox Header="Mod Base" BorderThickness="0">
+                        <ComboBox SelectedIndex="0" Name="fs_game_base">
+                            <ComboBoxItem>(none)</ComboBoxItem>
+                        </ComboBox>
+                    </GroupBox>
+                </StackPanel>
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
+                </DockPanel>
+            </ContentPage>
+            <ContentPage Header="DOOM I + II">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Spacing="10">
+                        <CheckBox Name="D12Cheat">Enable Cheat Codes</CheckBox>
+                        <GroupBox Header="Mod List" BorderThickness="1" Height="200">
+                            <ListBox Name="D12Mods" SelectionChanged="EnableRemButton" MaxWidth="200"></ListBox>
+                        </GroupBox>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Click="CDOOM_Add_Mod">Add Mod</Button>
+                            <Button IsEnabled="False" Name="D12RemMod" Click="CDOOM_Rem_Mod">Remove Mod</Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D12Extra_Args"></TextBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10">
+                        <GroupBox Header="Difficulty" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D12Skill">
+                                <ComboBoxItem>(none)</ComboBoxItem>
+                                <ComboBoxItem>I'm too young to die</ComboBoxItem>
+                                <ComboBoxItem>Hey, not too rough</ComboBoxItem>
+                                <ComboBoxItem>Hurt me plenty</ComboBoxItem>
+                                <ComboBoxItem>Ultra-Violence</ComboBoxItem>
+                                <ComboBoxItem>Nightmare!</ComboBoxItem>
+                                <ComboBoxItem>Masochism</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                    </StackPanel>
+                    
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
+                </DockPanel>
+            </ContentPage>
+            <ContentPage Header="DOOM">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Spacing="10">
+                        <CheckBox Name="D1Cheat">Enable Cheat Codes</CheckBox>
+                        <GroupBox Header="Mod List" BorderThickness="1" Height="200">
+                            <ListBox Name="D1Mods" SelectionChanged="EnableRemButton" MaxWidth="200"></ListBox>
+                        </GroupBox>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Click="CDOOM_Add_Mod">Add Mod</Button>
+                            <Button IsEnabled="False" Name="D1RemMod" Click="CDOOM_Rem_Mod">Remove Mod</Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D1Extra_Args"></TextBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10">
+                        <GroupBox Header="Difficulty" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D1Skill">
+                                <ComboBoxItem>(none)</ComboBoxItem>
+                                <ComboBoxItem>I'm too young to die</ComboBoxItem>
+                                <ComboBoxItem>Hey, not too rough</ComboBoxItem>
+                                <ComboBoxItem>Hurt me plenty</ComboBoxItem>
+                                <ComboBoxItem>Ultra-Violence</ComboBoxItem>
+                                <ComboBoxItem>Nightmare!</ComboBoxItem>
+                                <ComboBoxItem>Masochism</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox Header="Episode" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D1Episode">
+                                <ComboBoxItem>(none)</ComboBoxItem>
+                                <ComboBoxItem>Knee-Deep in the Dead</ComboBoxItem>
+                                <ComboBoxItem>The Shores of Hell</ComboBoxItem>
+                                <ComboBoxItem>Inferno</ComboBoxItem>
+                                <ComboBoxItem>Thy Flesh Consumed</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox Header="Level" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D1Level">
+                                <ComboBoxItem>(none)</ComboBoxItem>
+                                <ComboBoxItem>1</ComboBoxItem>
+                                <ComboBoxItem>2</ComboBoxItem>
+                                <ComboBoxItem>3</ComboBoxItem>
+                                <ComboBoxItem>4</ComboBoxItem>
+                                <ComboBoxItem>5</ComboBoxItem>
+                                <ComboBoxItem>6</ComboBoxItem>
+                                <ComboBoxItem>7</ComboBoxItem>
+                                <ComboBoxItem>8</ComboBoxItem>
+                                <ComboBoxItem>9</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                    </StackPanel>
+                    
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
+                </DockPanel>
+            </ContentPage>
+            <ContentPage Header="DOOM II">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Spacing="5">
+                        <CheckBox Name="D2Cheat">Enable Cheat Codes</CheckBox>
+                        <GroupBox Header="Expansion" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D2Expansion" SelectionChanged="UpdateD2ModList">
+                                <ComboBoxItem>(all)</ComboBoxItem>
+                                <ComboBoxItem>Hell on Earth</ComboBoxItem>
+                                <ComboBoxItem>TNT: Evilution</ComboBoxItem>
+                                <ComboBoxItem>The Plutonia Experiment</ComboBoxItem>
+                                <ComboBoxItem>Master Levels</ComboBoxItem>
+                                <ComboBoxItem>No Rest For the Living</ComboBoxItem>
+                                <ComboBoxItem>Legacy of Rust</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox Header="Mod List" BorderThickness="1" Height="200">
+                            <ListBox Name="D2Mods" SelectionChanged="EnableRemButton" MaxWidth="200"></ListBox>
+                        </GroupBox>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Click="CDOOM_Add_Mod">Add Mod</Button>
+                            <Button IsEnabled="False" Name="D2RemMod" Click="CDOOM_Rem_Mod">Remove Mod</Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox BorderThickness="0" Header="Additional Arguments">
+                            <TextBox Name="D2Extra_Args"></TextBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Spacing="10">
+                        <GroupBox Header="Difficulty" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D2Skill">
+                                <ComboBoxItem>(none)</ComboBoxItem>
+                                <ComboBoxItem>I'm too young to die</ComboBoxItem>
+                                <ComboBoxItem>Hey, not too rough</ComboBoxItem>
+                                <ComboBoxItem>Hurt me plenty</ComboBoxItem>
+                                <ComboBoxItem>Ultra-Violence</ComboBoxItem>
+                                <ComboBoxItem>Nightmare!</ComboBoxItem>
+                                <ComboBoxItem>Masochism</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox Header="Episode" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D2Episode" SelectionChanged="UpdateD2LeveCount">
+                                <ComboBoxItem>(none)</ComboBoxItem>
+                                <ComboBoxItem>Hell on Earth</ComboBoxItem>
+                                <ComboBoxItem>No Rest For the Living</ComboBoxItem>
+                                <ComboBoxItem>TNT: Evilution</ComboBoxItem>
+                                <ComboBoxItem>The Plutonia Experiment</ComboBoxItem>
+                                <ComboBoxItem>Master Levels</ComboBoxItem>
+                                <ComboBoxItem>Legacy of Rust</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                        <GroupBox Header="Level" BorderThickness="0">
+                            <ComboBox SelectedIndex="0" Name="D2Level">
+                                <ComboBoxItem>(none)</ComboBoxItem>
+                                <ComboBoxItem>1</ComboBoxItem>
+                                <ComboBoxItem>2</ComboBoxItem>
+                                <ComboBoxItem>3</ComboBoxItem>
+                                <ComboBoxItem>4</ComboBoxItem>
+                                <ComboBoxItem>5</ComboBoxItem>
+                                <ComboBoxItem>6</ComboBoxItem>
+                                <ComboBoxItem>7</ComboBoxItem>
+                                <ComboBoxItem>8</ComboBoxItem>
+                                <ComboBoxItem>9</ComboBoxItem>
+                                <ComboBoxItem>10</ComboBoxItem>
+                                <ComboBoxItem>11</ComboBoxItem>
+                                <ComboBoxItem>12</ComboBoxItem>
+                                <ComboBoxItem>13</ComboBoxItem>
+                                <ComboBoxItem>14</ComboBoxItem>
+                                <ComboBoxItem>15</ComboBoxItem>
+                                <ComboBoxItem>16</ComboBoxItem>
+                                <ComboBoxItem>17</ComboBoxItem>
+                                <ComboBoxItem>18</ComboBoxItem>
+                                <ComboBoxItem>19</ComboBoxItem>
+                                <ComboBoxItem>20</ComboBoxItem>
+                                <ComboBoxItem>21</ComboBoxItem>
+                                <ComboBoxItem>22</ComboBoxItem>
+                                <ComboBoxItem>23</ComboBoxItem>
+                                <ComboBoxItem>24</ComboBoxItem>
+                                <ComboBoxItem>25</ComboBoxItem>
+                                <ComboBoxItem>26</ComboBoxItem>
+                                <ComboBoxItem>27</ComboBoxItem>
+                                <ComboBoxItem>28</ComboBoxItem>
+                                <ComboBoxItem>29</ComboBoxItem>
+                                <ComboBoxItem>30</ComboBoxItem>
+                                <ComboBoxItem>31</ComboBoxItem>
+                                <ComboBoxItem>32</ComboBoxItem>
+                                <ComboBoxItem>33</ComboBoxItem>
+                            </ComboBox>
+                        </GroupBox>
+                    </StackPanel>
+                    
+                    <StackPanel Height="350" MinWidth="1"></StackPanel>
+                </DockPanel>
+            </ContentPage>
+        </TabbedPage>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Classes="wrap" Name="SettingsPath" MaxWidth="200"/>
+                <Button Click="SaveSetting">Save Settings</Button>
+                <Button Click="LoadSettings">Load Settings</Button>
+            </StackPanel>
+            <Button HorizontalAlignment="Right" Click="Launch_OnClick" Name="Launch_Button">Launch</Button>
+
+        </StackPanel>
+    </StackPanel>
+</Window>
