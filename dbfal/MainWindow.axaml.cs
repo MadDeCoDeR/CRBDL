@@ -214,7 +214,7 @@ public partial class MainWindow : Window
                     levels.setLevels(21, D2Level);
                     break;
                 case Names.LOR:
-                levels.setLevels(18, D2Level);
+                levels.setLevels(16, D2Level);
                 break;
                 default:
                     if (D2Level.SelectedIndex > 0) D2Level.SelectedIndex = 0;
