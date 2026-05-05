@@ -238,7 +238,7 @@ public partial class MainWindow : Window
 
             if (file != null)
             {
-                setting.saveSettings(file.Path.AbsolutePath, this);
+                setting.saveSettings(file.Path.LocalPath, this);
                 //button11.Enabled = true;
             }
     }
@@ -261,7 +261,7 @@ public partial class MainWindow : Window
             {
                 if ((myStream = await files[0].OpenReadAsync()) != null)
                 {
-                    setting.loadSettings(myStream, this, files[0].Path.AbsolutePath);
+                    setting.loadSettings(myStream, this, files[0].Path.LocalPath);
                     //button11.Enabled = true;
                 }
             }
