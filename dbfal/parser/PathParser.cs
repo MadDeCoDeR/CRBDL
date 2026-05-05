@@ -14,7 +14,7 @@ namespace CDL.parser
         {
             for (int i = 0; i < comboBox.Items.Count; i++)
             {
-                if (name == comboBox.Items[i].ToString())
+                if (name == ((ComboBoxItem)comboBox.Items[i]).Content.ToString())
                 {
                     return i;
                 }

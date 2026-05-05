@@ -268,18 +268,21 @@ public partial class MainWindow : Window
     }
 
     private async void UpdateGamePath(object? sender, SelectionChangedEventArgs e)
-        {
-            if (GamePath == null)
+    {
+        if (GamePath == null)
         {
             return;
         }
-            string[] values = ((ComboBoxItem)GamePath.Items[GamePath.SelectedIndex]).Content.ToString().Split("--".ToCharArray());
-            if (values.Length == 3)
-            {
-                ufs.SetSelectedPath(values[2].Trim());
-                await this.updateD3Mods();
-            }
+        string[] values = ((ComboBoxItem)GamePath.Items[GamePath.SelectedIndex]).Content.ToString().Split("--".ToCharArray());
+        if (values.Length == 3)
+        {
+            ufs.SetSelectedPath(values[2].Trim());
+        } else
+        {
+            ufs.SetDefaultPath();
         }
+        await this.updateD3Mods();
+    }
 
     public void Launchgame()
     {
@@ -428,15 +431,15 @@ public partial class MainWindow : Window
         }
 
 
-        private async Task updateD3Mods()
+        public async Task updateD3Mods()
         {
             if (await CheckFiles())
             {
                 fs_game.Items.Clear();
-                fs_game.Items.Add("(none)");
+                fs_game.Items.Add(new ComboBoxItem { Content = "(none)"});
                 fs_game.SelectedIndex = 0;
                 fs_game_base.Items.Clear();
-                fs_game_base.Items.Add("(none)");
+                fs_game_base.Items.Add(new ComboBoxItem { Content = "(none)"});
                 fs_game_base.SelectedIndex = 0;
                 List<string> dirs = new List<string>(Directory.GetDirectories(ufs.getParentPath("base")));
                 foreach (var dir in dirs)

@@ -37,10 +37,10 @@ namespace CDL.filesystem
             D2defs d2Defs = new D2defs(mainWindow);
             D12defs d12Defs = new D12defs(mainWindow);
             D3defs d3Defs = new D3defs(mainWindow);
+            defs.Add("[DOOM3]", d3Defs.getDefs());
+            defs.Add("[DOOM I & II]", d12Defs.getDefs());
             defs.Add("[DOOM]", d1Defs.getDefs());
             defs.Add("[DOOMII]", d2Defs.getDefs());
-            defs.Add("[DOOM I & II]", d12Defs.getDefs());
-            defs.Add("[DOOM3]", d3Defs.getDefs());
         }
 
         public Dictionary<string, Dictionary<string, Control>> getDefs() { return defs; }

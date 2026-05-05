@@ -306,6 +306,11 @@ namespace CDL.filesystem
             this.selectedPath = path;
         }
 
+        public void SetDefaultPath()
+        {
+            this.selectedPath = paths[0];
+        }
+
         private async void checkGamePaths(bool waitThread)
         {
             Task task = Task.Run(() =>
