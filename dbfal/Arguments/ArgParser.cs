@@ -83,7 +83,7 @@ namespace CDL.Arguments
                                     if (level > 0)
                                     {
                                         args += commandDefs.getCommands()[key][subKey]
-                                            + $"{ExpParser.getD2Exp(((ComboBoxItem)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).Content.ToString())} ";
+                                            + $"{ExpParser.getD2Exp(((ComboBoxItem?)((ComboBox)controlDefs.getControls()[key][subKey])?.SelectedItem)?.Content?.ToString())} ";
                                     }
                                 }
                             }
@@ -112,7 +112,7 @@ namespace CDL.Arguments
                                         extrArg = true;
                                     }
                                     args += commandDefs.getCommands()[key][subKey]
-                                        + $"{((ComboBoxItem)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).Content.ToString()} ";
+                                        + $"{((ComboBoxItem?)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem)?.Content?.ToString()} ";
 
                                 }
                             }
@@ -145,8 +145,9 @@ namespace CDL.Arguments
                                     key, subKey, mainWindow))
                                 {
                                     args += commandDefs.getCommands()[key][subKey];
-                                    foreach (string mod in ((ListBox)controlDefs.getControls()[key][subKey]).Items)
+                                    foreach (string? mod in ((ListBox)controlDefs.getControls()[key][subKey]).Items)
                                     {
+                                        if (mod == null) continue;
                                         args += $"\"{mod}\" ";
                                     }
                                 }
@@ -160,7 +161,7 @@ namespace CDL.Arguments
                             if (((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex > 0)
                             {
                                 args += commandDefs.getCommands()[key][subKey]
-                                    + $"\"{((ComboBoxItem)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem).Content.ToString().Split("--".ToCharArray())[2].Trim()}\" ";
+                                    + $"\"{((ComboBoxItem?)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem)?.Content?.ToString()?.Split("--".ToCharArray())[2].Trim()}\" ";
                             }
                             break;
                     }
@@ -186,16 +187,16 @@ namespace CDL.Arguments
                 {
                     StreamReader sr = new StreamReader(stream);
                     string key = "";
-                    string line = sr.ReadLine();
+                    string? line = sr.ReadLine();
                     string[] inline;
                     int ex = 0;
                     int firstEx = 0;
                     bool useHargs = false;
                     while (!sr.EndOfStream)
                     {
-                        if (SettingsArgsDef.settingsArgDefs.ContainsKey(line))
+                        if (SettingsArgsDef.settingsArgDefs.ContainsKey(line!))
                         {
-                            key = line;
+                            key = line!;
                             useHargs = false;
                             switch (key)
                             {
@@ -213,7 +214,7 @@ namespace CDL.Arguments
                         }
                         else
                         {
-                            inline = line.Split(new string[] { " = " }, StringSplitOptions.None);
+                            inline = line!.Split(new string[] { " = " }, StringSplitOptions.None);
 
 
                             switch (inline[0])

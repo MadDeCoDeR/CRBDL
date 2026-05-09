@@ -26,8 +26,12 @@ namespace CDL.parser
 {
     class ExpParser
     {
-        public static int getD2MExp(string name)
+        public static int getD2MExp(string? name)
         {
+            if (name == null)
+            {
+                return 0;
+            }
             switch (name)
             {
                 case "Hell on Earth":
@@ -47,10 +51,10 @@ namespace CDL.parser
             }
         }
 
-        public static string setD2MExp(int value, ComboBox? D2Exp = null)
+        public static string? setD2MExp(int value, ComboBox? D2Exp = null)
         {
             if(D2Exp != null) {
-                return ((ComboBoxItem)D2Exp.Items[value]).Content.ToString();
+                return ((ComboBoxItem?)D2Exp.Items[value])?.Content?.ToString();
             }
             switch (value)
             {
@@ -71,8 +75,12 @@ namespace CDL.parser
             }
         }
 
-        public static int getD2Exp(string name)
+        public static int getD2Exp(string? name)
         {
+            if (name == null)
+            {
+                return 0;
+            }
             switch (name)
             {
                 case "Hell on Earth":

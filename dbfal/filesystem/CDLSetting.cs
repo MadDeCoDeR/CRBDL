@@ -66,7 +66,7 @@ namespace CDL.filesystem
                             case "Episode":
                                 if (key == "[DOOMII]")
                                 {
-                                    sw.WriteLine(subkey + " = " + ExpParser.getD2Exp(((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString()));
+                                    sw.WriteLine(subkey + " = " + ExpParser.getD2Exp(((ComboBoxItem?)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem)?.Content?.ToString()));
                                 }
                                 else
                                 {
@@ -90,7 +90,7 @@ namespace CDL.filesystem
                                 }
                                 else if (key == "[DOOM3]")
                                 {
-                                    sw.WriteLine(subkey + " = " + ((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString());
+                                    sw.WriteLine(subkey + " = " + ((ComboBoxItem?)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem)?.Content?.ToString());
                                 }
                                 else
                                 {
@@ -98,10 +98,10 @@ namespace CDL.filesystem
                                 }
                                 break;
                             case "modbase":
-                                sw.WriteLine(subkey + " = " + ((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString());
+                                sw.WriteLine(subkey + " = " + ((ComboBoxItem?)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem)?.Content?.ToString());
                                 break;
                             case "game_path":
-                                sw.WriteLine(subkey + " = " + ((ComboBoxItem)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem).Content.ToString());
+                                sw.WriteLine(subkey + " = " + ((ComboBoxItem?)((ComboBox)settingDef.getDefs()[key][subkey]).SelectedItem)?.Content?.ToString());
                                 break;
                         }
                     }
@@ -128,17 +128,17 @@ namespace CDL.filesystem
                 {
                     StreamReader sr = new StreamReader(stream);
                     string key = "";
-                    string line = sr.ReadLine();
+                    string? line = sr.ReadLine();
                     string[] inline;
                     while (!sr.EndOfStream)
                     {
-                        if (settingDef.getDefs().ContainsKey(line))
+                        if (settingDef.getDefs().ContainsKey(line!))
                         {
-                            key = line;
+                            key = line!;
                         }
                         else
                         {
-                            inline = line.Split(new string[] { " = " }, StringSplitOptions.None);
+                            inline = line!.Split(new string[] { " = " }, StringSplitOptions.None);
                             switch (inline[0])
                             {
                                 // case "AA":
@@ -160,7 +160,7 @@ namespace CDL.filesystem
                                     if (key == "[DOOMII]")
                                     {
                                         string selectedExp = ExpParser.setD2Exp(Convert.ToInt32(inline[1]));
-                                        ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedItem = ((ComboBox)settingDef.getDefs()[key][inline[0]]).Items.First(ci => ((ComboBoxItem)ci).Content.ToString() == selectedExp);
+                                        ((ComboBox)settingDef.getDefs()[key][inline[0]]).SelectedItem = ((ComboBox)settingDef.getDefs()[key][inline[0]]).Items.First(ci => ((ComboBoxItem?)ci)?.Content?.ToString() == selectedExp);
                                     }
                                     else
                                     {

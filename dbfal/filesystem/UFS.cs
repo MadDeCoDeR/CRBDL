@@ -47,17 +47,18 @@ namespace CDL.filesystem
         {
             paths = new List<string>
             {
-                Path.GetDirectoryName(System.AppContext.BaseDirectory),
+                Path.GetDirectoryName(System.AppContext.BaseDirectory)!,
                 Directory.GetCurrentDirectory(),
-                Path.GetDirectoryName(System.AppContext.BaseDirectory) + "/../DoomBFA"
+                Path.GetDirectoryName(System.AppContext.BaseDirectory)! + "/../DoomBFA"
             };
+            BFGPaths = new List<string>();
+            NewD3Paths = new List<string>();
+            BFAClassicPaths = new List<string>();
             this.selectedPath = paths[0];
             if (paths[0].Contains("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
             {
                 paths.Add("/usr/bin");
-                BFGPaths = new List<string>();
-                NewD3Paths = new List<string>();
-                BFAClassicPaths = new List<string>();
+                
 
                 if (selectedPath.Length > 0)
                 {

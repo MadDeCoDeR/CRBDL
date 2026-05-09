@@ -165,8 +165,11 @@ public partial class MainWindow : Window
                 D1RemMod.IsEnabled = false;
                 break;
             case 3:
-                ml[D2Expansion.SelectedIndex].Remove(D2Mods.SelectedItem.ToString());
-                D2Mods.Items.Remove(D2Mods.SelectedItem);
+                if (D2Mods.SelectedItem != null)
+                {
+                    ml[D2Expansion.SelectedIndex].Remove(D2Mods.SelectedItem!.ToString()!);
+                    D2Mods.Items.Remove(D2Mods.SelectedItem);
+                }
                 D2RemMod.IsEnabled = false;
                 break;
         }
@@ -198,7 +201,7 @@ public partial class MainWindow : Window
             return;
         }
         Levels levels = new Levels();
-            switch (((ComboBoxItem)D2Episode.SelectedItem).Content.ToString())
+            switch (((ComboBoxItem?)D2Episode.SelectedItem)!.Content!.ToString())
             {
                 case Names.D2:
                     levels.setLevels(33, D2Level);
@@ -228,9 +231,9 @@ public partial class MainWindow : Window
         List<FilePickerFileType> filters = new List<FilePickerFileType>();
                 filters.Add(new FilePickerFileType(Filters.SETTINGSFILTER.Name)
                 {
-                    Patterns = Filters.SETTINGSFILTER.Type.Split(";")
+                    Patterns = Filters.SETTINGSFILTER.Type?.Split(";")
                 });
-            IStorageFile? file = await TopLevel.GetTopLevel(this).StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+            IStorageFile? file = await TopLevel.GetTopLevel(this)!.StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
             {
                 FileTypeChoices = filters,
                 Title = "Save current configuration"
@@ -249,9 +252,9 @@ public partial class MainWindow : Window
             List<FilePickerFileType> filters = new List<FilePickerFileType>();
                 filters.Add(new FilePickerFileType(Filters.SETTINGSFILTER.Name)
                 {
-                    Patterns = Filters.SETTINGSFILTER.Type.Split(";")
+                    Patterns = Filters.SETTINGSFILTER.Type?.Split(";")
                 });
-            IReadOnlyList<IStorageFile>? files = await TopLevel.GetTopLevel(this).StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
+            IReadOnlyList<IStorageFile>? files = await TopLevel.GetTopLevel(this)!.StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
             {
                 FileTypeFilter = filters,
                 Title = "Load configuration"
@@ -273,7 +276,7 @@ public partial class MainWindow : Window
         {
             return;
         }
-        string[] values = ((ComboBoxItem)GamePath.Items[GamePath.SelectedIndex]).Content.ToString().Split("--".ToCharArray());
+        string[] values = ((ComboBoxItem?)GamePath.Items[GamePath.SelectedIndex])!.Content!.ToString()!.Split("--".ToCharArray());
         if (values.Length == 3)
         {
             ufs.SetSelectedPath(values[2].Trim());
@@ -344,36 +347,36 @@ public partial class MainWindow : Window
             D2Expansion.SelectedIndex = 0;
             if (!foundExps[0])
             {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "No Rest For the Living"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "No Rest For the Living"));
+                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "No Rest For the Living"));
+                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "No Rest For the Living"));
                 D2Episode.Items.RemoveAt(episodeIndex);
                 D2Expansion.Items.RemoveAt(expansionIndex);
             }
             if (!foundExps[1])
             {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "Master Levels"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "Master Levels"));
+                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Master Levels"));
+                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Master Levels"));
                 D2Episode.Items.RemoveAt(episodeIndex);
                 D2Expansion.Items.RemoveAt(expansionIndex);
             }
             if (!foundExps[2])
             {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "The Plutonia Experiment"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "The Plutonia Experiment"));
+                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "The Plutonia Experiment"));
+                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "The Plutonia Experiment"));
                 D2Episode.Items.RemoveAt(episodeIndex);
                 D2Expansion.Items.RemoveAt(expansionIndex);
             }
             if (!foundExps[3])
             {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "TNT: Evilution"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "TNT: Evilution"));
+                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "TNT: Evilution"));
+                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "TNT: Evilution"));
                 D2Episode.Items.RemoveAt(episodeIndex);
                 D2Expansion.Items.RemoveAt(expansionIndex);
             }
             if (!foundExps[4])
             {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "Legacy of Rust"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((ComboBoxItem)item).Content == "Legacy of Rust"));
+                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Legacy of Rust"));
+                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Legacy of Rust"));
                 D2Episode.Items.RemoveAt(episodeIndex);
                 D2Expansion.Items.RemoveAt(expansionIndex);
             }

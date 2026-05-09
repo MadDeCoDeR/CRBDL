@@ -37,7 +37,7 @@ namespace CDL.parser
         {
             for (int i = 0; i < comboBox.Items.Count; i++)
             {
-                if (name == ((ComboBoxItem)comboBox.Items[i]).Content.ToString())
+                if (name == ((ComboBoxItem?)comboBox.Items[i])?.Content?.ToString())
                 {
                     return i;
                 }
@@ -66,7 +66,7 @@ namespace CDL.parser
 
         public void saveD2Mods(MainWindow mainWindow, StreamWriter sw, SettingDef settingDef)
         {
-            sw.WriteLine("smod = " + ExpParser.getD2MExp(((ComboBoxItem)((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem).Content.ToString()));
+            sw.WriteLine("smod = " + ExpParser.getD2MExp(((ComboBoxItem?)((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem)?.Content?.ToString()));
             for (int i = 0; i < 7; i++)
             {
                 sw.WriteLine("modex = " + i);
@@ -74,22 +74,22 @@ namespace CDL.parser
             }
         }
 
-        public string loadD2Mods(MainWindow mainWindow, SettingDef settingDef, string smod, StreamReader reader)
+        public string? loadD2Mods(MainWindow mainWindow, SettingDef settingDef, string smod, StreamReader reader)
         {
             int selected = Convert.ToInt32(smod);
-            string line = "";
+            string? line = "";
             string[] inline;
             int index = 0;
             ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).SelectedItem = ((ComboBox)settingDef.getDefs()["[DOOMII]"]["smod"]).
-            Items.First(item => ((ComboBoxItem)item).Content.ToString() == ExpParser.setD2MExp(selected, mainWindow.GetD2Expansion()));
+            Items.First(item => ((ComboBoxItem?)item)?.Content?.ToString() == ExpParser.setD2MExp(selected, mainWindow.GetD2Expansion()));
             for (int i = 0; i < 7; i++)
             {
                 line = reader.ReadLine();
-                inline = line.Split(new string[] { " = " }, StringSplitOptions.None);
+                inline = line!.Split(new string[] { " = " }, StringSplitOptions.None);
                 if (inline[0] != "modex") break;
                 index = Convert.ToInt32(inline[1]);
                 line = reader.ReadLine();
-                inline = line.Split(new string[] { " = " }, StringSplitOptions.None);
+                inline = line!.Split(new string[] { " = " }, StringSplitOptions.None);
                 string[] mods = deserializeMods(inline[1]);
                 if (mods[0].Length != 0)
                 {

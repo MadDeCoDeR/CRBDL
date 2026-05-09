@@ -48,10 +48,10 @@ namespace CDL.filesystem
             {
                 filters.Add(new FilePickerFileType(filter.Name)
                 {
-                    Patterns = filter.Type.Split(";")
+                    Patterns = filter.Type?.Split(";")
                 });
             }
-            IReadOnlyList<IStorageFile>? files = await TopLevel.GetTopLevel(listBox).StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
+            IReadOnlyList<IStorageFile>? files = await TopLevel.GetTopLevel(listBox)!.StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
             {
                 FileTypeFilter = filters
             });

@@ -33,12 +33,12 @@ namespace CDL.network
 {
     class Server
     {
-        TcpListener serverSocket = null;
+        TcpListener? serverSocket = null;
         private bool abort = false;
         private int maxplayers = -1;
-        List<TcpClient> clientSocket = new List<TcpClient>();
+        List<TcpClient?> clientSocket = new List<TcpClient?>();
         private MainWindow mainWindow;
-        private int pointer = -1;
+        //private int pointer = -1;
         private static List<string> addr = new List<string>();
         //private Form2 form2;
 
@@ -71,8 +71,8 @@ namespace CDL.network
                     {
                         requestCount = requestCount + 1;
                         clientSocket[startcount - 1] = serverSocket.AcceptTcpClient();
-                        NetworkStream networkStream = clientSocket[startcount - 1].GetStream();
-                        networkStream.Read(bytesFrom, 0, bytesFrom.Length);
+                        NetworkStream networkStream = clientSocket[startcount - 1]!.GetStream();
+                        networkStream.ReadExactly(bytesFrom);
                         dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
                         dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("IP"));
                         addr[requestCount] = dataFromClient;
@@ -85,13 +85,13 @@ namespace CDL.network
                     }
                     else
                     {
-                        NetworkStream networkStream = clientSocket[sendcount - 1].GetStream();
+                        NetworkStream networkStream = clientSocket[sendcount - 1]!.GetStream();
                         serverResponse = Convert.ToString(true);
                         Byte[] sendBytes = System.Text.Encoding.ASCII.GetBytes(serverResponse);
                         networkStream.Write(sendBytes, 0, sendBytes.Length);
                         networkStream.Flush();
                         Array.Clear(bytesFrom, 0, bytesFrom.Length);
-                        networkStream.Read(bytesFrom, 0, bytesFrom.Length);
+                        networkStream.ReadExactly(bytesFrom);
                         dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
                         int client = Convert.ToInt32(dataFromClient);
                         for (int j = 1; j < maxplayers; j++)
@@ -105,7 +105,7 @@ namespace CDL.network
                                 networkStream.Flush();
                             }
                         }
-                        clientSocket[sendcount - 1].Close();
+                        clientSocket[sendcount - 1]!.Close();
                         sendcount++;
                     }
 
