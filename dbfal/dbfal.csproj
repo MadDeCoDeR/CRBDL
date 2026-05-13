@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
@@ -9,7 +9,8 @@
     <Version>1.0.17.5</Version>
     <ApplicationIcon>Assets\1.ico</ApplicationIcon>
     <AssemblyTitle>DOOM BFA Launcher</AssemblyTitle>
-    <PublishAot>True</PublishAot>
+    <PublishAot>False</PublishAot>
+    <PublishTrimmed>True</PublishTrimmed>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <WarningLevel>9999</WarningLevel>

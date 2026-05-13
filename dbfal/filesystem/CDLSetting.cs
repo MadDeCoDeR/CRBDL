@@ -109,7 +109,7 @@ namespace CDL.filesystem
                 sw.WriteLine("");
                 //Close the file
                 sw.Close();
-                mainWindow.GetSettingsPath().Content = Path.GetFileName(path);
+                mainWindow.GetSettingsPath().Content = Path.GetFullPath(path);
                 //form1.getLabel10().Text = path;
             }
             catch (Exception ex)
@@ -207,7 +207,7 @@ namespace CDL.filesystem
                         line = sr.ReadLine();
                     }
                     sr.Close();
-                    mainWindow.GetSettingsPath().Content = Path.GetFileName(filename);
+                    mainWindow.GetSettingsPath().Content = Path.GetFullPath(filename);
 
                 }
                 catch (Exception ex)
