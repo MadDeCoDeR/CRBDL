@@ -41,7 +41,7 @@ namespace CDL
         public CDL(UFS ufs)
         {
             this.ufs = ufs;
-            foundExps = new bool[5];
+            foundExps = new bool[6];
             for (int i = 0; i < foundExps.Length; i++)
             {
                 foundExps[i] = false;
@@ -93,6 +93,11 @@ namespace CDL
             if ((ufs.Exists(folderName + "/wads/ID1.WAD", true) || ufs.Exists(folderName + "/wads/id1.wad", true)) && !foundExps[4])
             {
                 foundExps[4] = true;
+            }
+
+            if (((ufs.Exists(folderName + "/wads/SIGIL.WAD", true) && ufs.Exists(folderName + "/wads/SIGIL2.WAD", true)) || (ufs.Exists(folderName + "/wads/sigil.wad", true) && ufs.Exists(folderName + "/wads/sigil2.wad", true))) && !foundExps[5])
+            {
+                foundExps[5] = true;
             }
 
             return foundExps;
