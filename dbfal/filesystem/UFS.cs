@@ -90,7 +90,7 @@ namespace CDL.filesystem
             {
                 paths.Add("");
                 paths.Add("");
-                this.selectedPath = paths[0];
+                this.selectedPath = paths[1];
             }
 
         }
