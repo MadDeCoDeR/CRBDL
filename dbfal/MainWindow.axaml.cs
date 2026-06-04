@@ -5,6 +5,7 @@ using Avalonia.Threading;
 using CDL.Arguments;
 using CDL.Expansions;
 using CDL.filesystem;
+using dbfal.validation;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Base;
 using MsBox.Avalonia.Enums;
@@ -117,6 +118,15 @@ public partial class MainWindow : Window
     private void Launch_OnClick(object? sender, RoutedEventArgs e)
     {
         Launchgame();
+    }
+
+    private void Launch_DM_OnClick(object? sender, RoutedEventArgs e)
+    {
+        MultiManager multiManager = new MultiManager(this)
+        {
+            DataContext = new IPValidation()
+        };
+        multiManager.Show();
     }
 
     private async void CDOOM_Add_Mod(object? sender, RoutedEventArgs e)

@@ -242,7 +242,10 @@
             <StackPanel Orientation="Horizontal">
                  <Label Classes="wrap" Name="SettingsPath"/>
             </StackPanel>
-            <Button HorizontalAlignment="Right" Click="Launch_OnClick" Name="Launch_Button">Launch</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Click="Launch_DM_OnClick" Name="Launch_DM_Button">Launch DM</Button>
+                <Button Click="Launch_OnClick" Name="Launch_Button">Launch</Button>
+            </StackPanel>
 
         </StackPanel>
     </StackPanel>

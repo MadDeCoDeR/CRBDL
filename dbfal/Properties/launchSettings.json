@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dbfal": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\gk\\cdoomBFA"
+    }
+  }
+}

@@ -6,11 +6,11 @@
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
-    <Version>1.0.17.5</Version>
+    <Version>1.0.17.6</Version>
     <ApplicationIcon>Assets\1.ico</ApplicationIcon>
     <AssemblyTitle>DOOM BFA Launcher</AssemblyTitle>
     <PublishAot>False</PublishAot>
-    <PublishTrimmed>True</PublishTrimmed>
+    <PublishTrimmed>False</PublishTrimmed>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <WarningLevel>9999</WarningLevel>
@@ -30,6 +30,7 @@
       <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="MessageBox.Avalonia" Version="12.0.0" />
   </ItemGroup>
   <ItemGroup>

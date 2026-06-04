@@ -1,0 +1,78 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:dbfal.validation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="453" Height="571" CanResize= "False"
+        x:Class="dbfal.MultiManager"
+        x:DataType="vm:IPValidation"
+        Icon="Assets/1.png"
+        Title="DOOM BFA Multiplayer Manager for DOOM + DOOM 2"
+        Loaded="MultiManager_Load"
+        Closing="ClosingMultiManager">
+
+    <Design.DataContext>
+        <vm:IPValidation/>
+    </Design.DataContext>
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Bottom">
+        <GroupBox BorderThickness="0">
+            <Button Name="MPLaunch" Click="LaunchWithMP">Launch</Button>
+        </GroupBox>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+          <GroupBox Header="Game to Play" BorderThickness="0">
+              <ComboBox SelectedIndex="0" Name="GameSelection">
+                  <ComboBoxItem>(Both)</ComboBoxItem>
+                  <ComboBoxItem>DOOM 1</ComboBoxItem>
+                  <ComboBoxItem>DOOM 2</ComboBoxItem>
+              </ComboBox>
+          </GroupBox>
+          <GroupBox Header="Number of Players" BorderThickness="0">
+              <ComboBox SelectedIndex="0" Name="NumOfPlayers" SelectionChanged="PlayersNumberChanged">
+                  <ComboBoxItem>1</ComboBoxItem>
+                  <ComboBoxItem>2</ComboBoxItem>
+                  <ComboBoxItem>3</ComboBoxItem>
+                  <ComboBoxItem>4</ComboBoxItem>
+              </ComboBox>
+          </GroupBox>
+      </StackPanel>
+
+      <StackPanel DockPanel.Dock="Left">
+          <GroupBox Header="Host Settings">
+              <StackPanel Orientation="Horizontal">
+                  <Label Name="IPHostLabel">IP Address: </Label>
+                  <TextBox Text="{Binding IpAddress}" Name="IPHostText" AcceptsReturn="False" MaxLines="1" MaxLength="16" PlaceholderText="000.000.000.000"></TextBox>
+                  <Label></Label>
+                  <ToggleButton Name="HostToogle" IsCheckedChanged="IsHostCheckChanged">Is Host</ToggleButton>
+              </StackPanel>
+          </GroupBox>
+          <GroupBox Header="Limits">
+              <StackPanel Orientation="Horizontal">
+                <GroupBox Header="Time Limit (ms)" BorderThickness="0" Name="TimeLimitGroup">
+                    <NumericUpDown Width="130" Name="TimeLimit"></NumericUpDown>
+                </GroupBox>
+                <Label></Label>
+                <GroupBox Header="Frag Limit" BorderThickness="0" Name="FragLimitGroup">
+                    <NumericUpDown Width="130" Name="FragLimit"></NumericUpDown>
+                </GroupBox>
+              </StackPanel>
+          </GroupBox>
+    <GroupBox BorderThickness="0">
+        <StackPanel>
+            <Button Name="PlayerLookupButton" Click="PlayerLookupButton_Click">Find Players</Button>
+            <Label Name="PlayerFoundLabel"></Label>
+        </StackPanel>
+        </GroupBox>
+      </StackPanel>
+      <StackPanel DockPanel.Dock="Right">
+          <GroupBox Header="Deathmatch">
+              <StackPanel>
+                <CheckBox Name="NewDM" IsChecked="false" IsCheckedChanged="NewDMCheckChanged">Enable</CheckBox>
+                <CheckBox Name="OldDM" IsChecked="false" IsCheckedChanged="OldDMCheckChanged">Old Style</CheckBox>
+              </StackPanel>
+          </GroupBox>
+      </StackPanel>
+      
+  </DockPanel>
+</Window>

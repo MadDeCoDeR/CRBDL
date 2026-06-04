@@ -35,6 +35,7 @@ namespace CDL.Arguments
         public static string ParseArgsFromForm(MainWindow mainWindow)
         {
             string args = " ";
+            args += mainWindow.adcoms[0];
             bool extrArg = false;
             CommandDefs commandDefs = new CommandDefs();
             ControlDefs controlDefs = new ControlDefs(mainWindow);
@@ -47,9 +48,11 @@ namespace CDL.Arguments
                     {
                         case "DOOM1":
                             args += "-doom ";
+                            args += mainWindow.adcoms[1];
                             break;
                         case "DOOM2":
                             args += "-doom2 ";
+                            args += mainWindow.adcoms[2];
                             break;
                     }
                 }
