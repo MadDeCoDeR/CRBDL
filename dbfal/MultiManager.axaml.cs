@@ -79,6 +79,11 @@ public partial class MultiManager : Window
                 form1.adcoms[GameSelection.SelectedIndex] += "-fraglimit " + FragLimit.Value!.ToString() + " ";
             }
         }
+
+        if (NumOfPlayers.SelectedIndex == 0)
+        {
+            form1.adcoms[GameSelection.SelectedIndex] += "-net 0 127.0.0.1 ";
+        }
         form1.Launchgame();
     }
 
