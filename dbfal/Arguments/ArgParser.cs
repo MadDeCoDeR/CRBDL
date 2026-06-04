@@ -77,8 +77,7 @@ namespace CDL.Arguments
                                 if (key == "DOOM1")
                                 {
                                     args += commandDefs.getCommands()[key][subKey]
-                                        + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex}"
-                                        + $" {((ComboBox)controlDefs.getControls()[key][ArgKeys.MAP]).SelectedIndex} ";
+                                        + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex} ";
                                 }
                                 else
                                 {
@@ -99,8 +98,17 @@ namespace CDL.Arguments
                         case ArgKeys.SKILL:
                             if (!DefaultCheck.checkControl(controlDefs.getControls()[key][subKey], key, subKey, mainWindow))
                             {
-                                args += commandDefs.getCommands()[key][subKey]
+                                if (key == "DOOM1")
+                                {
+                                    args += commandDefs.getCommands()[key][subKey]
+                                    + $"{((ComboBox)controlDefs.getControls()[key][ArgKeys.EPISODE]).SelectedIndex} "
                                     + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex} ";
+                                }
+                                else
+                                {
+                                    args += commandDefs.getCommands()[key][subKey]
+                                        + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex} ";
+                                }
                             }
                             break;
                         case ArgKeys.MOD:

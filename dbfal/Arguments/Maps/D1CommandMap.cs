@@ -34,7 +34,8 @@ namespace CDL.Arguments
             commands.Add(ArgKeys.CHEAT, "-classich ");
             commands.Add(ArgKeys.MOD, "-file ");
             commands.Add(ArgKeys.SKILL, "-skill ");
-            commands.Add(ArgKeys.EPISODE, "-warp ");
+            commands.Add(ArgKeys.EPISODE, "-episode ");
+            commands.Add(ArgKeys.MAP, "-warp ");
         }
 
         public Dictionary<string, string> getCommands() { return commands; }
