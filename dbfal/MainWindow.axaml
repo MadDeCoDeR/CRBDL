@@ -12,6 +12,9 @@
             <ContentPage Header="DOOM 3 BFG">
                 <DockPanel >
                     <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="453">
+                        <GroupBox BorderThickness="0" Header="Searching for game paths" IsVisible="False" Name="SearchProgress">
+                            <ProgressBar IsIndeterminate="True"></ProgressBar>
+                        </GroupBox>
                         <GroupBox Header="Game Path" BorderThickness="0" Name="GamePath_Group" IsVisible="False">
                             <ComboBox SelectedIndex="0" Name="GamePath" IsVisible="False" SelectionChanged="UpdateGamePath">
                                 <ComboBoxItem>(default path)</ComboBoxItem>

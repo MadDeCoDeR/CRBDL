@@ -59,6 +59,9 @@ public partial class MainWindow : Window
             if (ufs.isRunningPackaged())
             {
                 Launch_Button.IsEnabled = false;
+                Launch_DM_Button.IsEnabled = false;
+                SearchProgress.IsVisible = true;
+                D3_Spacing.Height = 312.0f;
                 checkIfNewPathsAdded();
             }
     }
@@ -77,6 +80,7 @@ public partial class MainWindow : Window
                         {
                             this.Dispatcher.Invoke(new Action(() =>
                             {
+                                SearchProgress.IsVisible = false;
                                 GamePath_Group.IsVisible = true;
                                 GamePath.IsVisible = true;
                                 D3_Spacing.Height = 285.0f;
@@ -92,6 +96,7 @@ public partial class MainWindow : Window
                             this.Dispatcher.Invoke(new Action(async () =>
                             {
                                 Launch_Button.IsEnabled = true;
+                                Launch_DM_Button.IsEnabled = true;
                                 await this.updateD3Mods();
                             }));
                             enableLaunch = false;
@@ -333,64 +338,81 @@ public partial class MainWindow : Window
         }
 
     private void checkClassicExpansions(string folderName)
-        {
-            foundExps = cdl.checkClassicExpansions(folderName);
-            D2Episode.Items.Clear();
-            D2Episode.Items.AddRangeComboBox(new object[] {
+    {
+        foundExps = cdl.checkClassicExpansions(folderName);
+        D2Episode.Items.Clear();
+        D2Episode.Items.AddRangeComboBox(new object[] {
+        "(none)",
+        "Hell on Earth",
+        "No Rest For the Living",
+        "TNT: Evilution",
+        "The Plutonia Experiment",
+        "Master Levels",
+        "Legacy of Rust"});
+        D2Episode.SelectedIndex = 0;
+        D2Expansion.Items.Clear();
+        D2Expansion.Items.AddRangeComboBox(new object[] {
+        "(all)",
+        "Hell on Earth",
+        "TNT: Evilution",
+        "The Plutonia Experiment",
+        "Master Levels",
+        "No Rest For the Living",
+        "Legacy of Rust"});
+        D2Expansion.SelectedIndex = 0;
+
+        D1Episode.Items.Clear();
+        D1Episode.Items.AddRangeComboBox(new object[] {
             "(none)",
-            "Hell on Earth",
-            "No Rest For the Living",
-            "TNT: Evilution",
-            "The Plutonia Experiment",
-            "Master Levels",
-            "Legacy of Rust"});
-            D2Episode.SelectedIndex = 0;
-            D2Expansion.Items.Clear();
-            D2Expansion.Items.AddRangeComboBox(new object[] {
-            "(all)",
-            "Hell on Earth",
-            "TNT: Evilution",
-            "The Plutonia Experiment",
-            "Master Levels",
-            "No Rest For the Living",
-            "Legacy of Rust"});
-            D2Expansion.SelectedIndex = 0;
-            if (!foundExps[0])
-            {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "No Rest For the Living"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "No Rest For the Living"));
-                D2Episode.Items.RemoveAt(episodeIndex);
-                D2Expansion.Items.RemoveAt(expansionIndex);
-            }
-            if (!foundExps[1])
-            {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Master Levels"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Master Levels"));
-                D2Episode.Items.RemoveAt(episodeIndex);
-                D2Expansion.Items.RemoveAt(expansionIndex);
-            }
-            if (!foundExps[2])
-            {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "The Plutonia Experiment"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "The Plutonia Experiment"));
-                D2Episode.Items.RemoveAt(episodeIndex);
-                D2Expansion.Items.RemoveAt(expansionIndex);
-            }
-            if (!foundExps[3])
-            {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "TNT: Evilution"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "TNT: Evilution"));
-                D2Episode.Items.RemoveAt(episodeIndex);
-                D2Expansion.Items.RemoveAt(expansionIndex);
-            }
-            if (!foundExps[4])
-            {
-                int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Legacy of Rust"));
-                int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Legacy of Rust"));
-                D2Episode.Items.RemoveAt(episodeIndex);
-                D2Expansion.Items.RemoveAt(expansionIndex);
-            }
+            "Knee-Deep in the Dead",
+            "The Shores of Hell",
+            "Inferno",
+            "Thy Flesh Consumed"
+        });
+        D1Episode.SelectedIndex = 0;
+        if (!foundExps[0])
+        {
+            int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "No Rest For the Living"));
+            int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "No Rest For the Living"));
+            D2Episode.Items.RemoveAt(episodeIndex);
+            D2Expansion.Items.RemoveAt(expansionIndex);
         }
+        if (!foundExps[1])
+        {
+            int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Master Levels"));
+            int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Master Levels"));
+            D2Episode.Items.RemoveAt(episodeIndex);
+            D2Expansion.Items.RemoveAt(expansionIndex);
+        }
+        if (!foundExps[2])
+        {
+            int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "The Plutonia Experiment"));
+            int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "The Plutonia Experiment"));
+            D2Episode.Items.RemoveAt(episodeIndex);
+            D2Expansion.Items.RemoveAt(expansionIndex);
+        }
+        if (!foundExps[3])
+        {
+            int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "TNT: Evilution"));
+            int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "TNT: Evilution"));
+            D2Episode.Items.RemoveAt(episodeIndex);
+            D2Expansion.Items.RemoveAt(expansionIndex);
+        }
+        if (!foundExps[4])
+        {
+            int episodeIndex = D2Episode.Items.IndexOf(D2Episode.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Legacy of Rust"));
+            int expansionIndex = D2Expansion.Items.IndexOf(D2Expansion.Items.FirstOrDefault(item => ((string?)((ComboBoxItem?)item)?.Content) == "Legacy of Rust"));
+            D2Episode.Items.RemoveAt(episodeIndex);
+            D2Expansion.Items.RemoveAt(expansionIndex);
+        }
+
+        if (foundExps[5]) {
+            D1Episode.Items.AddRangeComboBox(new object[] { 
+                "SIGIL",
+                "SIGIL 2"
+            });
+        }
+    }
 
     private async Task<bool> CheckFiles()
         {
