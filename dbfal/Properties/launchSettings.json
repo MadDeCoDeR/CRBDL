@@ -2,7 +2,7 @@
   "profiles": {
     "dbfal": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\gk\\cdoomBFA"
+      "workingDirectory": "C:\\path\\to\\DOOM 3 BFG Edition"
     }
   }
 }
