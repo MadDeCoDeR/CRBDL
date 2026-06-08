@@ -61,6 +61,8 @@ public partial class MainWindow : Window
                 Launch_Button.IsEnabled = false;
                 Launch_DM_Button.IsEnabled = false;
                 SearchProgress.IsVisible = true;
+                SaveSettings.IsEnabled = false;
+                LoadSettingsButton.IsEnabled = false;
                 D3_Spacing.Height = 312.0f;
                 checkIfNewPathsAdded();
             }
@@ -97,6 +99,9 @@ public partial class MainWindow : Window
                             {
                                 Launch_Button.IsEnabled = true;
                                 Launch_DM_Button.IsEnabled = true;
+                                SaveSettings.IsEnabled = true;
+                                LoadSettingsButton.IsEnabled = true;
+                                LoadSettingsButton.IsEnabled = true;
                                 await this.updateD3Mods();
                             }));
                             enableLaunch = false;
