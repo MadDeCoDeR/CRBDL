@@ -5,18 +5,21 @@ namespace dbfal.validation
 {
     public partial class IPValidation : ObservableValidator
     {
-        [ObservableProperty]
-        [NotifyDataErrorInfo]
-        [Ipv4Address(ErrorMessage = "Invalid IPV4 format")]
+        
         private string? _ipAddress = null;
 
-        [RelayCommand]
-        private void Submit()
+        [Ipv4Address(ErrorMessage = "Invalid IPV4 format")]
+        public string? IpAddress
         {
-            ValidateAllProperties();
-            if (!HasErrors)
+            get { return this._ipAddress; }
+            set
             {
-                MultiManager.HasValidIP = true;
+                this.ValidateProperty(value, "IpAddress");
+                if (!this.HasErrors)
+                {
+                    MultiManager.HasValidIP = true;
+                }
+                SetProperty<string?>(ref this._ipAddress, value, true);
             }
         }
     }

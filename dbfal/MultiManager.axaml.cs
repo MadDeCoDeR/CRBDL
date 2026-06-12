@@ -108,18 +108,23 @@ public partial class MultiManager : Window
 
     private void PlayerLookupButton_Click(object sender, RoutedEventArgs e)
     {
-        maxplayers = Convert.ToInt32(NumOfPlayers.SelectedValue!.ToString());
-        if (!HasValidIP)
+        if (NumOfPlayers.SelectedValue == null) { return; }
+        ComboBoxItem playersItem = (ComboBoxItem)NumOfPlayers.SelectedValue;
+        maxplayers = Convert.ToInt32(playersItem.Content!.ToString());
+        if (!HasValidIP && (HostToogle.IsChecked != null && HostToogle.IsChecked == false))
         {
             return;
         }
 
         ipaddr = string.Empty;
-        for (int i = 0; i < IPHostText.Text!.Length; i++)
+        if (IPHostText.Text != null)
         {
-            if (IPHostText.Text[i] != ' ')
+            for (int i = 0; i < IPHostText.Text!.Length; i++)
             {
-                ipaddr += IPHostText.Text[i];
+                if (IPHostText.Text[i] != ' ')
+                {
+                    ipaddr += IPHostText.Text[i];
+                }
             }
         }
         if (!HostToogle.IsChecked!.Value && !IPAddress.TryParse(ipaddr, out ip))

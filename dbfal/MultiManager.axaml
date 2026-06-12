@@ -60,7 +60,7 @@
           </GroupBox>
     <GroupBox BorderThickness="0">
         <StackPanel>
-            <Button Name="PlayerLookupButton" Click="PlayerLookupButton_Click">Find Players</Button>
+            <Button Name="PlayerLookupButton" Click="PlayerLookupButton_Click" >Find Players</Button>
             <Label Name="PlayerFoundLabel"></Label>
         </StackPanel>
         </GroupBox>
