@@ -5,10 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Reflection;
-using System.Reflection.Emit;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace dbfal;
 
@@ -21,7 +19,7 @@ public partial class MultiManager : Window
     private bool abort = false;
     private string? ipaddr;
     IPAddress? ip;
-    Thread? th;
+    //Thread? th;
     private int maxplayers = -1;
     private int pointer = -1;
     private MainWindow form1;
@@ -106,7 +104,7 @@ public partial class MultiManager : Window
 
     }
 
-    private void PlayerLookupButton_Click(object sender, RoutedEventArgs e)
+    private async void PlayerLookupButton_Click(object sender, RoutedEventArgs e)
     {
         if (NumOfPlayers.SelectedValue == null) { return; }
         ComboBoxItem playersItem = (ComboBoxItem)NumOfPlayers.SelectedValue;
@@ -140,18 +138,14 @@ public partial class MultiManager : Window
         if (HostToogle.IsChecked!.Value)
         {
             form1.adcoms[pointer] += "0 " + GetLocalIPAddress() + " ";
-            th = new Thread(startServer);
-            th.IsBackground = true;
-            th.Start();
+            await startServer();
             // Thread.Sleep(1000);
             //th.Abort();
             //startServer();
         }
         else
         {
-            th = new Thread(startClient);
-            th.IsBackground = true;
-            th.Start();
+            await startClient();
 
             //Thread.Sleep(1000);
             //startClient();
@@ -169,7 +163,7 @@ public partial class MultiManager : Window
         NumOfPlayers.IsEnabled = true;
     }
 
-    private void startServer()
+    private async Task startServer()
     {
         serverSocket = new TcpListener(IPAddress.Any, 6666);
         int requestCount = 0;
@@ -198,17 +192,17 @@ public partial class MultiManager : Window
                 if (startcount < maxplayers)
                 {
                     requestCount = requestCount + 1;
-                    clientSocket[startcount - 1] = serverSocket.AcceptTcpClient();
+                    clientSocket[startcount - 1] = await serverSocket.AcceptTcpClientAsync();
                     NetworkStream networkStream = clientSocket[startcount - 1].GetStream();
-                    networkStream.ReadExactly(bytesFrom);
-                    dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
+                    int received = await networkStream.ReadAsync(bytesFrom);
+                    dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom, 0, received);
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("IP"));
                     addr[requestCount] = dataFromClient;
                     form1.adcoms[pointer] += dataFromClient + " ";
                     serverResponse = Convert.ToString(startcount);
                     Byte[] sendBytes = System.Text.Encoding.ASCII.GetBytes(serverResponse);
-                    networkStream.Write(sendBytes, 0, sendBytes.Length);
-                    networkStream.Flush();
+                    await networkStream.WriteAsync(sendBytes, 0, sendBytes.Length);
+                    await networkStream.FlushAsync();
                     startcount++;
                 }
                 else
@@ -216,11 +210,11 @@ public partial class MultiManager : Window
                     NetworkStream networkStream = clientSocket[sendcount - 1].GetStream();
                     serverResponse = Convert.ToString(true);
                     Byte[] sendBytes = System.Text.Encoding.ASCII.GetBytes(serverResponse);
-                    networkStream.Write(sendBytes, 0, sendBytes.Length);
-                    networkStream.Flush();
+                    await networkStream.WriteAsync(sendBytes, 0, sendBytes.Length);
+                    await networkStream.FlushAsync();
                     Array.Clear(bytesFrom, 0, bytesFrom.Length);
-                    networkStream.ReadExactly(bytesFrom);
-                    dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
+                    int received = await networkStream.ReadAsync(bytesFrom);
+                    dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom, 0, received);
                     int client = Convert.ToInt32(dataFromClient);
                     for (int j = 1; j < maxplayers; j++)
                     {
@@ -229,8 +223,8 @@ public partial class MultiManager : Window
                             string sip = addr[j];
                             Array.Clear(sendBytes, 0, sendBytes.Length);
                             sendBytes = Encoding.ASCII.GetBytes(sip);
-                            networkStream.Write(sendBytes, 0, sendBytes.Length);
-                            networkStream.Flush();
+                            await networkStream.WriteAsync(sendBytes, 0, sendBytes.Length);
+                            await networkStream.FlushAsync();
                         }
                     }
                     clientSocket[sendcount - 1].Close();
@@ -255,7 +249,7 @@ public partial class MultiManager : Window
 
     }
 
-    private void startClient()
+    private async Task startClient()
     {
         if (clientSocket == null) {
             return;
@@ -267,22 +261,22 @@ public partial class MultiManager : Window
         clientSocket[0].Connect(ip, 6666);
         NetworkStream serverStream = clientSocket[0].GetStream();
         byte[] outStream = System.Text.Encoding.ASCII.GetBytes(GetLocalIPAddress() + "IP");
-        serverStream.Write(outStream, 0, outStream.Length);
-        serverStream.Flush();
+        await serverStream.WriteAsync(outStream, 0, outStream.Length);
+        await serverStream.FlushAsync();
         byte[] inStream = new byte[10025];
-        serverStream.ReadExactly(inStream);
-        string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+        int received = await serverStream.ReadAsync(inStream);
+        string returndata = System.Text.Encoding.ASCII.GetString(inStream, 0, received);
         int player = Convert.ToInt32(returndata);
         form1.adcoms[pointer] += player + " " + ip.ToString() + " ";
         Array.Clear(inStream, 0, inStream.Length);
-        serverStream.ReadExactly(inStream);
-        returndata = System.Text.Encoding.ASCII.GetString(inStream);
+        received = await serverStream.ReadAsync(inStream);
+        returndata = System.Text.Encoding.ASCII.GetString(inStream, 0, received);
         bool cont = Convert.ToBoolean(returndata);
         string outbuf = Convert.ToString(player);
         Array.Clear(outStream, 0, outStream.Length);
         outStream = System.Text.Encoding.ASCII.GetBytes(outbuf);
-        serverStream.Write(outStream, 0, outStream.Length);
-        serverStream.Flush();
+        await serverStream.WriteAsync(outStream, 0, outStream.Length);
+        await serverStream.FlushAsync();
         for (int i = 1; i < maxplayers; i++)
         {
             if (i == player)
@@ -292,7 +286,7 @@ public partial class MultiManager : Window
             else
             {
                 Array.Clear(inStream, 0, inStream.Length);
-                serverStream.ReadExactly(inStream);
+                received = await serverStream.ReadAsync(inStream);
                 returndata = System.Text.Encoding.ASCII.GetString(inStream);
                 form1.adcoms[pointer] += returndata + " ";
             }
