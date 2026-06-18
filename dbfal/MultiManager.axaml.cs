@@ -93,7 +93,7 @@ public partial class MultiManager : Window
         {
             var ipProp = nic.GetIPProperties();
             var gwAddresses = ipProp.GatewayAddresses;
-            if (nic.OperationalStatus == OperationalStatus.Up && nic.Speed > 0 && gwAddresses.Count > 0)
+            if (nic.OperationalStatus == OperationalStatus.Up && gwAddresses.Count > 0)
             {
                 IPAddress localIP = ipProp.UnicastAddresses.First(d => d.Address.AddressFamily == AddressFamily.InterNetwork).Address;
                 return localIP.ToString();
