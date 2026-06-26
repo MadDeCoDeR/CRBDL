@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
-using Avalonia.Threading;
 using CDL.Arguments;
 using CDL.Expansions;
 using CDL.filesystem;
@@ -11,7 +10,6 @@ using MsBox.Avalonia.Base;
 using MsBox.Avalonia.Enums;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -289,7 +287,25 @@ public partial class MainWindow : Window
                 }
             }
     }
+    
+    private static readonly string[] CLASSIC_MODES = new string[]
+    {
+        "DOOM I",
+        "DOOM II"
+    };
 
+    private static readonly string[] D3BFG_MODES = new string[]
+    {
+        "(Default)",
+        "DOOM I",
+        "DOOM II",
+        "DOOM 3"
+    };
+
+    private static readonly string[] DOOM3_MODES = new string[]
+    {
+        "DOOM 3"
+    };
     private async void UpdateGamePath(object? sender, SelectionChangedEventArgs e)
     {
         if (GamePath == null)
@@ -305,6 +321,22 @@ public partial class MainWindow : Window
             ufs.SetDefaultPath();
         }
         await this.updateD3Mods();
+        if (values[0].Trim() == "(BFA Classic)")
+        {
+            Game_Mode.Items.Clear();
+            Game_Mode.Items.AddRangeComboBox(CLASSIC_MODES);
+            Game_Mode.SelectedIndex = 0;
+        } else if (values[0].Trim() == "(D3: 2019)")
+        {
+            Game_Mode.Items.Clear();
+            Game_Mode.Items.AddRangeComboBox(DOOM3_MODES);
+            Game_Mode.SelectedIndex = 0;
+        } else
+        {
+            Game_Mode.Items.Clear();
+            Game_Mode.Items.AddRangeComboBox(D3BFG_MODES);
+            Game_Mode.SelectedIndex = 0;
+        }
     }
 
     public void Launchgame()

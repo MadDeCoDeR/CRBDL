@@ -92,7 +92,7 @@ namespace CDL.Arguments
                             break;
                         case ArgKeys.GAME_MODE:
                             args += commandDefs.getCommands()[key][subKey]
-                                + $"{((ComboBox)controlDefs.getControls()[key][subKey]).SelectedIndex} ";
+                                + $"{GameModeMap.GameModeMapper.GameModeMap[((ComboBoxItem?)((ComboBox)controlDefs.getControls()[key][subKey]).SelectedItem)?.Content?.ToString() ?? ""]} ";
                             break;
                         case ArgKeys.MAP:
                         case ArgKeys.SKILL:
