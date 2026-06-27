@@ -309,7 +309,7 @@ namespace CDL.filesystem
 
         public void SetDefaultPath()
         {
-            this.selectedPath = paths[0];
+            this.selectedPath = paths[4];
         }
 
         private async void checkGamePaths(bool waitThread)
@@ -368,6 +368,49 @@ namespace CDL.filesystem
             else {
                 await task;
             }
+        }
+
+        public int CategorizeGame(bool onlySelected = false)
+        {
+            int result = -1;
+            if (onlySelected)
+            {
+                string path = selectedPath + GetPathSeparator() + "base/_common.resources";
+                if (File.Exists(path))
+                {
+                    byte[] data = File.ReadAllBytes(path);
+                    string fileSha256 = BitConverter.ToString(sHA256.ComputeHash(data)).ToUpper().Replace("-", "");
+                    for (int j = 0; j < SHA256s.Count; j++)
+                    {
+                        if (SHA256s[j] == fileSha256)
+                        {
+                            result = j;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                for (int i = 0; i < paths.Count; i++)
+                {
+                    string path = paths[i] + GetPathSeparator() + "base/_common.resources";
+                    if (File.Exists(path))
+                    {
+                        byte[] data = File.ReadAllBytes(path);
+                        string fileSha256 = BitConverter.ToString(sHA256.ComputeHash(data)).ToUpper().Replace("-", "");
+                        for (int j = 0; j < SHA256s.Count; j++)
+                        {
+                            if (SHA256s[j] == fileSha256)
+                            {
+                                result = j;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

@@ -306,6 +306,26 @@ public partial class MainWindow : Window
     {
         "DOOM 3"
     };
+
+    private void UpdateGameModes(int game)
+    {
+        if (game == 1)
+        {
+            Game_Mode.Items.Clear();
+            Game_Mode.Items.AddRangeComboBox(CLASSIC_MODES);
+            Game_Mode.SelectedIndex = 0;
+        } else if (game == 2)
+        {
+            Game_Mode.Items.Clear();
+            Game_Mode.Items.AddRangeComboBox(DOOM3_MODES);
+            Game_Mode.SelectedIndex = 0;
+        } else
+        {
+            Game_Mode.Items.Clear();
+            Game_Mode.Items.AddRangeComboBox(D3BFG_MODES);
+            Game_Mode.SelectedIndex = 0;
+        }
+    }
     private async void UpdateGamePath(object? sender, SelectionChangedEventArgs e)
     {
         if (GamePath == null)
@@ -321,22 +341,9 @@ public partial class MainWindow : Window
             ufs.SetDefaultPath();
         }
         await this.updateD3Mods();
-        if (values[0].Trim() == "(BFA Classic)")
-        {
-            Game_Mode.Items.Clear();
-            Game_Mode.Items.AddRangeComboBox(CLASSIC_MODES);
-            Game_Mode.SelectedIndex = 0;
-        } else if (values[0].Trim() == "(D3: 2019)")
-        {
-            Game_Mode.Items.Clear();
-            Game_Mode.Items.AddRangeComboBox(DOOM3_MODES);
-            Game_Mode.SelectedIndex = 0;
-        } else
-        {
-            Game_Mode.Items.Clear();
-            Game_Mode.Items.AddRangeComboBox(D3BFG_MODES);
-            Game_Mode.SelectedIndex = 0;
-        }
+        int category = ufs.CategorizeGame(true);
+        int game = category == 2 ? 1 : (category == 1 ? 2 : 0);
+        UpdateGameModes(game);
     }
 
     public void Launchgame()
@@ -362,6 +369,10 @@ public partial class MainWindow : Window
                             fs_game_base.Items.Add(new ComboBoxItem { Content = tdir });
                         }
                     }
+
+                    int category = ufs.CategorizeGame();
+                    int translatedCategory = category == 2 ? 1 : (category == 1 ? 2 : 0);
+                    UpdateGameModes(translatedCategory);
                     // if (Settings.Default.defaultSettings != "")
                     // {
                     //     Stream stream = new FileStream(Settings.Default.defaultSettings, FileMode.OpenOrCreate);
