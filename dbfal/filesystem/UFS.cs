@@ -412,5 +412,10 @@ namespace CDL.filesystem
 
             return result;
         }
+
+        public string? GetSelectedPath()
+        {
+            return selectedPath;
+        }
     }
 }

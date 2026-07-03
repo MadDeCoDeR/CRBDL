@@ -127,18 +127,19 @@ namespace CDL
                 }
             }*/
             crbd.StartInfo.WorkingDirectory = ufs.getCurrentDirectory(filenames);
+            if (ufs.isUnixFS())
+            {
+                crbd.StartInfo.EnvironmentVariables["LD_LIBRARY_PATH"] = ufs.isRunningPackaged() ? ufs.GetSelectedPath() : crbd.StartInfo.WorkingDirectory;
+            }
             if (!ufs.isRunningPackaged())
             {
                 StreamWriter sw = new StreamWriter(ufs.createFullPath("args.txt"));
                 sw.Write(args);
                 sw.Close();
             }
-            else if (ufs.isRunningPackaged() && ufs.isUnixFS())
+            else if (ufs.isRunningPackaged())
             {
                 Console.WriteLine("Passing Arguments: " + args);
-                crbd.StartInfo.UseShellExecute = true;
-                /*crbd.StartInfo.EnvironmentVariables["LD_LIBRARY_PATH"] = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.doombfa/base/lib";
-                crbd.StartInfo.UseShellExecute = false;*/
             }
             crbd.StartInfo.Arguments = args; // if you need some
             this.isRunning = crbd.Start();

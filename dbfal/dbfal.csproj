@@ -6,7 +6,7 @@
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
-    <Version>1.0.17.12</Version>
+    <Version>1.0.17.13</Version>
     <ApplicationIcon>Assets\1.ico</ApplicationIcon>
     <AssemblyTitle>DOOM BFA Launcher</AssemblyTitle>
     <PublishAot>False</PublishAot>
