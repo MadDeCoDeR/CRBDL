@@ -138,9 +138,15 @@ namespace CDL.filesystem
         public string getFullPath(string filename)
         {
             List<string> foundPaths = new List<string>();
+            //GK: Prioritize Selected Path before a proper lookup
+            string path = selectedPath + GetPathSeparator() + filename;
+            if (File.Exists(path))
+            {
+                return path;
+            }
             for (int i = 0; i < paths.Count; i++)
             {
-                string path = paths[i] + GetPathSeparator() + filename;
+                path = paths[i] + GetPathSeparator() + filename;
                 if (File.Exists(path))
                 {
                     return path;
