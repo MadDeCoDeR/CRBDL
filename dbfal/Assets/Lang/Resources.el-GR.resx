@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Console" xml:space="preserve">
+    <value>Ενεργοποιήση Κονσόλας</value>
+  </data>
+  <data name="Cinematic" xml:space="preserve">
+    <value>Παράλειψη Βίντεο Αρχής</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Κράτα Αρχείο Καταγραφής</value>
+  </data>
+  <data name="SearchHeader" xml:space="preserve">
+    <value>Ψάξιμο για διαδρομές παιχνιδιού</value>
+  </data>
+  <data name="ArgsHeader" xml:space="preserve">
+    <value>Επιπλέων Παράμετροι</value>
+  </data>
+  <data name="GamePathHeader" xml:space="preserve">
+    <value>Διαδρομή Παιχνιδιού</value>
+  </data>
+  <data name="GameModeHeader" xml:space="preserve">
+    <value>Παιχνίδι Εκήνησης</value>
+  </data>
+  <data name="D3ModHeader" xml:space="preserve">
+    <value>Τροποποίηση</value>
+  </data>
+  <data name="D3ModBaseHeader" xml:space="preserve">
+    <value>Βάση Τροποποίησης</value>
+  </data>
+  <data name="CDModHeader" xml:space="preserve">
+    <value>Λίστα Τροποποιήσεων</value>
+  </data>
+  <data name="CDCheatHeader" xml:space="preserve">
+    <value>Ενεργοποιήση Κωδικών Απάτης</value>
+  </data>
+  <data name="CDAddMod" xml:space="preserve">
+    <value>Add Mod</value>
+  </data>
+  <data name="CDRemMod" xml:space="preserve">
+    <value>Remove Mod</value>
+  </data>
+  <data name="CDSkillHeader" xml:space="preserve">
+    <value>Δυσκολία</value>
+  </data>
+  <data name="D1EpisodeHeader" xml:space="preserve">
+    <value>Επισόδιο</value>
+  </data>
+  <data name="CDMapHeader" xml:space="preserve">
+    <value>Επίπεδο</value>
+  </data>
+  <data name="D2ExpansionHeader" xml:space="preserve">
+    <value>Επέκταση</value>
+  </data>
+  <data name="SaveSettings" xml:space="preserve">
+    <value>Απ/ση Ρυθμίσεων</value>
+  </data>
+  <data name="LoadSettings" xml:space="preserve">
+    <value>Φώρ/ση Ρυθμίσεων</value>
+  </data>
+  <data name="LaunchDM" xml:space="preserve">
+    <value>Εκκίνηση DM</value>
+  </data>
+  <data name="Launch" xml:space="preserve">
+    <value>Εκκίνηση</value>
+  </data>
+  <data name="DMGameSelectHeader" xml:space="preserve">
+    <value>Επιλογή Παιχνιδιού</value>
+  </data>
+  <data name="DMNumPlayersHeader" xml:space="preserve">
+    <value>Αριθμός Παιχτών</value>
+  </data>
+  <data name="DMIPAddressHeader" xml:space="preserve">
+    <value>Διευ/νση IP: </value>
+  </data>
+  <data name="DMIsHost" xml:space="preserve">
+    <value>Είναι Δι/στής</value>
+  </data>
+  <data name="DMTimeLimitHeader" xml:space="preserve">
+    <value>Χρονικό Όριο (ms)</value>
+  </data>
+  <data name="DMFragLimitHeader" xml:space="preserve">
+    <value>Όριο Νικών</value>
+  </data>
+  <data name="DMFindPlayers" xml:space="preserve">
+    <value>Βρές Παίχτες</value>
+  </data>
+  <data name="DMDeathMatch" xml:space="preserve">
+    <value>Deathmatch</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Ενερ/ση</value>
+  </data>
+  <data name="DMOldStyle" xml:space="preserve">
+    <value>Παλιό Στύλ</value>
+  </data>
+  <data name="DMHostHeader" xml:space="preserve">
+    <value>Ρυθμήσεις Διακομηστή</value>
+  </data>
+  <data name="DMLimitsHeader" xml:space="preserve">
+    <value>Όρια</value>
+  </data>
+</root>
