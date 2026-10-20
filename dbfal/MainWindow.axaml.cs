@@ -342,7 +342,7 @@ public partial class MainWindow : Window
         }
         await this.updateD3Mods();
         int category = ufs.CategorizeGame(true);
-        int game = category == 2 ? 1 : (category == 1 ? 2 : 0);
+        int game = category >= 2 ? 1 : (category == 1 ? 2 : 0);
         UpdateGameModes(game);
     }
 
@@ -371,7 +371,7 @@ public partial class MainWindow : Window
                     }
 
                     int category = ufs.CategorizeGame();
-                    int translatedCategory = category == 2 ? 1 : (category == 1 ? 2 : 0);
+                    int translatedCategory = category >= 2 ? 1 : (category == 1 ? 2 : 0);
                     UpdateGameModes(translatedCategory);
                     // if (Settings.Default.defaultSettings != "")
                     // {

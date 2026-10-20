@@ -36,7 +36,8 @@ namespace CDL.filesystem
         private static readonly List<string> SHA256s = new List<string> {
             "B683AC1B1D3F0CA6B92111DB85FC77ECE9D5C034CE5461EB8A7C4ADD8E239A22", //DOOM 3: BFG Edition
             "6DAECF3E621756C8A77B3C3064ED5FB488AFE357A80B7C14BEF35B6811B073CE", //DOOM 3 re-release (2019)
-            "A97B10F08D1DCDB8A7E2AB674EA6B847FE361416CAE18870EDC98AF0A081064C" //DOOM BFA Classic v1.4.2
+            "A97B10F08D1DCDB8A7E2AB674EA6B847FE361416CAE18870EDC98AF0A081064C", //DOOM BFA Classic v1.4.2
+            "D5FD0B11A019D1D86524AA1A8E2358A71A0A17726899BF2B58B9B8C1E4584396" //DOOM BFA Classic v1.4.3-81fdf9a
         };
         private static readonly SHA256 sHA256 = SHA256.Create();
         public List<string> BFGPaths { get; }
@@ -74,7 +75,7 @@ namespace CDL.filesystem
                     else if (fileSha256.Equals(SHA256s[1]))
                     {
                         NewD3Paths.Add(selectedPath);
-                    }else if (fileSha256.Equals(SHA256s[2]))
+                    }else if (fileSha256.Equals(SHA256s[2]) || fileSha256.Equals(SHA256s[3]))
                     {
                         BFAClassicPaths.Add(selectedPath);
                     }
@@ -349,7 +350,7 @@ namespace CDL.filesystem
                             paths.Add(path);
                             index++;
                             this.selectedPath = paths[index];
-                        }else if (fileSha256 == SHA256s[2])
+                        }else if (fileSha256 == SHA256s[2] || fileSha256 == SHA256s[3])
                         {
                             string path = filePath.Substring(0, filePath.LastIndexOf(GetPathSeparator()));
                             path = path.Substring(0, path.LastIndexOf(GetPathSeparator()));
