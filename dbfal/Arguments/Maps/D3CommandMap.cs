@@ -36,6 +36,7 @@ namespace CDL.Arguments
             commands.Add(ArgKeys.MOD, "+set fs_game ");
             commands.Add(ArgKeys.MOD_BASE, "+set fs_game_base ");
             commands.Add(ArgKeys.GAME_PATH, "+set fs_basepath ");
+            commands.Add(ArgKeys.LOG, "+set logfile ");
         }
 
         public Dictionary<string, string> getCommands() { return commands; }

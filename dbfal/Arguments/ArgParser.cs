@@ -68,6 +68,7 @@ namespace CDL.Arguments
                             break;
                         case ArgKeys.CONSOLE:
                         case ArgKeys.VIDEO:
+                        case ArgKeys.LOG:
                             args += commandDefs.getCommands()[key][subKey]
                                 + $"{Convert.ToInt32(((CheckBox)controlDefs.getControls()[key][subKey]).IsChecked)} ";
                             break;

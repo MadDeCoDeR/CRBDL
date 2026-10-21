@@ -43,5 +43,6 @@ namespace CDL.Arguments
         public const string EXTRA = "extra";
         public const string MENU = "menu";
         public const string GAME_PATH = "game_path";
+        public const string LOG = "log";
     }
 }

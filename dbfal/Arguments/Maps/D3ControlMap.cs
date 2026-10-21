@@ -39,6 +39,7 @@ namespace CDL.Arguments
             controls.Add(ArgKeys.MOD_BASE, mainWindow.GetFsGameBase());
             controls.Add(ArgKeys.EXTRA, mainWindow.GetD3ExtraArgs());
             controls.Add(ArgKeys.GAME_PATH, mainWindow.GetGamePath());
+            controls.Add(ArgKeys.LOG, mainWindow.GetKeepLog());
         }
 
         public Dictionary<string, Control> getControls() { return controls; }

@@ -563,6 +563,11 @@ public partial class MainWindow : Window
         return SkipIntro;
     }
 
+    public CheckBox GetKeepLog()
+    {
+        return KeepLogs;
+    }
+
     public ComboBox GetGamePath()
     {
         return GamePath;
