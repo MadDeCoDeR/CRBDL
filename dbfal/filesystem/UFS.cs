@@ -56,7 +56,7 @@ namespace CDL.filesystem
             NewD3Paths = new List<string>();
             BFAClassicPaths = new List<string>();
             this.selectedPath = paths[0];
-            if (paths[0].Contains("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
+            if (paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage)
             {
                 paths.Add("/usr/bin");
                 
@@ -179,7 +179,7 @@ namespace CDL.filesystem
 
         public bool isRunningPackaged()
         {
-            return paths[0].Contains("/usr") || paths[0].StartsWith("/app") || CDL.testPackage;
+            return paths[0].StartsWith("/usr") || paths[0].StartsWith("/app") || CDL.testPackage;
         }
 
         public string getParentPath(string relativeFolder)
