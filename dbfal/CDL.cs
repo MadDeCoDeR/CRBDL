@@ -115,7 +115,7 @@ namespace CDL
                     {
                         continue;
                     }
-                    crbd.StartInfo.FileName = ufs.getFullPath(filename);
+                    crbd.StartInfo.FileName = ufs.getFullPath(filename, true);
                     break;
                 }
             }

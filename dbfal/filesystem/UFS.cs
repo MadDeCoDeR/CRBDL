@@ -136,14 +136,17 @@ namespace CDL.filesystem
             return isUnixFS() ? "/" : "\\";
         }
 
-        public string getFullPath(string filename)
+        public string getFullPath(string filename, bool ignorePriority = false)
         {
             List<string> foundPaths = new List<string>();
-            //GK: Prioritize Selected Path before a proper lookup
-            string path = selectedPath + GetPathSeparator() + filename;
-            if (File.Exists(path))
-            {
-                return path;
+            string path = "";
+            if (!ignorePriority) {
+                //GK: Prioritize Selected Path before a proper lookup
+                path = selectedPath + GetPathSeparator() + filename;
+                if (File.Exists(path))
+                {
+                    return path;
+                }
             }
             for (int i = 0; i < paths.Count; i++)
             {
