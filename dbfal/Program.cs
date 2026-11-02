@@ -16,8 +16,13 @@ class Program
         CDL.CDL.testPackage = args.Contains("-testPack");
         if (!args.Contains("-cli"))
         {
-            BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+            AppBuilder builder = BuildAvaloniaApp();
+            if (OperatingSystem.IsLinux()
+                && Environment.GetEnvironmentVariable("WAYLAND_DISPLAY") is not null)
+            {
+                builder = builder.UseWayland();
+            }
+            builder.StartWithClassicDesktopLifetime(args);
         }
         else
         {
